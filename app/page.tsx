@@ -1,6 +1,6 @@
 'use client';
 
-import { useState, useEffect } from 'react';
+import { useState, useEffect, Suspense } from 'react';
 import { Header } from '@/components/layout/Header';
 import { Footer } from '@/components/layout/Footer';
 import { FilterBar } from '@/components/map/FilterBar';
@@ -15,7 +15,7 @@ import { useMapStore } from '@/store/mapStore';
 import { Toaster } from 'sonner';
 import { toast } from 'sonner';
 
-export default function Home() {
+function HomeContent() {
   const [showShortcuts, setShowShortcuts] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   
@@ -135,5 +135,13 @@ export default function Home() {
         }}
       />
     </main>
+  );
+}
+
+export default function Home() {
+  return (
+    <Suspense fallback={<div>Loading...</div>}>
+      <HomeContent />
+    </Suspense>
   );
 }
