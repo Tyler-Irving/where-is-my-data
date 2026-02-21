@@ -2,7 +2,7 @@
 
 import React, { useEffect, useState, useMemo } from 'react';
 import Map, { Source, Layer } from 'react-map-gl/mapbox';
-import type { LineLayer } from 'react-map-gl/mapbox';
+import type { LayerProps } from 'react-map-gl/mapbox';
 import { useMapStore } from '@/store/mapStore';
 import { useDatacenterStore } from '@/store/datacenterStore';
 import { useFilterStore } from '@/store/filterStore';
@@ -139,13 +139,13 @@ export const MapContainer = React.memo(function MapContainer() {
   }, [hoveredDatacenter, datacenters, providers, providerTypes, capacityRange, pueRange, renewableOnly]);
 
   // Line layer style
-  const connectionLineLayer: LineLayer = useMemo(() => {
+  const connectionLineLayer = useMemo(() => {
     const providerColor = hoveredDatacenter ? getProviderColor(hoveredDatacenter.provider) : '#6B7280';
     const displayColor = getDisplayColor(providerColor);
     
     return {
       id: 'connection-lines',
-      type: 'line',
+      type: 'line' as const,
       paint: {
         'line-color': displayColor,
         'line-width': 2,
