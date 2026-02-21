@@ -8,8 +8,8 @@ const inter = Inter({
 });
 
 export const metadata: Metadata = {
-  title: "USA Datacenter Hexagonal Map",
-  description: "Interactive hexagonal map of USA datacenters with real-time infrastructure issue tracking",
+  title: "Where is my data?",
+  description: "Interactive map showing 107 datacenters across 24 cloud providers in the USA",
 };
 
 export default function RootLayout({
