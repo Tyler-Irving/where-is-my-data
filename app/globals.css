@@ -1,0 +1,84 @@
+@import "tailwindcss";
+
+/* Utility classes */
+.scrollbar-hide {
+  scrollbar-width: none;
+  -ms-overflow-style: none;
+}
+
+.scrollbar-hide::-webkit-scrollbar {
+  display: none;
+}
+
+/* Animation utilities */
+@keyframes slide-in-from-bottom {
+  from {
+    opacity: 0;
+    transform: translateY(100%);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-in {
+  animation-fill-mode: both;
+}
+
+.slide-in-from-bottom {
+  animation-name: slide-in-from-bottom;
+}
+
+.duration-300 {
+  animation-duration: 300ms;
+}
+
+/* Safe area padding for mobile */
+.pb-safe {
+  padding-bottom: calc(0.75rem + env(safe-area-inset-bottom));
+}
+
+/* Mapbox popup custom styling */
+.mapboxgl-popup-content {
+  padding: 0;
+  box-shadow: 0 10px 15px -3px rgba(0, 0, 0, 0.5);
+  border-radius: 0.5rem;
+  background-color: #111827;
+  max-width: none;
+  overflow: hidden;
+}
+
+.mapboxgl-popup-tip {
+  border-top-color: #111827;
+}
+
+/* Datacenter tooltip specific styling */
+.datacenter-tooltip .mapboxgl-popup-content {
+  max-width: 340px;
+  min-width: 320px;
+  background-color: #18181b;
+  border-radius: 0.75rem;
+}
+
+.datacenter-tooltip .mapboxgl-popup-tip {
+  border-top-color: #18181b !important;
+}
+
+/* Hexagon popup styling */
+.hexagon-popup .mapboxgl-popup-content {
+  min-width: 240px;
+  background-color: #111827;
+}
+
+.hexagon-popup .mapboxgl-popup-tip {
+  border-top-color: #111827 !important;
+}
+
+/* Remove Mapbox logo and attribution on small screens */
+@media (max-width: 768px) {
+  .mapboxgl-ctrl-bottom-left,
+  .mapboxgl-ctrl-bottom-right {
+    display: none;
+  }
+}

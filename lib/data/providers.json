@@ -1,0 +1,242 @@
+[
+  {
+    "id": "aws",
+    "name": "AWS",
+    "fullName": "Amazon Web Services",
+    "type": "hyperscale-cloud",
+    "color": "#FF9900",
+    "textColor": "#FFFFFF",
+    "website": "https://aws.amazon.com",
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/9/93/Amazon_Web_Services_Logo.svg"
+  },
+  {
+    "id": "azure",
+    "name": "Azure",
+    "fullName": "Microsoft Azure",
+    "type": "hyperscale-cloud",
+    "color": "#0078D4",
+    "textColor": "#FFFFFF",
+    "website": "https://azure.microsoft.com",
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/a/a8/Microsoft_Azure_Logo.svg"
+  },
+  {
+    "id": "gcp",
+    "name": "GCP",
+    "fullName": "Google Cloud Platform",
+    "type": "hyperscale-cloud",
+    "color": "#4285F4",
+    "textColor": "#FFFFFF",
+    "website": "https://cloud.google.com",
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/5/51/Google_Cloud_logo.svg"
+  },
+  {
+    "id": "oracle",
+    "name": "Oracle",
+    "fullName": "Oracle Cloud Infrastructure",
+    "type": "hyperscale-cloud",
+    "color": "#F80000",
+    "textColor": "#FFFFFF",
+    "website": "https://www.oracle.com/cloud",
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/5/50/Oracle_logo.svg"
+  },
+  {
+    "id": "ibm",
+    "name": "IBM",
+    "fullName": "IBM Cloud",
+    "type": "hyperscale-cloud",
+    "color": "#0F62FE",
+    "textColor": "#FFFFFF",
+    "website": "https://www.ibm.com/cloud",
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/5/51/IBM_logo.svg"
+  },
+  {
+    "id": "alibaba",
+    "name": "Alibaba",
+    "fullName": "Alibaba Cloud",
+    "type": "hyperscale-cloud",
+    "color": "#FF6A00",
+    "textColor": "#FFFFFF",
+    "website": "https://www.alibabacloud.com",
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/5/5c/Alibaba_Cloud_logo.svg"
+  },
+  {
+    "id": "meta",
+    "name": "Meta",
+    "fullName": "Meta Platforms",
+    "type": "tech-giant",
+    "color": "#1877F2",
+    "textColor": "#FFFFFF",
+    "website": "https://sustainability.fb.com/data-centers",
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/7/7b/Meta_Platforms_Inc._logo.svg"
+  },
+  {
+    "id": "google",
+    "name": "Google",
+    "fullName": "Google Data Centers",
+    "type": "tech-giant",
+    "color": "#34A853",
+    "textColor": "#FFFFFF",
+    "website": "https://www.google.com/about/datacenters",
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/2/2f/Google_2015_logo.svg"
+  },
+  {
+    "id": "apple",
+    "name": "Apple",
+    "fullName": "Apple Data Centers",
+    "type": "tech-giant",
+    "color": "#555555",
+    "textColor": "#FFFFFF",
+    "website": "https://www.apple.com/environment",
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/f/fa/Apple_logo_black.svg"
+  },
+  {
+    "id": "microsoft",
+    "name": "Microsoft",
+    "fullName": "Microsoft Data Centers",
+    "type": "tech-giant",
+    "color": "#00A4EF",
+    "textColor": "#FFFFFF",
+    "website": "https://www.microsoft.com/en-us/datacenter",
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/9/96/Microsoft_logo_%282012%29.svg"
+  },
+  {
+    "id": "equinix",
+    "name": "Equinix",
+    "fullName": "Equinix",
+    "type": "colocation",
+    "color": "#ED1C24",
+    "textColor": "#FFFFFF",
+    "website": "https://www.equinix.com",
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/9/93/Equinix_logo.svg"
+  },
+  {
+    "id": "digital-realty",
+    "name": "Digital Realty",
+    "fullName": "Digital Realty Trust",
+    "type": "colocation",
+    "color": "#8B4789",
+    "textColor": "#FFFFFF",
+    "website": "https://www.digitalrealty.com",
+    "logoUrl": null
+  },
+  {
+    "id": "coresite",
+    "name": "CoreSite",
+    "fullName": "CoreSite Realty",
+    "type": "colocation",
+    "color": "#00CED1",
+    "textColor": "#FFFFFF",
+    "website": "https://www.coresite.com",
+    "logoUrl": null
+  },
+  {
+    "id": "cyrusone",
+    "name": "CyrusOne",
+    "fullName": "CyrusOne",
+    "type": "colocation",
+    "color": "#FFD700",
+    "textColor": "#000000",
+    "website": "https://cyrusone.com",
+    "logoUrl": null
+  },
+  {
+    "id": "qts",
+    "name": "QTS",
+    "fullName": "QTS Realty Trust",
+    "type": "colocation",
+    "color": "#9B59B6",
+    "textColor": "#FFFFFF",
+    "website": "https://www.qtsdatacenters.com",
+    "logoUrl": null
+  },
+  {
+    "id": "switch",
+    "name": "Switch",
+    "fullName": "Switch",
+    "type": "colocation",
+    "color": "#00B140",
+    "textColor": "#FFFFFF",
+    "website": "https://www.switch.com",
+    "logoUrl": null
+  },
+  {
+    "id": "flexential",
+    "name": "Flexential",
+    "fullName": "Flexential",
+    "type": "colocation",
+    "color": "#20B2AA",
+    "textColor": "#FFFFFF",
+    "website": "https://www.flexential.com",
+    "logoUrl": null
+  },
+  {
+    "id": "digitalocean",
+    "name": "DigitalOcean",
+    "fullName": "DigitalOcean",
+    "type": "regional-cloud",
+    "color": "#0080FF",
+    "textColor": "#FFFFFF",
+    "website": "https://www.digitalocean.com",
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/f/ff/DigitalOcean_logo.svg"
+  },
+  {
+    "id": "vultr",
+    "name": "Vultr",
+    "fullName": "Vultr",
+    "type": "regional-cloud",
+    "color": "#51829B",
+    "textColor": "#FFFFFF",
+    "website": "https://www.vultr.com",
+    "logoUrl": null
+  },
+  {
+    "id": "linode",
+    "name": "Linode",
+    "fullName": "Linode (Akamai)",
+    "type": "regional-cloud",
+    "color": "#00B159",
+    "textColor": "#FFFFFF",
+    "website": "https://www.linode.com",
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/d/d7/Linode_logo.svg"
+  },
+  {
+    "id": "ovh",
+    "name": "OVH",
+    "fullName": "OVHcloud",
+    "type": "regional-cloud",
+    "color": "#123F6D",
+    "textColor": "#FFFFFF",
+    "website": "https://www.ovhcloud.com",
+    "logoUrl": null
+  },
+  {
+    "id": "hetzner",
+    "name": "Hetzner",
+    "fullName": "Hetzner Online",
+    "type": "regional-cloud",
+    "color": "#D50C2D",
+    "textColor": "#FFFFFF",
+    "website": "https://www.hetzner.com",
+    "logoUrl": null
+  },
+  {
+    "id": "cloudflare",
+    "name": "Cloudflare",
+    "fullName": "Cloudflare",
+    "type": "edge-cdn",
+    "color": "#F38020",
+    "textColor": "#FFFFFF",
+    "website": "https://www.cloudflare.com",
+    "logoUrl": "https://upload.wikimedia.org/wikipedia/commons/9/94/Cloudflare_Logo.svg"
+  },
+  {
+    "id": "xai",
+    "name": "xAI",
+    "fullName": "xAI (Elon Musk)",
+    "type": "tech-giant",
+    "color": "#000000",
+    "textColor": "#FFFFFF",
+    "website": "https://x.ai",
+    "logoUrl": null
+  }
+]
