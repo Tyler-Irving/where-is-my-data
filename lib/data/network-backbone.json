@@ -224,7 +224,7 @@
     {
       "id": "equinix-1",
       "fromDatacenterId": "equinix-ny5",
-      "toDatacenterId": "equinix-da1",
+      "toDatacenterId": "equinix-da2",
       "provider": "Equinix",
       "connectionType": "peering",
       "speed": "100G",
@@ -235,7 +235,7 @@
     {
       "id": "equinix-2",
       "fromDatacenterId": "equinix-ch2",
-      "toDatacenterId": "equinix-da1",
+      "toDatacenterId": "equinix-da2",
       "provider": "Equinix",
       "connectionType": "peering",
       "speed": "100G",
@@ -246,7 +246,7 @@
     {
       "id": "equinix-3",
       "fromDatacenterId": "equinix-sv5",
-      "toDatacenterId": "equinix-la1",
+      "toDatacenterId": "equinix-la3",
       "provider": "Equinix",
       "connectionType": "peering",
       "speed": "100G",
@@ -300,8 +300,8 @@
     },
     {
       "id": "cloudflare-1",
-      "fromDatacenterId": "cloudflare-nyc",
-      "toDatacenterId": "cloudflare-atlanta",
+      "fromDatacenterId": "cloudflare-new-york",
+      "toDatacenterId": "cloudflare-miami",
       "provider": "Cloudflare",
       "connectionType": "backbone",
       "speed": "100G",
@@ -311,40 +311,40 @@
     },
     {
       "id": "cloudflare-2",
-      "fromDatacenterId": "cloudflare-atlanta",
+      "fromDatacenterId": "cloudflare-miami",
       "toDatacenterId": "cloudflare-dallas",
       "provider": "Cloudflare",
       "connectionType": "backbone",
       "speed": "100G",
       "redundant": true,
       "active": true,
-      "notes": "Southeast to Central"
+      "notes": "Miami to Dallas"
     },
     {
       "id": "cloudflare-3",
       "fromDatacenterId": "cloudflare-dallas",
-      "toDatacenterId": "cloudflare-seattle",
+      "toDatacenterId": "cloudflare-chicago",
       "provider": "Cloudflare",
       "connectionType": "backbone",
       "speed": "100G",
       "redundant": true,
       "active": true,
-      "notes": "Central to Northwest"
+      "notes": "Dallas to Chicago"
     },
     {
       "id": "cloudflare-4",
-      "fromDatacenterId": "cloudflare-seattle",
-      "toDatacenterId": "cloudflare-san-jose",
+      "fromDatacenterId": "cloudflare-chicago",
+      "toDatacenterId": "cloudflare-los-angeles",
       "provider": "Cloudflare",
       "connectionType": "backbone",
       "speed": "100G",
       "redundant": true,
       "active": true,
-      "notes": "West Coast PoP mesh"
+      "notes": "Chicago to Los Angeles"
     },
     {
       "id": "cloudflare-5",
-      "fromDatacenterId": "cloudflare-san-jose",
+      "fromDatacenterId": "cloudflare-los-angeles",
       "toDatacenterId": "cloudflare-los-angeles",
       "provider": "Cloudflare",
       "connectionType": "backbone",
@@ -352,43 +352,208 @@
       "redundant": true,
       "active": true,
       "notes": "California PoP mesh"
+    },
+    {
+      "id": "equinix-5",
+      "fromDatacenterId": "equinix-ny4",
+      "toDatacenterId": "equinix-ny5",
+      "provider": "Equinix",
+      "connectionType": "peering",
+      "speed": "100G",
+      "redundant": true,
+      "active": true,
+      "notes": "New York metro peering fabric"
+    },
+    {
+      "id": "equinix-6",
+      "fromDatacenterId": "equinix-dc2",
+      "toDatacenterId": "equinix-ny4",
+      "provider": "Equinix",
+      "connectionType": "peering",
+      "speed": "100G",
+      "redundant": true,
+      "active": true,
+      "notes": "Ashburn to NYC peering"
+    },
+    {
+      "id": "equinix-7",
+      "fromDatacenterId": "equinix-sv1",
+      "toDatacenterId": "equinix-sv5",
+      "provider": "Equinix",
+      "connectionType": "peering",
+      "speed": "100G",
+      "redundant": true,
+      "active": true,
+      "notes": "Silicon Valley peering fabric"
+    },
+    {
+      "id": "equinix-8",
+      "fromDatacenterId": "equinix-ch1",
+      "toDatacenterId": "equinix-ch2",
+      "provider": "Equinix",
+      "connectionType": "peering",
+      "speed": "100G",
+      "redundant": true,
+      "active": true,
+      "notes": "Chicago metro peering"
+    },
+    {
+      "id": "transit-1",
+      "fromDatacenterId": "equinix-sv5",
+      "toDatacenterId": "equinix-da2",
+      "provider": "Equinix",
+      "connectionType": "transit",
+      "speed": "100G",
+      "redundant": false,
+      "active": true,
+      "notes": "West to Central transit"
+    },
+    {
+      "id": "transit-2",
+      "fromDatacenterId": "equinix-ny4",
+      "toDatacenterId": "equinix-ch1",
+      "provider": "Equinix",
+      "connectionType": "transit",
+      "speed": "100G",
+      "redundant": false,
+      "active": true,
+      "notes": "East to Midwest transit"
+    },
+    {
+      "id": "transit-3",
+      "fromDatacenterId": "equinix-da2",
+      "toDatacenterId": "equinix-la3",
+      "provider": "Equinix",
+      "connectionType": "transit",
+      "speed": "100G",
+      "redundant": false,
+      "active": true,
+      "notes": "Dallas to LA transit"
+    },
+    {
+      "id": "private-1",
+      "fromDatacenterId": "aws-us-east-1",
+      "toDatacenterId": "equinix-dc2",
+      "provider": "AWS",
+      "connectionType": "private-interconnect",
+      "speed": "100G",
+      "redundant": true,
+      "active": true,
+      "notes": "AWS Direct Connect at Equinix Ashburn"
+    },
+    {
+      "id": "private-2",
+      "fromDatacenterId": "gcp-us-east1",
+      "toDatacenterId": "equinix-dc2",
+      "provider": "Google Cloud",
+      "connectionType": "private-interconnect",
+      "speed": "100G",
+      "redundant": true,
+      "active": true,
+      "notes": "GCP Dedicated Interconnect at Equinix"
+    },
+    {
+      "id": "private-3",
+      "fromDatacenterId": "azure-eastus",
+      "toDatacenterId": "equinix-dc2",
+      "provider": "Azure",
+      "connectionType": "private-interconnect",
+      "speed": "100G",
+      "redundant": true,
+      "active": true,
+      "notes": "Azure ExpressRoute at Equinix"
+    },
+    {
+      "id": "private-4",
+      "fromDatacenterId": "gcp-us-west1",
+      "toDatacenterId": "equinix-sv5",
+      "provider": "Google Cloud",
+      "connectionType": "private-interconnect",
+      "speed": "100G",
+      "redundant": true,
+      "active": true,
+      "notes": "GCP Interconnect at Equinix SV"
+    },
+    {
+      "id": "private-5",
+      "fromDatacenterId": "aws-us-west-2",
+      "toDatacenterId": "equinix-se2",
+      "provider": "AWS",
+      "connectionType": "private-interconnect",
+      "speed": "100G",
+      "redundant": true,
+      "active": true,
+      "notes": "AWS Direct Connect at Equinix Seattle"
     }
   ],
   "providerBackbones": [
     {
       "provider": "AWS",
       "totalCapacity": "Multi-terabit",
-      "regions": ["us-east-1", "us-east-2", "us-west-1", "us-west-2"],
+      "regions": [
+        "us-east-1",
+        "us-east-2",
+        "us-west-1",
+        "us-west-2"
+      ],
       "description": "AWS maintains a private fiber network connecting all regions with 400G links and multiple redundant paths."
     },
     {
       "provider": "Google Cloud",
       "totalCapacity": "Petabit-scale",
-      "regions": ["us-east1", "us-east4", "us-central1", "us-west1", "us-west2", "us-west3", "us-west4", "us-south1"],
+      "regions": [
+        "us-east1",
+        "us-east4",
+        "us-central1",
+        "us-west1",
+        "us-west2",
+        "us-west3",
+        "us-west4",
+        "us-south1"
+      ],
       "description": "Google's Jupiter network fabric provides sub-millisecond latency between datacenters with 400G backbone links."
     },
     {
       "provider": "Azure",
       "totalCapacity": "Multi-terabit",
-      "regions": ["eastus", "eastus2", "centralus", "northcentralus", "southcentralus", "westus", "westus2", "westus3", "westcentralus"],
+      "regions": [
+        "eastus",
+        "eastus2",
+        "centralus",
+        "northcentralus",
+        "southcentralus",
+        "westus",
+        "westus2",
+        "westus3",
+        "westcentralus"
+      ],
       "description": "Microsoft's global WAN connects Azure regions with ExpressRoute and redundant 400G backbone."
     },
     {
       "provider": "Meta",
       "totalCapacity": "400G+",
-      "regions": ["Prineville", "Forest City", "Henrico", "Los Lunas"],
+      "regions": [
+        "Prineville",
+        "Forest City",
+        "Henrico",
+        "Los Lunas"
+      ],
       "description": "Meta's Express Backbone connects datacenters with 400G+ links for Facebook, Instagram, and WhatsApp traffic."
     },
     {
       "provider": "Cloudflare",
       "totalCapacity": "100G mesh",
-      "regions": ["Global PoPs"],
+      "regions": [
+        "Global PoPs"
+      ],
       "description": "Cloudflare's anycast network uses 100G+ links between PoPs with intelligent routing and DDoS mitigation."
     },
     {
       "provider": "Equinix",
       "totalCapacity": "100G peering",
-      "regions": ["Global"],
+      "regions": [
+        "Global"
+      ],
       "description": "Equinix provides interconnection services with 100G+ peering fabric across major metros."
     }
   ]
