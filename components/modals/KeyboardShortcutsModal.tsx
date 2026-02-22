@@ -35,6 +35,7 @@ export const KeyboardShortcutsModal = React.memo(function KeyboardShortcutsModal
           </div>
           <button
             onClick={onClose}
+            aria-label="Close keyboard shortcuts"
             className="text-gray-400 hover:text-white transition-colors p-2 hover:bg-gray-800 rounded-lg"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

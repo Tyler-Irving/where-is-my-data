@@ -140,6 +140,7 @@ export const SearchBar = React.memo(function SearchBar({ onSearchResults, onResu
           {query && (
             <button
               onClick={handleClear}
+              aria-label="Clear search"
               className="flex-shrink-0 text-gray-400 hover:text-white transition-colors"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">

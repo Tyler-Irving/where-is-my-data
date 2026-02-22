@@ -32,6 +32,7 @@ export function Header() {
           <button
             onClick={() => setShowAbout(true)}
             className="ml-1 md:ml-2 p-1.5 rounded-lg text-gray-400 hover:text-white hover:bg-gray-800 transition-colors"
+            aria-label="About this project"
             title="About this project"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">

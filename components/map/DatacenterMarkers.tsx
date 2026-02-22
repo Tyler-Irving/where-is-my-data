@@ -9,7 +9,7 @@ import { DatacenterTooltip } from './DatacenterTooltip';
 import { Datacenter } from '@/types/datacenter';
 import { getProviderColor } from '@/lib/utils/providerColors';
 import { getDisplayColor } from '@/lib/utils/colorBrightness';
-import { calculateMarkerOffsets, getColocatedCount } from '@/lib/utils/markerOffset';
+import { calculateMarkerOffsets, buildColocatedCountMap, getColocatedCount } from '@/lib/utils/markerOffset';
 import { filterDatacenters } from '@/lib/utils/filterDatacenters';
 
 interface DatacenterMarkersProps {
@@ -74,14 +74,16 @@ export const DatacenterMarkers = React.memo(function DatacenterMarkers({ onHover
   const datacentersWithOffsets = useMemo(() => {
     return calculateMarkerOffsets(filteredDatacenters);
   }, [filteredDatacenters]);
-  
-  // Always show all filtered datacenters
-  const visibleDatacenters = datacentersWithOffsets;
+
+  // Precompute colocation counts (O(n) instead of O(n²))
+  const colocatedCounts = useMemo(() => {
+    return buildColocatedCountMap(datacenters);
+  }, [datacenters]);
 
   return (
     <>
-      {visibleDatacenters.map((datacenter) => {
-        const colocatedCount = getColocatedCount(datacenters, datacenter.lat, datacenter.lng);
+      {datacentersWithOffsets.map((datacenter) => {
+        const colocatedCount = getColocatedCount(colocatedCounts, datacenter.lat, datacenter.lng);
         const hasMultiple = colocatedCount > 1;
         const providerColor = getProviderColor(datacenter.provider);
         const displayColor = getDisplayColor(providerColor);
