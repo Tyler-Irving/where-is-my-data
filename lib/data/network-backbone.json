@@ -1,0 +1,395 @@
+{
+  "lastUpdated": "2026-02-22",
+  "connections": [
+    {
+      "id": "aws-1",
+      "fromDatacenterId": "aws-us-east-1",
+      "toDatacenterId": "aws-us-east-2",
+      "provider": "AWS",
+      "connectionType": "backbone",
+      "speed": "400G",
+      "redundant": true,
+      "active": true,
+      "notes": "Primary East Coast backbone"
+    },
+    {
+      "id": "aws-2",
+      "fromDatacenterId": "aws-us-east-1",
+      "toDatacenterId": "aws-us-west-2",
+      "provider": "AWS",
+      "connectionType": "backbone",
+      "speed": "400G",
+      "redundant": true,
+      "active": true,
+      "notes": "Transcontinental backbone"
+    },
+    {
+      "id": "aws-3",
+      "fromDatacenterId": "aws-us-east-2",
+      "toDatacenterId": "aws-us-west-2",
+      "provider": "AWS",
+      "connectionType": "backbone",
+      "speed": "400G",
+      "redundant": true,
+      "active": true,
+      "notes": "Midwest to West backbone"
+    },
+    {
+      "id": "aws-4",
+      "fromDatacenterId": "aws-us-west-1",
+      "toDatacenterId": "aws-us-west-2",
+      "provider": "AWS",
+      "connectionType": "backbone",
+      "speed": "100G",
+      "redundant": true,
+      "active": true,
+      "notes": "West Coast backbone"
+    },
+    {
+      "id": "aws-5",
+      "fromDatacenterId": "aws-us-west-1-lax",
+      "toDatacenterId": "aws-us-west-2",
+      "provider": "AWS",
+      "connectionType": "backbone",
+      "speed": "100G",
+      "redundant": false,
+      "active": true,
+      "notes": "LA to Oregon"
+    },
+    {
+      "id": "gcp-1",
+      "fromDatacenterId": "gcp-us-east1",
+      "toDatacenterId": "gcp-us-east4",
+      "provider": "Google Cloud",
+      "connectionType": "backbone",
+      "speed": "400G",
+      "redundant": true,
+      "active": true,
+      "notes": "East Coast Jupiter backbone"
+    },
+    {
+      "id": "gcp-2",
+      "fromDatacenterId": "gcp-us-east1",
+      "toDatacenterId": "gcp-us-central1",
+      "provider": "Google Cloud",
+      "connectionType": "backbone",
+      "speed": "400G",
+      "redundant": true,
+      "active": true,
+      "notes": "East to Central backbone"
+    },
+    {
+      "id": "gcp-3",
+      "fromDatacenterId": "gcp-us-central1",
+      "toDatacenterId": "gcp-us-west1",
+      "provider": "Google Cloud",
+      "connectionType": "backbone",
+      "speed": "400G",
+      "redundant": true,
+      "active": true,
+      "notes": "Central to West backbone"
+    },
+    {
+      "id": "gcp-4",
+      "fromDatacenterId": "gcp-us-west1",
+      "toDatacenterId": "gcp-us-west2",
+      "provider": "Google Cloud",
+      "connectionType": "backbone",
+      "speed": "400G",
+      "redundant": true,
+      "active": true,
+      "notes": "West Coast backbone"
+    },
+    {
+      "id": "gcp-5",
+      "fromDatacenterId": "gcp-us-west2",
+      "toDatacenterId": "gcp-us-west3",
+      "provider": "Google Cloud",
+      "connectionType": "backbone",
+      "speed": "100G",
+      "redundant": true,
+      "active": true,
+      "notes": "LA to Salt Lake backbone"
+    },
+    {
+      "id": "gcp-6",
+      "fromDatacenterId": "gcp-us-west4",
+      "toDatacenterId": "gcp-us-west2",
+      "provider": "Google Cloud",
+      "connectionType": "backbone",
+      "speed": "100G",
+      "redundant": false,
+      "active": true,
+      "notes": "Las Vegas to LA"
+    },
+    {
+      "id": "gcp-7",
+      "fromDatacenterId": "gcp-us-south1",
+      "toDatacenterId": "gcp-us-central1",
+      "provider": "Google Cloud",
+      "connectionType": "backbone",
+      "speed": "100G",
+      "redundant": true,
+      "active": true,
+      "notes": "Dallas to Iowa"
+    },
+    {
+      "id": "azure-1",
+      "fromDatacenterId": "azure-eastus",
+      "toDatacenterId": "azure-eastus2",
+      "provider": "Azure",
+      "connectionType": "backbone",
+      "speed": "400G",
+      "redundant": true,
+      "active": true,
+      "notes": "East US redundant path"
+    },
+    {
+      "id": "azure-2",
+      "fromDatacenterId": "azure-eastus",
+      "toDatacenterId": "azure-centralus",
+      "provider": "Azure",
+      "connectionType": "backbone",
+      "speed": "400G",
+      "redundant": true,
+      "active": true,
+      "notes": "East to Central backbone"
+    },
+    {
+      "id": "azure-3",
+      "fromDatacenterId": "azure-centralus",
+      "toDatacenterId": "azure-northcentralus",
+      "provider": "Azure",
+      "connectionType": "backbone",
+      "speed": "100G",
+      "redundant": true,
+      "active": true,
+      "notes": "Central region mesh"
+    },
+    {
+      "id": "azure-4",
+      "fromDatacenterId": "azure-centralus",
+      "toDatacenterId": "azure-westus2",
+      "provider": "Azure",
+      "connectionType": "backbone",
+      "speed": "400G",
+      "redundant": true,
+      "active": true,
+      "notes": "Central to West backbone"
+    },
+    {
+      "id": "azure-5",
+      "fromDatacenterId": "azure-westus",
+      "toDatacenterId": "azure-westus2",
+      "provider": "Azure",
+      "connectionType": "backbone",
+      "speed": "100G",
+      "redundant": true,
+      "active": true,
+      "notes": "West Coast connection"
+    },
+    {
+      "id": "azure-6",
+      "fromDatacenterId": "azure-westus2",
+      "toDatacenterId": "azure-westus3",
+      "provider": "Azure",
+      "connectionType": "backbone",
+      "speed": "100G",
+      "redundant": false,
+      "active": true,
+      "notes": "Seattle to Phoenix"
+    },
+    {
+      "id": "azure-7",
+      "fromDatacenterId": "azure-southcentralus",
+      "toDatacenterId": "azure-centralus",
+      "provider": "Azure",
+      "connectionType": "backbone",
+      "speed": "100G",
+      "redundant": true,
+      "active": true,
+      "notes": "Texas to Iowa"
+    },
+    {
+      "id": "azure-8",
+      "fromDatacenterId": "azure-westcentralus",
+      "toDatacenterId": "azure-westus2",
+      "provider": "Azure",
+      "connectionType": "backbone",
+      "speed": "100G",
+      "redundant": false,
+      "active": true,
+      "notes": "Wyoming to Seattle"
+    },
+    {
+      "id": "equinix-1",
+      "fromDatacenterId": "equinix-ny5",
+      "toDatacenterId": "equinix-da1",
+      "provider": "Equinix",
+      "connectionType": "peering",
+      "speed": "100G",
+      "redundant": true,
+      "active": true,
+      "notes": "East Coast peering fabric"
+    },
+    {
+      "id": "equinix-2",
+      "fromDatacenterId": "equinix-ch2",
+      "toDatacenterId": "equinix-da1",
+      "provider": "Equinix",
+      "connectionType": "peering",
+      "speed": "100G",
+      "redundant": true,
+      "active": true,
+      "notes": "Chicago to Dallas peering"
+    },
+    {
+      "id": "equinix-3",
+      "fromDatacenterId": "equinix-sv5",
+      "toDatacenterId": "equinix-la1",
+      "provider": "Equinix",
+      "connectionType": "peering",
+      "speed": "100G",
+      "redundant": true,
+      "active": true,
+      "notes": "West Coast peering fabric"
+    },
+    {
+      "id": "equinix-4",
+      "fromDatacenterId": "equinix-sv5",
+      "toDatacenterId": "equinix-ch2",
+      "provider": "Equinix",
+      "connectionType": "transit",
+      "speed": "100G",
+      "redundant": false,
+      "active": true,
+      "notes": "Cross-country transit"
+    },
+    {
+      "id": "meta-1",
+      "fromDatacenterId": "meta-prineville",
+      "toDatacenterId": "meta-forest-city",
+      "provider": "Meta",
+      "connectionType": "backbone",
+      "speed": "400G",
+      "redundant": true,
+      "active": true,
+      "notes": "Express Backbone transcontinental"
+    },
+    {
+      "id": "meta-2",
+      "fromDatacenterId": "meta-forest-city",
+      "toDatacenterId": "meta-henrico",
+      "provider": "Meta",
+      "connectionType": "backbone",
+      "speed": "400G",
+      "redundant": true,
+      "active": true,
+      "notes": "East Coast backbone"
+    },
+    {
+      "id": "meta-3",
+      "fromDatacenterId": "meta-los-lunas",
+      "toDatacenterId": "meta-prineville",
+      "provider": "Meta",
+      "connectionType": "backbone",
+      "speed": "100G",
+      "redundant": false,
+      "active": true,
+      "notes": "Southwest to Northwest"
+    },
+    {
+      "id": "cloudflare-1",
+      "fromDatacenterId": "cloudflare-nyc",
+      "toDatacenterId": "cloudflare-atlanta",
+      "provider": "Cloudflare",
+      "connectionType": "backbone",
+      "speed": "100G",
+      "redundant": true,
+      "active": true,
+      "notes": "East Coast PoP mesh"
+    },
+    {
+      "id": "cloudflare-2",
+      "fromDatacenterId": "cloudflare-atlanta",
+      "toDatacenterId": "cloudflare-dallas",
+      "provider": "Cloudflare",
+      "connectionType": "backbone",
+      "speed": "100G",
+      "redundant": true,
+      "active": true,
+      "notes": "Southeast to Central"
+    },
+    {
+      "id": "cloudflare-3",
+      "fromDatacenterId": "cloudflare-dallas",
+      "toDatacenterId": "cloudflare-seattle",
+      "provider": "Cloudflare",
+      "connectionType": "backbone",
+      "speed": "100G",
+      "redundant": true,
+      "active": true,
+      "notes": "Central to Northwest"
+    },
+    {
+      "id": "cloudflare-4",
+      "fromDatacenterId": "cloudflare-seattle",
+      "toDatacenterId": "cloudflare-san-jose",
+      "provider": "Cloudflare",
+      "connectionType": "backbone",
+      "speed": "100G",
+      "redundant": true,
+      "active": true,
+      "notes": "West Coast PoP mesh"
+    },
+    {
+      "id": "cloudflare-5",
+      "fromDatacenterId": "cloudflare-san-jose",
+      "toDatacenterId": "cloudflare-los-angeles",
+      "provider": "Cloudflare",
+      "connectionType": "backbone",
+      "speed": "100G",
+      "redundant": true,
+      "active": true,
+      "notes": "California PoP mesh"
+    }
+  ],
+  "providerBackbones": [
+    {
+      "provider": "AWS",
+      "totalCapacity": "Multi-terabit",
+      "regions": ["us-east-1", "us-east-2", "us-west-1", "us-west-2"],
+      "description": "AWS maintains a private fiber network connecting all regions with 400G links and multiple redundant paths."
+    },
+    {
+      "provider": "Google Cloud",
+      "totalCapacity": "Petabit-scale",
+      "regions": ["us-east1", "us-east4", "us-central1", "us-west1", "us-west2", "us-west3", "us-west4", "us-south1"],
+      "description": "Google's Jupiter network fabric provides sub-millisecond latency between datacenters with 400G backbone links."
+    },
+    {
+      "provider": "Azure",
+      "totalCapacity": "Multi-terabit",
+      "regions": ["eastus", "eastus2", "centralus", "northcentralus", "southcentralus", "westus", "westus2", "westus3", "westcentralus"],
+      "description": "Microsoft's global WAN connects Azure regions with ExpressRoute and redundant 400G backbone."
+    },
+    {
+      "provider": "Meta",
+      "totalCapacity": "400G+",
+      "regions": ["Prineville", "Forest City", "Henrico", "Los Lunas"],
+      "description": "Meta's Express Backbone connects datacenters with 400G+ links for Facebook, Instagram, and WhatsApp traffic."
+    },
+    {
+      "provider": "Cloudflare",
+      "totalCapacity": "100G mesh",
+      "regions": ["Global PoPs"],
+      "description": "Cloudflare's anycast network uses 100G+ links between PoPs with intelligent routing and DDoS mitigation."
+    },
+    {
+      "provider": "Equinix",
+      "totalCapacity": "100G peering",
+      "regions": ["Global"],
+      "description": "Equinix provides interconnection services with 100G+ peering fabric across major metros."
+    }
+  ]
+}

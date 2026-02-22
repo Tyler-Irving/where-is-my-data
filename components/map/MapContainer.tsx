@@ -10,6 +10,7 @@ import { DatacenterMarkers } from './DatacenterMarkers';
 import { MapControls } from './MapControls';
 import { MapLegend } from './MapLegend';
 import { LatencyLines } from '@/components/latency/LatencyLines';
+import { NetworkBackboneLines } from '@/components/network/NetworkBackboneLines';
 import { Datacenter } from '@/types/datacenter';
 import { getProviderColor } from '@/lib/utils/providerColors';
 import { getDisplayColor } from '@/lib/utils/colorBrightness';
@@ -142,6 +143,9 @@ export const MapContainer = React.memo(function MapContainer() {
             <Layer {...connectionLineLayer} />
           </Source>
         )}
+
+        {/* Network backbone visualization */}
+        <NetworkBackboneLines />
 
         {/* Latency lines */}
         <LatencyLines />
