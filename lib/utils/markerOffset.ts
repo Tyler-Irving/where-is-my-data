@@ -1,5 +1,9 @@
 import { Datacenter } from '@/types/datacenter';
 
+function toCoordKey(lat: number, lng: number): string {
+  return `${lat.toFixed(4)},${lng.toFixed(4)}`;
+}
+
 /**
  * Calculate offset for overlapping datacenters
  * Returns array of datacenters with adjusted coordinates for display
@@ -7,9 +11,9 @@ import { Datacenter } from '@/types/datacenter';
 export function calculateMarkerOffsets(datacenters: Datacenter[]): Array<Datacenter & { offsetLat: number; offsetLng: number }> {
   // Group datacenters by exact coordinates
   const coordinateGroups = new Map<string, Datacenter[]>();
-  
+
   datacenters.forEach(dc => {
-    const key = `${dc.lat.toFixed(4)},${dc.lng.toFixed(4)}`; // Round to ~11m precision
+    const key = toCoordKey(dc.lat, dc.lng); // Round to ~11m precision
     if (!coordinateGroups.has(key)) {
       coordinateGroups.set(key, []);
     }
@@ -18,7 +22,7 @@ export function calculateMarkerOffsets(datacenters: Datacenter[]): Array<Datacen
 
   // Calculate offsets for overlapping markers
   const result: Array<Datacenter & { offsetLat: number; offsetLng: number }> = [];
-  
+
   coordinateGroups.forEach((group) => {
     if (group.length === 1) {
       // Single datacenter at this location - no offset needed
@@ -29,14 +33,14 @@ export function calculateMarkerOffsets(datacenters: Datacenter[]): Array<Datacen
       });
     } else {
       // Multiple datacenters at same location - spread them in a circle
-      const radius = 0.015; // ~1.7km offset radius (adjusts with zoom)
+      const radius = 0.015; // ~1.7km offset radius
       const angleStep = (2 * Math.PI) / group.length;
-      
+
       group.forEach((dc, index) => {
         const angle = index * angleStep;
         const offsetLat = dc.lat + radius * Math.sin(angle);
         const offsetLng = dc.lng + radius * Math.cos(angle);
-        
+
         result.push({
           ...dc,
           offsetLat,
@@ -45,27 +49,26 @@ export function calculateMarkerOffsets(datacenters: Datacenter[]): Array<Datacen
       });
     }
   });
-  
+
   return result;
 }
 
 /**
- * Get zoom-based radius for marker spreading
- * Smaller offset at low zoom, larger at high zoom for better visibility
+ * Build a lookup map of colocation counts, keyed by coordinate.
+ * O(n) to build, O(1) per lookup -- avoids O(n^2) when called per marker.
  */
-export function getOffsetRadius(zoom: number): number {
-  if (zoom < 5) return 0.03;  // ~3.3km
-  if (zoom < 7) return 0.02;  // ~2.2km
-  if (zoom < 9) return 0.015; // ~1.7km
-  return 0.01;                // ~1.1km
+export function buildColocatedCountMap(datacenters: Datacenter[]): Map<string, number> {
+  const counts = new Map<string, number>();
+  for (const dc of datacenters) {
+    const key = toCoordKey(dc.lat, dc.lng);
+    counts.set(key, (counts.get(key) ?? 0) + 1);
+  }
+  return counts;
 }
 
 /**
- * Count datacenters at the same location
+ * Look up the colocation count for a given coordinate from a precomputed map.
  */
-export function getColocatedCount(datacenters: Datacenter[], lat: number, lng: number): number {
-  const key = `${lat.toFixed(4)},${lng.toFixed(4)}`;
-  return datacenters.filter(dc => 
-    `${dc.lat.toFixed(4)},${dc.lng.toFixed(4)}` === key
-  ).length;
+export function getColocatedCount(countMap: Map<string, number>, lat: number, lng: number): number {
+  return countMap.get(toCoordKey(lat, lng)) ?? 0;
 }

@@ -6,17 +6,14 @@ import { Footer } from '@/components/layout/Footer';
 import { FilterBar } from '@/components/map/FilterBar';
 import { MapContainer } from '@/components/map/MapContainer';
 import { ComparisonModal } from '@/components/modals/ComparisonModal';
-import { KeyboardShortcutsModal } from '@/components/modals/KeyboardShortcutsModal';
 import { ComparisonFooter } from '@/components/comparison/ComparisonFooter';
 import { useUrlSync } from '@/hooks/useUrlSync';
 import { useDatacenterStore } from '@/store/datacenterStore';
 import { useComparisonStore } from '@/store/comparisonStore';
 import { useMapStore } from '@/store/mapStore';
-import { Toaster } from 'sonner';
-import { toast } from 'sonner';
+import { Toaster, toast } from 'sonner';
 
 function HomeContent() {
-  const [showShortcuts, setShowShortcuts] = useState(false);
   const [modalOpen, setModalOpen] = useState(false);
   
   const { datacenters } = useDatacenterStore();
@@ -26,16 +23,12 @@ function HomeContent() {
   // Get selected datacenters for comparison
   const comparisonDatacenters = datacenters.filter(dc => selectedIds.includes(dc.id));
   const canCompare = selectedIds.length >= 2;
-  
+
+  // Auto-close modal if selection drops below 2 (derived, no effect needed)
+  const effectiveModalOpen = modalOpen && selectedIds.length >= 2;
+
   // Sync filters with URL params
   useUrlSync();
-  
-  // Auto-close modal if selection drops below 2
-  useEffect(() => {
-    if (modalOpen && selectedIds.length < 2) {
-      setModalOpen(false);
-    }
-  }, [selectedIds.length, modalOpen]);
   
   // Keyboard shortcuts
   useEffect(() => {
@@ -45,12 +38,6 @@ function HomeContent() {
         if (e.key !== 'Escape') {
           return;
         }
-      }
-      
-      // '?' to show keyboard shortcuts
-      if (e.key === '?') {
-        e.preventDefault();
-        setShowShortcuts(true);
       }
       
       // 'C' for comparison
@@ -83,16 +70,13 @@ function HomeContent() {
         if (modalOpen) {
           e.preventDefault();
           setModalOpen(false);
-        } else if (showShortcuts) {
-          e.preventDefault();
-          setShowShortcuts(false);
         }
       }
     };
     
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [canCompare, modalOpen, showShortcuts, viewport.zoom, setViewport]);
+  }, [canCompare, modalOpen, viewport.zoom, setViewport]);
   
   return (
     <main className="min-h-screen bg-gray-900">
@@ -110,18 +94,13 @@ function HomeContent() {
       />
       
       {/* Comparison Modal - only opens when manually triggered AND ≥2 selected */}
-      {modalOpen && comparisonDatacenters.length >= 2 && (
+      {effectiveModalOpen && comparisonDatacenters.length >= 2 && (
         <ComparisonModal
           datacenters={comparisonDatacenters}
           onClose={() => setModalOpen(false)}
           onRemove={removeFromComparison}
         />
       )}
-      
-      <KeyboardShortcutsModal
-        isOpen={showShortcuts}
-        onClose={() => setShowShortcuts(false)}
-      />
       
       {/* Toast Notifications */}
       <Toaster 

@@ -217,6 +217,7 @@ export const DatacenterTooltip = React.memo(function DatacenterTooltip({
                   ? 'bg-purple-500/20 text-purple-400 border border-purple-500/30'
                   : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
               }`}
+              aria-label={inComparison ? `Remove ${datacenter.name} from comparison` : `Add ${datacenter.name} to comparison`}
               title={inComparison ? 'Remove from comparison' : 'Add to comparison'}
             >
               {inComparison ? '✓ Comparing' : 'Compare'}

@@ -140,6 +140,7 @@ export const SearchBar = React.memo(function SearchBar({ onSearchResults, onResu
           {query && (
             <button
               onClick={handleClear}
+              aria-label="Clear search"
               className="flex-shrink-0 text-gray-400 hover:text-white transition-colors"
             >
               <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -221,7 +222,7 @@ export const SearchBar = React.memo(function SearchBar({ onSearchResults, onResu
       {showResults && query && results.length === 0 && (
         <div className="absolute top-full left-0 right-0 mt-2 bg-gray-900 border border-gray-700 rounded-lg shadow-2xl z-50 p-4 text-center transition-all duration-200 ease-out">
           <div className="text-gray-400 text-sm">
-            No datacenters found for "{query}"
+            No datacenters found for &ldquo;{query}&rdquo;
           </div>
           <div className="text-gray-500 text-xs mt-1">
             Try searching by name, provider, city, or state

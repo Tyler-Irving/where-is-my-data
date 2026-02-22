@@ -1,10 +1,34 @@
 import { NextResponse } from 'next/server';
 import datacentersData from '@/lib/data/datacenters.json';
 
+interface RawDatacenter {
+  id: string;
+  name?: string;
+  displayName?: string;
+  provider: string;
+  providerType?: string;
+  lat: number;
+  lng: number;
+  city?: string;
+  state: string;
+  region?: string;
+  availabilityZones?: number;
+  opened?: number;
+  capacityMW?: number;
+  renewable?: boolean;
+  pue?: number;
+  certifications?: string[];
+  verified: boolean;
+  source: string;
+  metadata?: Record<string, unknown>;
+}
+
+// Static date reflecting when the seed data was last compiled
+const DATA_LAST_UPDATED = '2026-02-20T00:00:00Z';
+
 export async function GET() {
   try {
-    // Transform JSON data to match frontend expectations
-    const datacenters = datacentersData.map((dc: any) => ({
+    const datacenters = (datacentersData as RawDatacenter[]).map((dc) => ({
       id: dc.id,
       name: dc.name || dc.displayName,
       provider: dc.provider,
@@ -12,11 +36,11 @@ export async function GET() {
       lng: dc.lng,
       city: dc.city,
       state: dc.state,
-      powerStatus: 'none', // Static data has no real-time status
-      waterStatus: 'none',
+      powerStatus: 'none' as const,
+      waterStatus: 'none' as const,
       verified: dc.verified,
       source: dc.source,
-      lastUpdated: new Date().toISOString(),
+      lastUpdated: DATA_LAST_UPDATED,
       metadata: {
         url: dc.metadata?.url,
         providerType: dc.providerType,
@@ -36,7 +60,7 @@ export async function GET() {
       count: datacenters.length,
       datacenters,
       source: 'Comprehensive Seed Data',
-      providers: Array.from(new Set(datacenters.map((dc: any) => dc.provider))).length,
+      providers: new Set(datacenters.map((dc) => dc.provider)).size,
       cached: true,
     });
 

@@ -24,6 +24,7 @@ export const AboutModal = React.memo(function AboutModal({ isOpen, onClose }: Ab
           </div>
           <button
             onClick={onClose}
+            aria-label="Close about dialog"
             className="text-gray-400 hover:text-white transition-colors p-2 hover:bg-gray-800 rounded-lg"
           >
             <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
@@ -91,7 +92,7 @@ export const AboutModal = React.memo(function AboutModal({ isOpen, onClose }: Ab
             <h3 className="text-lg font-semibold text-white mb-3">Tech Stack</h3>
             <div className="grid grid-cols-2 md:grid-cols-3 gap-2">
               {[
-                'Next.js 14',
+                'Next.js 16',
                 'TypeScript',
                 'React 19',
                 'Tailwind CSS',

@@ -5,6 +5,7 @@ import { useSearchParams, useRouter, usePathname } from 'next/navigation';
 import { useFilterStore } from '@/store/filterStore';
 import { useMapStore } from '@/store/mapStore';
 import { useDatacenterStore } from '@/store/datacenterStore';
+import { ProviderType } from '@/types/datacenter';
 
 /**
  * Sync filters and map state with URL parameters
@@ -46,7 +47,7 @@ export function useUrlSync() {
     const typesParam = searchParams.get('types');
     if (typesParam) {
       const typeList = typesParam.split(',');
-      typeList.forEach(t => toggleProviderType(t as any));
+      typeList.forEach(t => toggleProviderType(t as ProviderType));
     }
     
     // Parse capacity range

@@ -21,6 +21,7 @@ export const ShareButton = React.memo(function ShareButton() {
     <button
       onClick={handleShare}
       className="px-4 py-2 rounded-lg text-sm font-medium transition-all border bg-gray-800 border-gray-700 text-gray-300 hover:bg-gray-700 flex items-center gap-2"
+      aria-label="Share current view"
       title="Share current view"
     >
       {copied ? (

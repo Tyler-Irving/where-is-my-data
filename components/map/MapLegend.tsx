@@ -31,6 +31,8 @@ export const MapLegend = React.memo(function MapLegend() {
         {/* Header (always visible) */}
         <button
           onClick={() => setIsExpanded(!isExpanded)}
+          aria-label={isExpanded ? 'Collapse provider legend' : 'Expand provider legend'}
+          aria-expanded={isExpanded}
           className="w-full px-2.5 sm:px-3 py-1.5 sm:py-2 flex items-center justify-between hover:bg-gray-800 transition-colors touch-manipulation"
         >
           <div className="flex items-center gap-1.5 sm:gap-2">
