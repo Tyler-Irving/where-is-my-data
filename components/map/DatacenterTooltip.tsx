@@ -5,8 +5,10 @@ import { Popup } from 'react-map-gl/mapbox';
 import { Datacenter } from '@/types/datacenter';
 import { getProviderColor, PROVIDER_TYPE_LABELS } from '@/lib/utils/providerColors';
 import { useComparisonStore } from '@/store/comparisonStore';
+import { useLatencyStore } from '@/store/latencyStore';
 import { getAccentStyles, getDisplayColor } from '@/lib/utils/colorBrightness';
 import { PricingBadge } from '@/components/pricing/PricingBadge';
+import { LatencyBadge } from '@/components/latency/LatencyBadge';
 
 interface DatacenterTooltipProps {
   datacenter: Datacenter;
@@ -25,8 +27,10 @@ export const DatacenterTooltip = React.memo(function DatacenterTooltip({
   const displayColor = getDisplayColor(providerColor);
   const accentStyles = getAccentStyles(providerColor);
   const { addToComparison, removeFromComparison, isSelected } = useComparisonStore();
+  const { selectedForLatency, addToLatency, removeFromLatency } = useLatencyStore();
   
   const inComparison = isSelected(datacenter.id);
+  const inLatency = selectedForLatency.includes(datacenter.id);
   
   return (
     <Popup
@@ -154,6 +158,11 @@ export const DatacenterTooltip = React.memo(function DatacenterTooltip({
             <PricingBadge datacenterId={datacenter.id} variant="detailed" />
           </div>
 
+          {/* Latency Information */}
+          <div className="mb-4">
+            <LatencyBadge datacenterId={datacenter.id} />
+          </div>
+
           {/* Additional Info */}
           {datacenter.metadata?.opened && (
             <div className="flex items-center gap-2 text-xs text-zinc-400 mb-3">
@@ -209,7 +218,7 @@ export const DatacenterTooltip = React.memo(function DatacenterTooltip({
           )}
 
           {/* Quick Actions */}
-          <div className="mb-3">
+          <div className="mb-3 flex gap-2">
             <button
               onClick={() => {
                 if (inComparison) {
@@ -218,7 +227,7 @@ export const DatacenterTooltip = React.memo(function DatacenterTooltip({
                   addToComparison(datacenter.id);
                 }
               }}
-              className={`w-full text-xs font-medium px-3 py-2 rounded-lg transition-colors ${
+              className={`flex-1 text-xs font-medium px-3 py-2 rounded-lg transition-colors ${
                 inComparison
                   ? 'bg-purple-500/20 text-purple-400 border border-purple-500/30'
                   : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
@@ -227,6 +236,24 @@ export const DatacenterTooltip = React.memo(function DatacenterTooltip({
               title={inComparison ? 'Remove from comparison' : 'Add to comparison'}
             >
               {inComparison ? '✓ Comparing' : 'Compare'}
+            </button>
+            <button
+              onClick={() => {
+                if (inLatency) {
+                  removeFromLatency(datacenter.id);
+                } else {
+                  addToLatency(datacenter.id);
+                }
+              }}
+              className={`flex-1 text-xs font-medium px-3 py-2 rounded-lg transition-colors ${
+                inLatency
+                  ? 'bg-blue-500/20 text-blue-400 border border-blue-500/30'
+                  : 'bg-gray-800 text-gray-300 hover:bg-gray-700'
+              }`}
+              aria-label={inLatency ? `Remove ${datacenter.name} from latency` : `Add ${datacenter.name} to latency`}
+              title={inLatency ? 'Remove from latency' : 'Calculate latency'}
+            >
+              {inLatency ? '⚡ Selected' : 'Latency'}
             </button>
           </div>
           

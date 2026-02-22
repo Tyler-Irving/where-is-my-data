@@ -1,18 +1,20 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Calculator } from 'lucide-react';
+import { Calculator, Zap } from 'lucide-react';
 import { DatabaseLocationIcon } from '@/components/icons/DatabaseLocationIcon';
 import { SearchBar } from '@/components/map/SearchBar';
 import { AboutModal } from '@/components/modals/AboutModal';
 import { KeyboardShortcutsModal } from '@/components/modals/KeyboardShortcutsModal';
 import { CostCalculator } from '@/components/pricing/CostCalculator';
+import { LatencyCalculator } from '@/components/latency/LatencyCalculator';
 
 export function Header() {
   const [mobileSearchOpen, setMobileSearchOpen] = useState(false);
   const [showAbout, setShowAbout] = useState(false);
   const [showShortcuts, setShowShortcuts] = useState(false);
   const [showCalculator, setShowCalculator] = useState(false);
+  const [showLatencyCalculator, setShowLatencyCalculator] = useState(false);
 
   // Listen for ? key
   React.useEffect(() => {
@@ -39,6 +41,14 @@ export function Header() {
             title="Cost calculator"
           >
             <Calculator className="w-5 h-5" />
+          </button>
+          <button
+            onClick={() => setShowLatencyCalculator(true)}
+            className="p-1.5 rounded-lg text-blue-400 hover:text-white hover:bg-gray-800 transition-colors"
+            aria-label="Latency calculator"
+            title="Latency calculator"
+          >
+            <Zap className="w-5 h-5" />
           </button>
           <button
             onClick={() => setShowAbout(true)}
@@ -86,6 +96,7 @@ export function Header() {
       <AboutModal isOpen={showAbout} onClose={() => setShowAbout(false)} />
       <KeyboardShortcutsModal isOpen={showShortcuts} onClose={() => setShowShortcuts(false)} />
       <CostCalculator isOpen={showCalculator} onClose={() => setShowCalculator(false)} />
+      <LatencyCalculator isOpen={showLatencyCalculator} onClose={() => setShowLatencyCalculator(false)} />
     </>
   );
 }

@@ -9,6 +9,7 @@ import { mockDatacenters } from '@/lib/data/mockDatacenters';
 import { DatacenterMarkers } from './DatacenterMarkers';
 import { MapControls } from './MapControls';
 import { MapLegend } from './MapLegend';
+import { LatencyLines } from '@/components/latency/LatencyLines';
 import { Datacenter } from '@/types/datacenter';
 import { getProviderColor } from '@/lib/utils/providerColors';
 import { getDisplayColor } from '@/lib/utils/colorBrightness';
@@ -141,6 +142,9 @@ export const MapContainer = React.memo(function MapContainer() {
             <Layer {...connectionLineLayer} />
           </Source>
         )}
+
+        {/* Latency lines */}
+        <LatencyLines />
 
         {/* Datacenter markers */}
         <DatacenterMarkers onHoverChange={setHoveredDatacenter} />
