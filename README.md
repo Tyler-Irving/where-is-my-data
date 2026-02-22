@@ -1,6 +1,6 @@
 # Where is my data?
 
-Interactive map visualization of USA datacenters. Explore 107 datacenters across 24 major providers including AWS, Google Cloud, Azure, Meta, Apple, Oracle, and more.
+Interactive map visualization of USA datacenters. Explore 131 datacenters across 27 major providers including AWS, Google Cloud, Azure, Meta, Apple, Oracle, and more.
 
 **Live Demo:** [Coming Soon]
 
