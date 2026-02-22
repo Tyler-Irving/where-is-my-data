@@ -1,15 +1,18 @@
 'use client';
 
 import React, { useState } from 'react';
+import { Calculator } from 'lucide-react';
 import { DatabaseLocationIcon } from '@/components/icons/DatabaseLocationIcon';
 import { SearchBar } from '@/components/map/SearchBar';
 import { AboutModal } from '@/components/modals/AboutModal';
 import { KeyboardShortcutsModal } from '@/components/modals/KeyboardShortcutsModal';
+import { CostCalculator } from '@/components/pricing/CostCalculator';
 
 export function Header() {
   const [mobileSearchOpen, setMobileSearchOpen] = useState(false);
   const [showAbout, setShowAbout] = useState(false);
   const [showShortcuts, setShowShortcuts] = useState(false);
+  const [showCalculator, setShowCalculator] = useState(false);
 
   // Listen for ? key
   React.useEffect(() => {
@@ -29,6 +32,14 @@ export function Header() {
         <div className="flex items-center gap-2 md:gap-3">
           <DatabaseLocationIcon className="w-6 h-6 text-blue-400" />
           <h1 className="text-lg font-semibold text-white whitespace-nowrap">Where is my data?</h1>
+          <button
+            onClick={() => setShowCalculator(true)}
+            className="ml-1 md:ml-2 p-1.5 rounded-lg text-green-400 hover:text-white hover:bg-gray-800 transition-colors"
+            aria-label="Cost calculator"
+            title="Cost calculator"
+          >
+            <Calculator className="w-5 h-5" />
+          </button>
           <button
             onClick={() => setShowAbout(true)}
             className="ml-1 md:ml-2 p-1.5 rounded-lg text-gray-400 hover:text-white hover:bg-gray-800 transition-colors"
@@ -74,6 +85,7 @@ export function Header() {
       
       <AboutModal isOpen={showAbout} onClose={() => setShowAbout(false)} />
       <KeyboardShortcutsModal isOpen={showShortcuts} onClose={() => setShowShortcuts(false)} />
+      <CostCalculator isOpen={showCalculator} onClose={() => setShowCalculator(false)} />
     </>
   );
 }

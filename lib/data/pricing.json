@@ -1,0 +1,329 @@
+{
+  "lastUpdated": "2026-02-22",
+  "currency": "USD",
+  "baseline": {
+    "description": "Baseline monthly costs for common cloud workload",
+    "services": {
+      "compute": {
+        "description": "1x compute instance (8 vCPU, 16GB RAM, on-demand)",
+        "aws_equivalent": "c5.2xlarge",
+        "gcp_equivalent": "n2-standard-8",
+        "azure_equivalent": "F8s_v2"
+      },
+      "storage": {
+        "description": "1TB block storage (SSD)",
+        "size_tb": 1
+      },
+      "dataTransfer": {
+        "description": "10TB outbound data transfer",
+        "size_tb": 10
+      },
+      "database": {
+        "description": "1x managed database (4 vCPU, 16GB RAM)",
+        "aws_equivalent": "db.m5.xlarge",
+        "gcp_equivalent": "db-n1-standard-4",
+        "azure_equivalent": "GP_Gen5_4"
+      }
+    }
+  },
+  "datacenters": [
+    {
+      "datacenterId": "aws-us-east-1",
+      "provider": "AWS",
+      "region": "us-east-1",
+      "displayName": "US East (N. Virginia)",
+      "pricing": {
+        "compute": {
+          "pricePerHour": 0.34,
+          "pricePerMonth": 248.20
+        },
+        "storage": {
+          "pricePerGbMonth": 0.10,
+          "baseline1TbMonth": 102.40
+        },
+        "dataTransfer": {
+          "egressPricePerGb": 0.09,
+          "baseline10TbMonth": 921.60
+        },
+        "database": {
+          "pricePerHour": 0.384,
+          "pricePerMonth": 280.32
+        }
+      },
+      "totalBaselineMonthly": 1552.52,
+      "notes": "Lowest AWS pricing, most availability zones"
+    },
+    {
+      "datacenterId": "aws-us-east-2",
+      "provider": "AWS",
+      "region": "us-east-2",
+      "displayName": "US East (Ohio)",
+      "pricing": {
+        "compute": {
+          "pricePerHour": 0.34,
+          "pricePerMonth": 248.20
+        },
+        "storage": {
+          "pricePerGbMonth": 0.10,
+          "baseline1TbMonth": 102.40
+        },
+        "dataTransfer": {
+          "egressPricePerGb": 0.09,
+          "baseline10TbMonth": 921.60
+        },
+        "database": {
+          "pricePerHour": 0.384,
+          "pricePerMonth": 280.32
+        }
+      },
+      "totalBaselineMonthly": 1552.52,
+      "notes": "Same pricing as us-east-1"
+    },
+    {
+      "datacenterId": "aws-us-west-1",
+      "provider": "AWS",
+      "region": "us-west-1",
+      "displayName": "US West (N. California)",
+      "pricing": {
+        "compute": {
+          "pricePerHour": 0.374,
+          "pricePerMonth": 273.02
+        },
+        "storage": {
+          "pricePerGbMonth": 0.12,
+          "baseline1TbMonth": 122.88
+        },
+        "dataTransfer": {
+          "egressPricePerGb": 0.09,
+          "baseline10TbMonth": 921.60
+        },
+        "database": {
+          "pricePerHour": 0.422,
+          "pricePerMonth": 308.06
+        }
+      },
+      "totalBaselineMonthly": 1625.56,
+      "notes": "Slightly higher pricing than us-east"
+    },
+    {
+      "datacenterId": "aws-us-west-2",
+      "provider": "AWS",
+      "region": "us-west-2",
+      "displayName": "US West (Oregon)",
+      "pricing": {
+        "compute": {
+          "pricePerHour": 0.34,
+          "pricePerMonth": 248.20
+        },
+        "storage": {
+          "pricePerGbMonth": 0.10,
+          "baseline1TbMonth": 102.40
+        },
+        "dataTransfer": {
+          "egressPricePerGb": 0.09,
+          "baseline10TbMonth": 921.60
+        },
+        "database": {
+          "pricePerHour": 0.384,
+          "pricePerMonth": 280.32
+        }
+      },
+      "totalBaselineMonthly": 1552.52,
+      "notes": "Matches us-east pricing"
+    },
+    {
+      "datacenterId": "gcp-us-central1",
+      "provider": "Google Cloud",
+      "region": "us-central1",
+      "displayName": "Iowa",
+      "pricing": {
+        "compute": {
+          "pricePerHour": 0.3888,
+          "pricePerMonth": 283.82
+        },
+        "storage": {
+          "pricePerGbMonth": 0.10,
+          "baseline1TbMonth": 102.40
+        },
+        "dataTransfer": {
+          "egressPricePerGb": 0.12,
+          "baseline10TbMonth": 1228.80
+        },
+        "database": {
+          "pricePerHour": 0.456,
+          "pricePerMonth": 332.88
+        }
+      },
+      "totalBaselineMonthly": 1947.90,
+      "notes": "Higher egress costs than AWS"
+    },
+    {
+      "datacenterId": "gcp-us-east1",
+      "provider": "Google Cloud",
+      "region": "us-east1",
+      "displayName": "South Carolina",
+      "pricing": {
+        "compute": {
+          "pricePerHour": 0.3888,
+          "pricePerMonth": 283.82
+        },
+        "storage": {
+          "pricePerGbMonth": 0.10,
+          "baseline1TbMonth": 102.40
+        },
+        "dataTransfer": {
+          "egressPricePerGb": 0.12,
+          "baseline10TbMonth": 1228.80
+        },
+        "database": {
+          "pricePerHour": 0.456,
+          "pricePerMonth": 332.88
+        }
+      },
+      "totalBaselineMonthly": 1947.90,
+      "notes": "Standard GCP US pricing"
+    },
+    {
+      "datacenterId": "gcp-us-west1",
+      "provider": "Google Cloud",
+      "region": "us-west1",
+      "displayName": "Oregon",
+      "pricing": {
+        "compute": {
+          "pricePerHour": 0.3888,
+          "pricePerMonth": 283.82
+        },
+        "storage": {
+          "pricePerGbMonth": 0.10,
+          "baseline1TbMonth": 102.40
+        },
+        "dataTransfer": {
+          "egressPricePerGb": 0.12,
+          "baseline10TbMonth": 1228.80
+        },
+        "database": {
+          "pricePerHour": 0.456,
+          "pricePerMonth": 332.88
+        }
+      },
+      "totalBaselineMonthly": 1947.90,
+      "notes": "Standard GCP US pricing"
+    },
+    {
+      "datacenterId": "azure-eastus",
+      "provider": "Azure",
+      "region": "eastus",
+      "displayName": "East US (Virginia)",
+      "pricing": {
+        "compute": {
+          "pricePerHour": 0.362,
+          "pricePerMonth": 264.26
+        },
+        "storage": {
+          "pricePerGbMonth": 0.115,
+          "baseline1TbMonth": 117.76
+        },
+        "dataTransfer": {
+          "egressPricePerGb": 0.087,
+          "baseline10TbMonth": 890.88
+        },
+        "database": {
+          "pricePerHour": 0.452,
+          "pricePerMonth": 329.96
+        }
+      },
+      "totalBaselineMonthly": 1602.86,
+      "notes": "Competitive with AWS us-east"
+    },
+    {
+      "datacenterId": "azure-eastus2",
+      "provider": "Azure",
+      "region": "eastus2",
+      "displayName": "East US 2 (Virginia)",
+      "pricing": {
+        "compute": {
+          "pricePerHour": 0.362,
+          "pricePerMonth": 264.26
+        },
+        "storage": {
+          "pricePerGbMonth": 0.115,
+          "baseline1TbMonth": 117.76
+        },
+        "dataTransfer": {
+          "egressPricePerGb": 0.087,
+          "baseline10TbMonth": 890.88
+        },
+        "database": {
+          "pricePerHour": 0.452,
+          "pricePerMonth": 329.96
+        }
+      },
+      "totalBaselineMonthly": 1602.86,
+      "notes": "Same as eastus"
+    },
+    {
+      "datacenterId": "azure-westus",
+      "provider": "Azure",
+      "region": "westus",
+      "displayName": "West US (California)",
+      "pricing": {
+        "compute": {
+          "pricePerHour": 0.362,
+          "pricePerMonth": 264.26
+        },
+        "storage": {
+          "pricePerGbMonth": 0.115,
+          "baseline1TbMonth": 117.76
+        },
+        "dataTransfer": {
+          "egressPricePerGb": 0.087,
+          "baseline10TbMonth": 890.88
+        },
+        "database": {
+          "pricePerHour": 0.452,
+          "pricePerMonth": 329.96
+        }
+      },
+      "totalBaselineMonthly": 1602.86,
+      "notes": "Consistent US pricing"
+    },
+    {
+      "datacenterId": "azure-westus2",
+      "provider": "Azure",
+      "region": "westus2",
+      "displayName": "West US 2 (Washington)",
+      "pricing": {
+        "compute": {
+          "pricePerHour": 0.362,
+          "pricePerMonth": 264.26
+        },
+        "storage": {
+          "pricePerGbMonth": 0.115,
+          "baseline1TbMonth": 117.76
+        },
+        "dataTransfer": {
+          "egressPricePerGb": 0.087,
+          "baseline10TbMonth": 890.88
+        },
+        "database": {
+          "pricePerHour": 0.452,
+          "pricePerMonth": 329.96
+        }
+      },
+      "totalBaselineMonthly": 1602.86,
+      "notes": "Consistent US pricing"
+    }
+  ],
+  "summary": {
+    "cheapest": {
+      "datacenterId": "aws-us-east-1",
+      "totalMonthly": 1552.52
+    },
+    "mostExpensive": {
+      "datacenterId": "gcp-us-central1",
+      "totalMonthly": 1947.90
+    },
+    "averageMonthly": 1689.45,
+    "notes": "Baseline scenario favors AWS due to lower egress costs"
+  }
+}

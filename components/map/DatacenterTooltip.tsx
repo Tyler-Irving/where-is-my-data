@@ -6,6 +6,7 @@ import { Datacenter } from '@/types/datacenter';
 import { getProviderColor, PROVIDER_TYPE_LABELS } from '@/lib/utils/providerColors';
 import { useComparisonStore } from '@/store/comparisonStore';
 import { getAccentStyles, getDisplayColor } from '@/lib/utils/colorBrightness';
+import { PricingBadge } from '@/components/pricing/PricingBadge';
 
 interface DatacenterTooltipProps {
   datacenter: Datacenter;
@@ -147,6 +148,11 @@ export const DatacenterTooltip = React.memo(function DatacenterTooltip({
               )}
             </div>
           )}
+
+          {/* Pricing Information */}
+          <div className="mb-4">
+            <PricingBadge datacenterId={datacenter.id} variant="detailed" />
+          </div>
 
           {/* Additional Info */}
           {datacenter.metadata?.opened && (
