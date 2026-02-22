@@ -2,7 +2,6 @@
 
 import React, { useEffect, useState, useMemo } from 'react';
 import Map, { Source, Layer } from 'react-map-gl/mapbox';
-import type { LayerProps } from 'react-map-gl/mapbox';
 import { useMapStore } from '@/store/mapStore';
 import { useDatacenterStore } from '@/store/datacenterStore';
 import { useFilterStore } from '@/store/filterStore';
@@ -13,6 +12,7 @@ import { MapLegend } from './MapLegend';
 import { Datacenter } from '@/types/datacenter';
 import { getProviderColor } from '@/lib/utils/providerColors';
 import { getDisplayColor } from '@/lib/utils/colorBrightness';
+import { filterDatacenters } from '@/lib/utils/filterDatacenters';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
 // Mapbox access token - get yours at https://account.mapbox.com/access-tokens/
@@ -27,33 +27,11 @@ export const MapContainer = React.memo(function MapContainer() {
   const { datacenters, setDatacenters } = useDatacenterStore();
   const { providers, providerTypes, capacityRange, pueRange, renewableOnly } = useFilterStore();
   const [isLoading, setIsLoading] = React.useState(true);
-  const [dataSource, setDataSource] = React.useState<string>('Loading...');
   const [hoveredDatacenter, setHoveredDatacenter] = useState<Datacenter | null>(null);
   
-  // Count filtered datacenters
-  const filteredCount = useMemo(() => {
-    return datacenters.filter((dc) => {
-      if (providers.size > 0 && !providers.has(dc.provider)) return false;
-      if (providerTypes.size > 0) {
-        const dcType = dc.metadata?.providerType;
-        if (!dcType || !providerTypes.has(dcType)) return false;
-      }
-      const capacity = dc.metadata?.capacityMW;
-      if (capacity !== undefined && (capacity < capacityRange[0] || capacity > capacityRange[1])) {
-        return false;
-      } else if (capacity === undefined && (capacityRange[0] !== 0 || capacityRange[1] !== 500)) {
-        return false;
-      }
-      const pue = dc.metadata?.pue;
-      if (pue !== undefined && (pue < pueRange[0] || pue > pueRange[1])) {
-        return false;
-      } else if (pue === undefined && (pueRange[0] !== 1.0 || pueRange[1] !== 2.0)) {
-        return false;
-      }
-      if (renewableOnly && !dc.metadata?.renewable) return false;
-      return true;
-    }).length;
-  }, [datacenters, providers, providerTypes, capacityRange, pueRange, renewableOnly]);
+  const filterCriteria = useMemo(() => ({
+    providers, providerTypes, capacityRange, pueRange, renewableOnly,
+  }), [providers, providerTypes, capacityRange, pueRange, renewableOnly]);
 
   // Initialize data on mount
   useEffect(() => {
@@ -66,12 +44,10 @@ export const MapContainer = React.memo(function MapContainer() {
         }
         const data = await response.json();
         setDatacenters(data.datacenters);
-        setDataSource(`${data.source} (${data.count} facilities)`);
       } catch (error) {
         console.error('Error loading datacenters:', error);
         // Fallback to mock data
         setDatacenters(mockDatacenters);
-        setDataSource(`Mock Data (${mockDatacenters.length} facilities)`);
       } finally {
         setIsLoading(false);
       }
@@ -89,28 +65,7 @@ export const MapContainer = React.memo(function MapContainer() {
       };
     }
 
-    // Filter datacenters first
-    const filtered = datacenters.filter((dc) => {
-      if (providers.size > 0 && !providers.has(dc.provider)) return false;
-      if (providerTypes.size > 0) {
-        const dcType = dc.metadata?.providerType;
-        if (!dcType || !providerTypes.has(dcType)) return false;
-      }
-      const capacity = dc.metadata?.capacityMW;
-      if (capacity !== undefined && (capacity < capacityRange[0] || capacity > capacityRange[1])) {
-        return false;
-      } else if (capacity === undefined && (capacityRange[0] !== 0 || capacityRange[1] !== 500)) {
-        return false;
-      }
-      const pue = dc.metadata?.pue;
-      if (pue !== undefined && (pue < pueRange[0] || pue > pueRange[1])) {
-        return false;
-      } else if (pue === undefined && (pueRange[0] !== 1.0 || pueRange[1] !== 2.0)) {
-        return false;
-      }
-      if (renewableOnly && !dc.metadata?.renewable) return false;
-      return true;
-    });
+    const filtered = filterDatacenters(datacenters, filterCriteria);
 
     // Find all filtered datacenters from the same provider
     const sameProviderDatacenters = filtered.filter(
@@ -136,7 +91,7 @@ export const MapContainer = React.memo(function MapContainer() {
       type: 'FeatureCollection' as const,
       features
     };
-  }, [hoveredDatacenter, datacenters, providers, providerTypes, capacityRange, pueRange, renewableOnly]);
+  }, [hoveredDatacenter, datacenters, filterCriteria]);
 
   // Line layer style
   const connectionLineLayer = useMemo(() => {
@@ -163,7 +118,7 @@ export const MapContainer = React.memo(function MapContainer() {
           <div className="text-center">
             <div className="w-12 h-12 border-4 border-blue-500 border-t-transparent rounded-full animate-spin mx-auto mb-4"></div>
             <p className="text-white text-lg font-semibold">Loading datacenter data...</p>
-            <p className="text-gray-400 text-sm mt-2">Fetching from PeeringDB</p>
+            <p className="text-gray-400 text-sm mt-2">Preparing map view</p>
           </div>
         </div>
       )}

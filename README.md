@@ -4,8 +4,6 @@ Interactive map visualization of USA datacenters. Explore 107 datacenters across
 
 **Live Demo:** [Coming Soon]
 
-![Screenshot](screenshot.png)
-
 ## ✨ Features
 
 ### 🗺️ Interactive Map
@@ -29,7 +27,7 @@ Interactive map visualization of USA datacenters. Explore 107 datacenters across
 
 ## 🚀 Tech Stack
 
-- **Framework**: Next.js 14 (App Router)
+- **Framework**: Next.js 16 (App Router)
 - **Language**: TypeScript
 - **Styling**: Tailwind CSS
 - **Map**: Mapbox GL JS + react-map-gl

@@ -3,6 +3,7 @@
 import React, { useState } from 'react';
 import { useDatacenterStore } from '@/store/datacenterStore';
 import { useFilterStore } from '@/store/filterStore';
+import { filterDatacenters } from '@/lib/utils/filterDatacenters';
 
 export const ExportButton = React.memo(function ExportButton() {
   const [isOpen, setIsOpen] = useState(false);
@@ -13,27 +14,7 @@ export const ExportButton = React.memo(function ExportButton() {
 
   // Filter datacenters based on active filters
   const filteredDatacenters = React.useMemo(() => {
-    return datacenters.filter((dc) => {
-      if (providers.size > 0 && !providers.has(dc.provider)) return false;
-      if (providerTypes.size > 0) {
-        const dcType = dc.metadata?.providerType;
-        if (!dcType || !providerTypes.has(dcType)) return false;
-      }
-      const capacity = dc.metadata?.capacityMW;
-      if (capacity !== undefined && (capacity < capacityRange[0] || capacity > capacityRange[1])) {
-        return false;
-      } else if (capacity === undefined && (capacityRange[0] !== 0 || capacityRange[1] !== 500)) {
-        return false;
-      }
-      const pue = dc.metadata?.pue;
-      if (pue !== undefined && (pue < pueRange[0] || pue > pueRange[1])) {
-        return false;
-      } else if (pue === undefined && (pueRange[0] !== 1.0 || pueRange[1] !== 2.0)) {
-        return false;
-      }
-      if (renewableOnly && !dc.metadata?.renewable) return false;
-      return true;
-    });
+    return filterDatacenters(datacenters, { providers, providerTypes, capacityRange, pueRange, renewableOnly });
   }, [datacenters, providers, providerTypes, capacityRange, pueRange, renewableOnly]);
 
   const handleExport = (format: 'csv' | 'json') => {

@@ -10,31 +10,16 @@ export interface ViewportState {
   pitch: number;
 }
 
-export interface FilterState {
-  providers: string[];
-}
-
 interface MapState {
   // View state
   viewport: ViewportState;
-  
-  // Filter state
-  filters: FilterState;
-  
+
   // UI state
-  selectedHexagon: string | null;
   selectedDatacenter: string | null;
-  hoveredHexagon: string | null;
-  isLoading: boolean;
-  
+
   // Actions
   setViewport: (viewport: Partial<ViewportState>) => void;
-  setFilter: (key: keyof FilterState, value: any) => void;
-  selectHexagon: (h3Index: string | null) => void;
   selectDatacenter: (id: string | null) => void;
-  setHoveredHexagon: (h3Index: string | null) => void;
-  setLoading: (loading: boolean) => void;
-  resetFilters: () => void;
 }
 
 const initialViewport: ViewportState = {
@@ -45,45 +30,23 @@ const initialViewport: ViewportState = {
   pitch: 0,
 };
 
-const initialFilters: FilterState = {
-  providers: [],
-};
-
 export const useMapStore = create<MapState>()(
   persist(
     (set) => ({
       viewport: initialViewport,
-      filters: initialFilters,
-      selectedHexagon: null,
       selectedDatacenter: null,
-      hoveredHexagon: null,
-      isLoading: false,
-      
-      setViewport: (viewport) => 
-        set((state) => ({ 
-          viewport: { ...state.viewport, ...viewport } 
+
+      setViewport: (viewport) =>
+        set((state) => ({
+          viewport: { ...state.viewport, ...viewport }
         })),
-      
-      setFilter: (key, value) =>
-        set((state) => ({ 
-          filters: { ...state.filters, [key]: value } 
-        })),
-      
-      selectHexagon: (h3Index) => set({ selectedHexagon: h3Index }),
-      
+
       selectDatacenter: (id) => set({ selectedDatacenter: id }),
-      
-      setHoveredHexagon: (h3Index) => set({ hoveredHexagon: h3Index }),
-      
-      setLoading: (loading) => set({ isLoading: loading }),
-      
-      resetFilters: () => set({ filters: initialFilters }),
     }),
     {
       name: 'map-storage',
-      partialize: (state) => ({ 
-        viewport: state.viewport, 
-        filters: state.filters 
+      partialize: (state) => ({
+        viewport: state.viewport,
       }),
     }
   )

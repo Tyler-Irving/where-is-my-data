@@ -9,7 +9,8 @@ import { DatacenterTooltip } from './DatacenterTooltip';
 import { Datacenter } from '@/types/datacenter';
 import { getProviderColor } from '@/lib/utils/providerColors';
 import { getDisplayColor } from '@/lib/utils/colorBrightness';
-import { calculateMarkerOffsets, getOffsetRadius, getColocatedCount } from '@/lib/utils/markerOffset';
+import { calculateMarkerOffsets, getColocatedCount } from '@/lib/utils/markerOffset';
+import { filterDatacenters } from '@/lib/utils/filterDatacenters';
 
 interface DatacenterMarkersProps {
   onHoverChange?: (datacenter: Datacenter | null) => void;
@@ -66,53 +67,7 @@ export const DatacenterMarkers = React.memo(function DatacenterMarkers({ onHover
   
   // Filter datacenters based on active filters
   const filteredDatacenters = useMemo(() => {
-    return datacenters.filter((dc) => {
-      // Provider filter
-      if (providers.size > 0 && !providers.has(dc.provider)) {
-        return false;
-      }
-      
-      // Provider type filter
-      if (providerTypes.size > 0) {
-        const dcType = dc.metadata?.providerType;
-        if (!dcType || !providerTypes.has(dcType)) {
-          return false;
-        }
-      }
-      
-      // Capacity filter
-      const capacity = dc.metadata?.capacityMW;
-      if (capacity !== undefined) {
-        if (capacity < capacityRange[0] || capacity > capacityRange[1]) {
-          return false;
-        }
-      } else {
-        // If capacity is unknown and range is not default, filter out
-        if (capacityRange[0] !== 0 || capacityRange[1] !== 500) {
-          return false;
-        }
-      }
-      
-      // PUE filter
-      const pue = dc.metadata?.pue;
-      if (pue !== undefined) {
-        if (pue < pueRange[0] || pue > pueRange[1]) {
-          return false;
-        }
-      } else {
-        // If PUE is unknown and range is not default, filter out
-        if (pueRange[0] !== 1.0 || pueRange[1] !== 2.0) {
-          return false;
-        }
-      }
-      
-      // Renewable filter
-      if (renewableOnly && !dc.metadata?.renewable) {
-        return false;
-      }
-      
-      return true;
-    });
+    return filterDatacenters(datacenters, { providers, providerTypes, capacityRange, pueRange, renewableOnly });
   }, [datacenters, providers, providerTypes, capacityRange, pueRange, renewableOnly]);
   
   // Calculate offsets for overlapping datacenters

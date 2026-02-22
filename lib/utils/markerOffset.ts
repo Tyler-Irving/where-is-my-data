@@ -50,17 +50,6 @@ export function calculateMarkerOffsets(datacenters: Datacenter[]): Array<Datacen
 }
 
 /**
- * Get zoom-based radius for marker spreading
- * Smaller offset at low zoom, larger at high zoom for better visibility
- */
-export function getOffsetRadius(zoom: number): number {
-  if (zoom < 5) return 0.03;  // ~3.3km
-  if (zoom < 7) return 0.02;  // ~2.2km
-  if (zoom < 9) return 0.015; // ~1.7km
-  return 0.01;                // ~1.1km
-}
-
-/**
  * Count datacenters at the same location
  */
 export function getColocatedCount(datacenters: Datacenter[], lat: number, lng: number): number {
