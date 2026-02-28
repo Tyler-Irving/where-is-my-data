@@ -104,7 +104,7 @@ export const MapContainer = React.memo(function MapContainer() {
   }, [hoveredDatacenter]);
 
   return (
-    <div className="relative w-full h-[calc(100vh-6.5rem)] md:h-full">
+    <div className="relative w-full h-[calc(100vh-9.5rem)] md:h-full">
       {isLoading && <LoadingDots />}
 
       <Map
