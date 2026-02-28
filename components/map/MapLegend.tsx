@@ -3,16 +3,14 @@
 import React, { useState } from 'react';
 import { getAllProviders } from '@/lib/utils/providerColors';
 import { getDisplayColor } from '@/lib/utils/colorBrightness';
+import { ChevronDown } from 'lucide-react';
 
 export const MapLegend = React.memo(function MapLegend() {
   const [isExpanded, setIsExpanded] = useState(false);
   const providers = getAllProviders();
 
-  // Group providers by type
   const providersByType = providers.reduce((acc, provider) => {
-    if (!acc[provider.type]) {
-      acc[provider.type] = [];
-    }
+    if (!acc[provider.type]) acc[provider.type] = [];
     acc[provider.type].push(provider);
     return acc;
   }, {} as Record<string, typeof providers>);
@@ -26,71 +24,50 @@ export const MapLegend = React.memo(function MapLegend() {
   };
 
   return (
-    <div className="hidden sm:block fixed bottom-4 sm:bottom-6 left-4 sm:left-6 z-30">
-      <div className="bg-gray-900 border border-gray-700 rounded-lg shadow-xl overflow-hidden">
-        {/* Header (always visible) */}
+    <div className="hidden lg:block fixed bottom-6 left-4 z-30">
+      <div className="glass rounded-2xl overflow-hidden w-52 shadow-2xl">
+        {/* Header toggle */}
         <button
           onClick={() => setIsExpanded(!isExpanded)}
-          aria-label={isExpanded ? 'Collapse provider legend' : 'Expand provider legend'}
+          aria-label={isExpanded ? 'Collapse legend' : 'Expand legend'}
           aria-expanded={isExpanded}
-          className="w-full px-2.5 sm:px-3 py-1.5 sm:py-2 flex items-center justify-between hover:bg-gray-800 transition-colors touch-manipulation"
+          className="w-full px-3 py-2.5 flex items-center justify-between hover:bg-white/[0.05] transition-colors touch-manipulation"
         >
-          <div className="flex items-center gap-1.5 sm:gap-2">
-            <div className="flex gap-0.5 sm:gap-1">
-              <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full" style={{ backgroundColor: '#FF9900' }} />
-              <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full" style={{ backgroundColor: '#0078D4' }} />
-              <div className="w-1.5 h-1.5 sm:w-2 sm:h-2 rounded-full" style={{ backgroundColor: '#4285F4' }} />
+          <div className="flex items-center gap-2">
+            <div className="flex gap-1">
+              <div className="w-2 h-2 rounded-full" style={{ backgroundColor: '#FF9900' }} />
+              <div className="w-2 h-2 rounded-full" style={{ backgroundColor: '#0078D4' }} />
+              <div className="w-2 h-2 rounded-full" style={{ backgroundColor: '#4285F4' }} />
             </div>
-            <span className="text-[11px] sm:text-xs font-semibold text-white">Providers</span>
+            <span className="text-[10px] font-bold uppercase tracking-widest text-white/35">Providers</span>
           </div>
-          <svg
-            className={`w-4 h-4 text-gray-400 transition-transform ${isExpanded ? 'rotate-180' : ''}`}
-            fill="none"
-            stroke="currentColor"
-            viewBox="0 0 24 24"
-          >
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
-          </svg>
+          <ChevronDown className={`w-3.5 h-3.5 text-white/25 transition-transform duration-200 ${isExpanded ? 'rotate-180' : ''}`} />
         </button>
 
-        {/* Expanded content */}
         {isExpanded && (
-          <div className="max-h-[60vh] overflow-y-auto border-t border-gray-700">
+          <div className="border-t border-white/[0.06] max-h-[55vh] overflow-y-auto scrollbar-hide">
             {Object.entries(providersByType).map(([type, typeProviders]) => (
-              <div key={type} className="border-b border-gray-800 last:border-b-0">
-                {/* Type header */}
-                <div className="px-3 py-1.5 bg-gray-800">
-                  <span className="text-xs font-semibold text-gray-400 uppercase tracking-wide">
+              <div key={type} className="border-b border-white/[0.04] last:border-b-0">
+                <div className="px-3 pt-2 pb-1">
+                  <span className="text-[9px] font-bold uppercase tracking-widest text-white/25">
                     {typeLabels[type] || type}
                   </span>
                 </div>
-                
-                {/* Providers in this type */}
-                <div className="px-3 py-2 space-y-1.5">
+                <div className="px-3 pb-2 space-y-1.5">
                   {typeProviders.map((provider) => {
                     const displayColor = getDisplayColor(provider.color);
                     return (
                       <div key={provider.id} className="flex items-center gap-2">
-                        <div
-                          className="w-3 h-3 rounded-full border border-white/10 flex-shrink-0"
-                          style={{ 
-                            backgroundColor: displayColor,
-                            boxShadow: `0 0 4px ${displayColor}`
-                          }}
-                        />
-                        <span className="text-xs text-gray-300">{provider.name}</span>
+                        <div className="w-2 h-2 rounded-full flex-shrink-0" style={{ backgroundColor: displayColor, boxShadow: `0 0 4px ${displayColor}` }} />
+                        <span className="text-xs text-white/50 truncate">{provider.name}</span>
                       </div>
                     );
                   })}
                 </div>
               </div>
             ))}
-
-            {/* Footer stats */}
-            <div className="px-3 py-2 bg-gray-800 border-t border-gray-700">
-              <p className="text-[10px] text-gray-400">
-                {providers.length} providers • 105 locations
-              </p>
+            <div className="px-3 py-2 border-t border-white/[0.06]">
+              <p className="text-[9px] text-white/20">{providers.length} providers · 131 locations</p>
             </div>
           </div>
         )}

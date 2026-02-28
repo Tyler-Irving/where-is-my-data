@@ -1,15 +1,14 @@
 'use client';
 
 import React, { useState } from 'react';
+import { Share2, Check } from 'lucide-react';
 
 export const ShareButton = React.memo(function ShareButton() {
   const [copied, setCopied] = useState(false);
 
   const handleShare = async () => {
-    const url = window.location.href;
-    
     try {
-      await navigator.clipboard.writeText(url);
+      await navigator.clipboard.writeText(window.location.href);
       setCopied(true);
       setTimeout(() => setCopied(false), 2000);
     } catch (err) {
@@ -17,27 +16,19 @@ export const ShareButton = React.memo(function ShareButton() {
     }
   };
 
+  const pillBase = 'flex items-center gap-1.5 rounded-full px-3 py-1.5 text-xs font-bold uppercase tracking-wide transition-all duration-200 border whitespace-nowrap';
+
   return (
     <button
       onClick={handleShare}
-      className="px-4 py-2 rounded-lg text-sm font-medium transition-all border bg-gray-800 border-gray-700 text-gray-300 hover:bg-gray-700 flex items-center gap-2"
+      className={`${pillBase} ${copied ? 'bg-[#00D084] border-[#00D084] text-white' : 'bg-white/[0.05] border-white/[0.08] text-white/50 hover:text-white hover:bg-white/[0.10]'}`}
       aria-label="Share current view"
       title="Share current view"
     >
       {copied ? (
-        <>
-          <svg className="w-4 h-4 text-green-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-          </svg>
-          <span className="text-green-400">Copied!</span>
-        </>
+        <><Check className="w-3 h-3" /><span className="hidden sm:inline">Copied!</span></>
       ) : (
-        <>
-          <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M8.684 13.342C8.886 12.938 9 12.482 9 12c0-.482-.114-.938-.316-1.342m0 2.684a3 3 0 110-2.684m0 2.684l6.632 3.316m-6.632-6l6.632-3.316m0 0a3 3 0 105.367-2.684 3 3 0 00-5.367 2.684zm0 9.316a3 3 0 105.368 2.684 3 3 0 00-5.368-2.684z" />
-          </svg>
-          <span className="hidden sm:inline">Share</span>
-        </>
+        <><Share2 className="w-3 h-3" /><span className="hidden sm:inline">Share</span></>
       )}
     </button>
   );

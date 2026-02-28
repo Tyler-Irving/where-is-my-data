@@ -1,7 +1,7 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Calculator, Zap, Network } from 'lucide-react';
+import { Calculator, Zap, Network, Search, X } from 'lucide-react';
 import { DatabaseLocationIcon } from '@/components/icons/DatabaseLocationIcon';
 import { SearchBar } from '@/components/map/SearchBar';
 import { AboutModal } from '@/components/modals/AboutModal';
@@ -18,7 +18,6 @@ export function Header() {
   const [showLatencyCalculator, setShowLatencyCalculator] = useState(false);
   const [showNetworkPanel, setShowNetworkPanel] = useState(false);
 
-  // Listen for ? key
   React.useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
       if (e.key === '?' && !(e.target instanceof HTMLInputElement) && !(e.target instanceof HTMLTextAreaElement)) {
@@ -30,79 +29,100 @@ export function Header() {
     return () => window.removeEventListener('keydown', handleKey);
   }, []);
 
+  const iconBtn = (color: string) =>
+    `w-9 h-9 rounded-xl flex items-center justify-center transition-all duration-200 bg-white/[0.05] hover:bg-white/[0.10] border border-white/[0.06] ${color}`;
+
   return (
     <>
-      <header className="h-16 bg-gray-900 border-b border-gray-800 px-6 flex items-center justify-between sticky top-0 z-50">
-        <div className="flex items-center gap-2 md:gap-3">
-          <DatabaseLocationIcon className="w-6 h-6 text-blue-400" />
-          <h1 className="text-lg font-semibold text-white whitespace-nowrap">Where is my data?</h1>
+      {/* ─── Main Header ─── */}
+      <header className="h-14 bg-black border-b border-white/[0.06] px-4 md:px-6 flex items-center justify-between sticky top-0 z-50">
+
+        {/* Left: Logo */}
+        <div className="flex items-center gap-2.5 flex-shrink-0">
+          <DatabaseLocationIcon className="w-5 h-5 text-[#0066FF]" />
+          <span className="text-sm font-black tracking-wider text-white uppercase hidden sm:block">
+            Where is my data
+          </span>
+          <span className="text-sm font-black tracking-wider text-white uppercase sm:hidden">
+            WIMD
+          </span>
+        </div>
+
+        {/* Center: Search (desktop) */}
+        <div className="hidden md:flex flex-1 max-w-sm mx-8">
+          <SearchBar />
+        </div>
+
+        {/* Right: Action buttons */}
+        <div className="flex items-center gap-1.5">
+          {/* Mobile search toggle */}
           <button
-            onClick={() => setShowCalculator(true)}
-            className="ml-1 md:ml-2 p-1.5 rounded-lg text-green-400 hover:text-white hover:bg-gray-800 transition-colors"
-            aria-label="Cost calculator"
-            title="Cost calculator"
+            onClick={() => setMobileSearchOpen(!mobileSearchOpen)}
+            className={`md:hidden ${iconBtn('text-white/60 hover:text-white')}`}
+            aria-label="Search"
           >
-            <Calculator className="w-5 h-5" />
+            {mobileSearchOpen ? <X className="w-4 h-4" /> : <Search className="w-4 h-4" />}
           </button>
+
           <button
             onClick={() => setShowLatencyCalculator(true)}
-            className="p-1.5 rounded-lg text-blue-400 hover:text-white hover:bg-gray-800 transition-colors"
+            className={iconBtn('text-[#0066FF] hover:text-white')}
             aria-label="Latency calculator"
             title="Latency calculator"
           >
-            <Zap className="w-5 h-5" />
+            <Zap className="w-4 h-4" />
           </button>
+
           <button
             onClick={() => setShowNetworkPanel(true)}
-            className="p-1.5 rounded-lg text-purple-400 hover:text-white hover:bg-gray-800 transition-colors"
+            className={iconBtn('text-[#BF5AF2] hover:text-white')}
             aria-label="Network backbone"
             title="Network backbone"
           >
-            <Network className="w-5 h-5" />
+            <Network className="w-4 h-4" />
           </button>
+
+          <button
+            onClick={() => setShowCalculator(true)}
+            className={iconBtn('text-[#00D084] hover:text-white')}
+            aria-label="Cost calculator"
+            title="Cost calculator"
+          >
+            <Calculator className="w-4 h-4" />
+          </button>
+
           <button
             onClick={() => setShowAbout(true)}
-            className="ml-1 md:ml-2 p-1.5 rounded-lg text-gray-400 hover:text-white hover:bg-gray-800 transition-colors"
-            aria-label="About this project"
+            className={iconBtn('text-white/35 hover:text-white')}
+            aria-label="About"
             title="About this project"
           >
-            <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
               <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
             </svg>
           </button>
+
           <button
             onClick={() => setShowShortcuts(true)}
-            className="hidden md:block text-xs text-gray-500 hover:text-gray-300 transition-colors"
+            className={`hidden md:flex ${iconBtn('text-white/35 hover:text-white')}`}
             title="Keyboard shortcuts"
+            aria-label="Keyboard shortcuts"
           >
-            Press <kbd className="px-1.5 py-0.5 bg-gray-800 border border-gray-700 rounded text-xs">?</kbd> for shortcuts
+            <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 20h9M16.5 3.5a2.121 2.121 0 013 3L7 19l-4 1 1-4L16.5 3.5z" />
+            </svg>
           </button>
         </div>
-        
-        {/* Desktop Search Bar */}
-        <div className="hidden md:block flex-1 max-w-md mx-8">
-          <SearchBar />
-        </div>
-        
-        {/* Mobile Search Button */}
-        <button
-          onClick={() => setMobileSearchOpen(!mobileSearchOpen)}
-          className="md:hidden text-gray-400 hover:text-white transition-colors p-2"
-          aria-label="Toggle search"
-        >
-          <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z" />
-          </svg>
-        </button>
       </header>
-      
-      {/* Mobile Search Dropdown */}
+
+      {/* ─── Mobile Search Dropdown ─── */}
       {mobileSearchOpen && (
-        <div className="md:hidden bg-gray-900 border-b border-gray-800 px-6 py-3 sticky top-16 z-40">
+        <div className="md:hidden bg-black border-b border-white/[0.06] px-4 py-3 sticky top-14 z-40">
           <SearchBar onResultSelected={() => setMobileSearchOpen(false)} />
         </div>
       )}
-      
+
+      {/* ─── Modals & Panels ─── */}
       <AboutModal isOpen={showAbout} onClose={() => setShowAbout(false)} />
       <KeyboardShortcutsModal isOpen={showShortcuts} onClose={() => setShowShortcuts(false)} />
       <CostCalculator isOpen={showCalculator} onClose={() => setShowCalculator(false)} />

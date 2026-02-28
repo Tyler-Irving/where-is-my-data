@@ -79,7 +79,7 @@ function HomeContent() {
   }, [canCompare, modalOpen, viewport.zoom, setViewport]);
   
   return (
-    <main className="min-h-screen bg-gray-900">
+    <main className="min-h-screen bg-black">
       <Header />
       <FilterBar />
       <MapContainer />
@@ -103,13 +103,15 @@ function HomeContent() {
       )}
       
       {/* Toast Notifications */}
-      <Toaster 
+      <Toaster
         position="top-center"
         toastOptions={{
           style: {
-            background: '#27272a',
-            border: '1px solid #3f3f46',
-            color: '#fafafa',
+            background: '#0a0a0a',
+            border: '1px solid rgba(255,255,255,0.10)',
+            color: '#ffffff',
+            borderRadius: '0.75rem',
+            fontSize: '0.875rem',
           },
         }}
       />
