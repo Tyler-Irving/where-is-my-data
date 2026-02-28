@@ -131,7 +131,7 @@ export const FilterBar = React.memo(function FilterBar() {
 
   return (
     <>
-      <div className="sticky top-14 z-30 bg-black border-b border-white/[0.06]">
+      <div className="sticky md:relative top-14 md:top-0 z-30 bg-black border-b border-white/[0.06]">
 
         {/* ─── Mobile bar ─── */}
         <div className="md:hidden flex items-center gap-2 px-4 py-2.5">
