@@ -23,102 +23,78 @@ export const DatacenterMarkers = React.memo(function DatacenterMarkers({ onHover
   const [hoveredDatacenter, setHoveredDatacenter] = useState<Datacenter | null>(null);
   const hideTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
-  // Clear any pending hide timeout
   const clearHideTimeout = useCallback(() => {
-    if (hideTimeoutRef.current) {
-      clearTimeout(hideTimeoutRef.current);
-      hideTimeoutRef.current = null;
-    }
+    if (hideTimeoutRef.current) { clearTimeout(hideTimeoutRef.current); hideTimeoutRef.current = null; }
   }, []);
 
-  // Show tooltip immediately
   const handleMarkerEnter = useCallback((datacenter: Datacenter) => {
     clearHideTimeout();
     setHoveredDatacenter(datacenter);
     onHoverChange?.(datacenter);
   }, [clearHideTimeout, onHoverChange]);
 
-  // Delay hiding tooltip to allow mouse to move to tooltip
   const handleMarkerLeave = useCallback(() => {
     clearHideTimeout();
     hideTimeoutRef.current = setTimeout(() => {
       setHoveredDatacenter(null);
       onHoverChange?.(null);
-    }, 200); // 200ms delay
+    }, 200);
   }, [clearHideTimeout, onHoverChange]);
 
-  // Keep tooltip visible when mouse enters it
-  const handleTooltipEnter = useCallback(() => {
-    clearHideTimeout();
-  }, [clearHideTimeout]);
+  const handleTooltipEnter = useCallback(() => { clearHideTimeout(); }, [clearHideTimeout]);
+  const handleTooltipLeave = useCallback(() => { handleMarkerLeave(); }, [handleMarkerLeave]);
 
-  // Hide tooltip when mouse leaves it
-  const handleTooltipLeave = useCallback(() => {
-    handleMarkerLeave();
-  }, [handleMarkerLeave]);
-
-  // Scale marker size based on zoom level (memoized)
   const markerSize = useMemo(() => {
     const zoom = viewport.zoom;
-    if (zoom < 5) return 'w-2 h-2';
-    if (zoom < 7) return 'w-3 h-3';
-    return 'w-4 h-4';
+    if (zoom < 5) return 8;
+    if (zoom < 7) return 11;
+    return 14;
   }, [viewport.zoom]);
-  
-  // Filter datacenters based on active filters
+
   const filteredDatacenters = useMemo(() => {
     return filterDatacenters(datacenters, { providers, providerTypes, capacityRange, pueRange, renewableOnly });
   }, [datacenters, providers, providerTypes, capacityRange, pueRange, renewableOnly]);
-  
-  // Calculate offsets for overlapping datacenters
-  const datacentersWithOffsets = useMemo(() => {
-    return calculateMarkerOffsets(filteredDatacenters);
-  }, [filteredDatacenters]);
 
-  // Precompute colocation counts (O(n) instead of O(n²))
-  const colocatedCounts = useMemo(() => {
-    return buildColocatedCountMap(datacenters);
-  }, [datacenters]);
+  const datacentersWithOffsets = useMemo(() => calculateMarkerOffsets(filteredDatacenters), [filteredDatacenters]);
+  const colocatedCounts = useMemo(() => buildColocatedCountMap(datacenters), [datacenters]);
 
   return (
     <>
       {datacentersWithOffsets.map((datacenter) => {
         const colocatedCount = getColocatedCount(colocatedCounts, datacenter.lat, datacenter.lng);
         const hasMultiple = colocatedCount > 1;
-        const providerColor = getProviderColor(datacenter.provider);
-        const displayColor = getDisplayColor(providerColor);
-        
+        const displayColor = getDisplayColor(getProviderColor(datacenter.provider));
+        const isSelected = selectedDatacenter === datacenter.id;
+
         return (
           <Marker
             key={datacenter.id}
             latitude={datacenter.offsetLat}
             longitude={datacenter.offsetLng}
             anchor="bottom"
-            onClick={(e) => {
-              e.originalEvent.stopPropagation();
-              selectDatacenter(datacenter.id);
-            }}
+            onClick={(e) => { e.originalEvent.stopPropagation(); selectDatacenter(datacenter.id); }}
           >
             <div className="relative">
-              <div 
-                className={`${markerSize} rounded-full border-2 border-white shadow-md cursor-pointer transition-transform hover:scale-150 ${
-                  selectedDatacenter === datacenter.id ? 'scale-150' : ''
-                }`}
+              <div
                 style={{
-                  backgroundColor: selectedDatacenter === datacenter.id 
-                    ? '#3b82f6' // blue-500
-                    : displayColor,
-                  boxShadow: selectedDatacenter === datacenter.id 
-                    ? '0 0 0 2px #3b82f6'
-                    : `0 0 6px ${displayColor}`
+                  width: markerSize,
+                  height: markerSize,
+                  borderRadius: '50%',
+                  border: `2px solid rgba(255,255,255,${isSelected ? 1 : 0.85})`,
+                  backgroundColor: isSelected ? '#0066FF' : displayColor,
+                  boxShadow: isSelected
+                    ? `0 0 0 3px rgba(0,102,255,0.4), 0 2px 12px rgba(0,0,0,0.8)`
+                    : `0 0 8px ${displayColor}60, 0 2px 8px rgba(0,0,0,0.7)`,
+                  cursor: 'pointer',
+                  transform: isSelected ? 'scale(1.6)' : 'scale(1)',
+                  transition: 'transform 150ms ease-out, box-shadow 150ms ease-out',
                 }}
                 onMouseEnter={() => handleMarkerEnter(datacenter)}
                 onMouseLeave={handleMarkerLeave}
               />
-              {/* Show count badge for co-located datacenters */}
               {hasMultiple && viewport.zoom >= 6 && (
-                <div 
-                  className="absolute -top-1 -right-1 bg-gray-900 border border-white rounded-full w-4 h-4 flex items-center justify-center text-[8px] font-bold text-white shadow-lg pointer-events-none"
+                <div
+                  className="absolute -top-1 -right-1 bg-black border border-white/40 rounded-full w-3.5 h-3.5 flex items-center justify-center text-[7px] font-black text-white pointer-events-none"
                   style={{ zIndex: 10 }}
                 >
                   {colocatedCount}
@@ -129,10 +105,9 @@ export const DatacenterMarkers = React.memo(function DatacenterMarkers({ onHover
         );
       })}
 
-      {/* Show tooltip for hovered datacenter */}
       {hoveredDatacenter && (
-        <DatacenterTooltip 
-          datacenter={hoveredDatacenter} 
+        <DatacenterTooltip
+          datacenter={hoveredDatacenter}
           onClose={() => setHoveredDatacenter(null)}
           onMouseEnter={handleTooltipEnter}
           onMouseLeave={handleTooltipLeave}

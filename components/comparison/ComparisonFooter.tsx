@@ -1,5 +1,6 @@
 'use client';
 
+import { ArrowRight } from 'lucide-react';
 import { Datacenter } from '@/types/datacenter';
 import { DatacenterThumbnail } from './DatacenterThumbnail';
 
@@ -14,47 +15,47 @@ export function ComparisonFooter({
   selectedDatacenters,
   onViewComparison,
   onClearAll,
-  onRemove
+  onRemove,
 }: ComparisonFooterProps) {
   const count = selectedDatacenters.length;
   const canCompare = count >= 2;
   const atMax = count >= 3;
-  
-  if (count === 0) return null; // Hidden when empty
-  
+
+  if (count === 0) return null;
+
   return (
     <aside
       role="complementary"
       aria-label="Comparison selection footer"
-      className="fixed bottom-0 left-0 right-0 z-40 bg-zinc-900/95 backdrop-blur-md border-t border-zinc-700 shadow-2xl animate-in slide-in-from-bottom duration-300"
+      className="fixed bottom-0 left-0 right-0 z-40 backdrop-blur-xl bg-black/85 border-t border-white/[0.08] shadow-2xl animate-in slide-in-from-bottom duration-300"
     >
-      {/* Desktop Layout */}
-      <div className="hidden md:flex items-center justify-between px-6 py-4 max-w-7xl mx-auto gap-6">
-        {/* Left Section - Selection Info */}
-        <div className="flex items-center gap-4 flex-shrink-0">
+      {/* Desktop */}
+      <div className="hidden md:flex items-center gap-6 px-6 py-3 max-w-7xl mx-auto">
+        {/* Status */}
+        <div className="flex items-center gap-3 flex-shrink-0">
           <div role="status" aria-live="polite" aria-atomic="true">
-            <span className="text-white font-medium text-sm">
+            <span className="text-sm font-semibold text-white">
               {count} datacenter{count !== 1 ? 's' : ''} selected
             </span>
             {atMax && (
-              <span className="text-amber-400 ml-2 text-sm font-medium">(max)</span>
+              <span className="text-[#FF9500] text-xs font-medium ml-2">(max)</span>
             )}
           </div>
           <button
             onClick={onClearAll}
-            className="text-sm text-zinc-400 hover:text-white transition-colors hover:underline"
+            className="text-xs text-white/35 hover:text-white transition-colors"
             aria-label="Clear all selected datacenters"
           >
             Clear All
           </button>
         </div>
-        
-        {/* Center Section - Thumbnail Carousel */}
-        <div 
-          className="flex items-center gap-3 flex-1 max-w-2xl overflow-x-auto scrollbar-hide"
+
+        {/* Thumbnail carousel */}
+        <div
+          className="flex-1 flex items-center gap-2 overflow-x-auto scrollbar-hide"
           aria-label="Selected datacenters"
         >
-          {selectedDatacenters.map(dc => (
+          {selectedDatacenters.map((dc) => (
             <DatacenterThumbnail
               key={dc.id}
               datacenter={dc}
@@ -62,44 +63,35 @@ export function ComparisonFooter({
             />
           ))}
         </div>
-        
-        {/* Right Section - CTA Button */}
+
+        {/* CTA */}
         <button
           onClick={onViewComparison}
           disabled={!canCompare}
-          className={`px-6 py-2.5 rounded-lg font-semibold text-sm transition-all flex items-center gap-2 flex-shrink-0 min-w-[180px] justify-center ${
+          className={`flex items-center gap-2 px-5 py-2.5 rounded-xl font-bold text-sm transition-all duration-200 flex-shrink-0 min-w-[160px] justify-center active:scale-[0.97] ${
             canCompare
-              ? 'bg-blue-600 hover:bg-blue-700 text-white shadow-lg shadow-blue-500/20 hover:shadow-blue-500/30 active:scale-[0.98]'
-              : 'bg-zinc-700 text-zinc-500 cursor-not-allowed'
+              ? 'bg-[#0066FF] hover:bg-[#0052cc] text-white shadow-lg shadow-[#0066FF]/20'
+              : 'bg-white/[0.05] text-white/25 cursor-not-allowed border border-white/[0.06]'
           }`}
-          title={!canCompare ? 'Select at least 2 datacenters to compare' : 'View comparison of selected datacenters'}
-          aria-label={canCompare 
-            ? 'View comparison of selected datacenters' 
-            : 'View Comparison - disabled, select at least 2 datacenters'}
+          title={!canCompare ? 'Select at least 2 datacenters' : undefined}
+          aria-label={canCompare ? 'View comparison' : 'Select at least 2 datacenters to compare'}
         >
           View Comparison
-          <svg 
-            className={`w-4 h-4 transition-transform ${canCompare ? 'group-hover:translate-x-0.5' : 'opacity-50'}`} 
-            fill="none" 
-            stroke="currentColor" 
-            viewBox="0 0 24 24"
-            aria-hidden="true"
-          >
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 7l5 5m0 0l-5 5m5-5H6" />
-          </svg>
+          <ArrowRight className={`w-4 h-4 ${canCompare ? '' : 'opacity-30'}`} />
         </button>
       </div>
-      
-      {/* Mobile Layout */}
+
+      {/* Mobile */}
       <div className="md:hidden px-4 py-3 pb-safe">
         <div className="flex items-center justify-between mb-3">
-          <span className="text-white text-sm font-medium">
-            {count} selected {atMax && <span className="text-amber-400">(max)</span>}
+          <span className="text-sm font-semibold text-white">
+            {count} selected
+            {atMax && <span className="text-[#FF9500] text-xs ml-1.5">(max)</span>}
           </span>
-          <button 
-            onClick={onClearAll} 
-            className="text-xs text-zinc-400 hover:text-white transition-colors min-h-[48px] px-3"
-            aria-label="Clear all selected datacenters"
+          <button
+            onClick={onClearAll}
+            className="text-xs text-white/40 hover:text-white transition-colors min-h-[44px] px-3"
+            aria-label="Clear all"
           >
             Clear
           </button>
@@ -107,14 +99,12 @@ export function ComparisonFooter({
         <button
           onClick={onViewComparison}
           disabled={!canCompare}
-          className={`w-full min-h-[56px] py-3 rounded-lg font-semibold text-base transition-all ${
+          className={`w-full min-h-[52px] py-3 rounded-xl font-bold text-base transition-all active:scale-[0.98] ${
             canCompare
-              ? 'bg-blue-600 text-white active:bg-blue-700'
-              : 'bg-zinc-700 text-zinc-500'
+              ? 'bg-[#0066FF] hover:bg-[#0052cc] text-white'
+              : 'bg-white/[0.05] text-white/25 border border-white/[0.06]'
           }`}
-          aria-label={canCompare 
-            ? 'View comparison' 
-            : 'View Comparison - select at least 2 datacenters'}
+          aria-label={canCompare ? 'View comparison' : 'Select at least 2 datacenters'}
         >
           View Comparison
         </button>

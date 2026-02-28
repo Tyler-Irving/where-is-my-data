@@ -1,14 +1,13 @@
 'use client';
 
-import { useState } from 'react';
 import { X, Calculator, TrendingDown } from 'lucide-react';
 import { usePricingStore } from '@/store/pricingStore';
 import { useComparisonStore } from '@/store/comparisonStore';
-import { 
-  getAllPricedDatacenters, 
-  calculateScenarioEstimate, 
+import {
+  getAllPricedDatacenters,
+  calculateScenarioEstimate,
   formatCurrency,
-  getCheapestDatacenter 
+  getCheapestDatacenter,
 } from '@/lib/utils/pricing';
 import type { ScenarioEstimate } from '@/types/pricing';
 
@@ -17,197 +16,154 @@ interface CostCalculatorProps {
   onClose: () => void;
 }
 
+interface SliderProps {
+  label: string;
+  value: number;
+  display: string;
+  min: number;
+  max: number;
+  step?: number;
+  hint: string;
+  onChange: (v: number) => void;
+}
+
+function Slider({ label, value, display, min, max, step = 1, hint, onChange }: SliderProps) {
+  return (
+    <div>
+      <div className="flex items-center justify-between mb-2">
+        <label className="text-sm text-white/60">{label}</label>
+        <span className="font-mono text-sm text-[#00D084] font-bold tabular-nums">{display}</span>
+      </div>
+      <input type="range" min={min} max={max} step={step} value={value}
+        onChange={(e) => onChange(parseInt(e.target.value))}
+        className="w-full accent-[#0066FF]" />
+      <p className="mt-1 text-xs text-white/25">{hint}</p>
+    </div>
+  );
+}
+
 export function CostCalculator({ isOpen, onClose }: CostCalculatorProps) {
   const { customScenario, setCustomScenario, resetScenario } = usePricingStore();
   const selectedIds = useComparisonStore((state) => state.selectedIds);
-  
+
   if (!isOpen) return null;
-  
-  // Calculate estimates for selected datacenters or all if none selected
+
   const datacentersToCompare = selectedIds.length > 0
     ? getAllPricedDatacenters().filter(dc => selectedIds.includes(dc.datacenterId))
     : getAllPricedDatacenters();
-  
+
   const estimates: ScenarioEstimate[] = datacentersToCompare
     .map(dc => calculateScenarioEstimate(dc, customScenario))
     .sort((a, b) => a.total - b.total);
-  
-  const minCost = Math.min(...estimates.map(e => e.total));
+
+  const minCost = estimates.length > 0 ? Math.min(...estimates.map(e => e.total)) : 0;
   const cheapest = getCheapestDatacenter(customScenario);
-  
+
   return (
-    <div className="fixed inset-0 z-50 flex items-center justify-center bg-black/50 p-4">
-      <div className="relative max-h-[90vh] w-full max-w-4xl overflow-hidden rounded-xl bg-zinc-900 shadow-2xl">
+    <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/80 backdrop-blur-sm p-0 sm:p-4">
+      <div className="relative w-full sm:max-w-4xl max-h-[92vh] sm:max-h-[90vh] overflow-hidden bg-[#0a0a0a] border border-white/[0.10] rounded-t-2xl sm:rounded-2xl shadow-2xl animate-in slide-up duration-300">
         {/* Header */}
-        <div className="flex items-center justify-between border-b border-zinc-800 p-6">
+        <div className="flex items-center justify-between border-b border-white/[0.06] px-5 py-4 flex-shrink-0">
           <div className="flex items-center gap-3">
-            <Calculator className="h-6 w-6 text-green-400" />
+            <div className="w-9 h-9 rounded-xl bg-[#00D084]/15 border border-[#00D084]/20 flex items-center justify-center">
+              <Calculator className="h-4 w-4 text-[#00D084]" />
+            </div>
             <div>
-              <h2 className="text-xl font-bold text-white">Cost Calculator</h2>
-              <p className="text-sm text-zinc-400">Estimate costs across datacenters</p>
+              <h2 className="text-base font-bold text-white">Cost Calculator</h2>
+              <p className="text-xs text-white/35">Estimate costs across cloud regions</p>
             </div>
           </div>
-          <button
-            onClick={onClose}
-            className="rounded-lg p-2 text-zinc-400 transition-colors hover:bg-zinc-800 hover:text-white"
-            aria-label="Close calculator"
-          >
-            <X className="h-5 w-5" />
+          <button onClick={onClose} className="w-8 h-8 rounded-xl flex items-center justify-center text-white/35 hover:text-white hover:bg-white/[0.08] transition-all" aria-label="Close">
+            <X className="h-4 w-4" />
           </button>
         </div>
-        
-        <div className="grid grid-cols-1 lg:grid-cols-2">
+
+        <div className="grid grid-cols-1 lg:grid-cols-2 overflow-hidden" style={{ maxHeight: 'calc(90vh - 72px)' }}>
           {/* Controls */}
-          <div className="border-b border-zinc-800 p-6 lg:border-b-0 lg:border-r">
-            <h3 className="mb-4 text-sm font-semibold text-white">Configure Your Workload</h3>
-            
+          <div className="border-b border-white/[0.06] p-5 lg:border-b-0 lg:border-r overflow-y-auto scrollbar-hide">
+            <p className="text-[10px] font-bold uppercase tracking-widest text-white/35 mb-4">Configure Workload</p>
             <div className="space-y-6">
-              {/* Compute Instances */}
-              <div>
-                <label className="mb-2 flex items-center justify-between text-sm text-zinc-300">
-                  <span>Compute Instances</span>
-                  <span className="font-mono text-green-400">{customScenario.computeInstances}</span>
-                </label>
-                <input
-                  type="range"
-                  min="0"
-                  max="10"
-                  value={customScenario.computeInstances}
-                  onChange={(e) => setCustomScenario({ computeInstances: parseInt(e.target.value) })}
-                  className="w-full"
-                />
-                <p className="mt-1 text-xs text-zinc-500">8 vCPU, 16GB RAM each</p>
-              </div>
-              
-              {/* Storage */}
-              <div>
-                <label className="mb-2 flex items-center justify-between text-sm text-zinc-300">
-                  <span>Block Storage</span>
-                  <span className="font-mono text-green-400">{customScenario.storageTb} TB</span>
-                </label>
-                <input
-                  type="range"
-                  min="0"
-                  max="50"
-                  step="1"
-                  value={customScenario.storageTb}
-                  onChange={(e) => setCustomScenario({ storageTb: parseInt(e.target.value) })}
-                  className="w-full"
-                />
-                <p className="mt-1 text-xs text-zinc-500">SSD block storage</p>
-              </div>
-              
-              {/* Data Transfer */}
-              <div>
-                <label className="mb-2 flex items-center justify-between text-sm text-zinc-300">
-                  <span>Data Transfer (Egress)</span>
-                  <span className="font-mono text-green-400">{customScenario.dataTransferTb} TB</span>
-                </label>
-                <input
-                  type="range"
-                  min="0"
-                  max="100"
-                  step="5"
-                  value={customScenario.dataTransferTb}
-                  onChange={(e) => setCustomScenario({ dataTransferTb: parseInt(e.target.value) })}
-                  className="w-full"
-                />
-                <p className="mt-1 text-xs text-zinc-500">Outbound data transfer</p>
-              </div>
-              
-              {/* Database */}
-              <div>
-                <label className="mb-2 flex items-center justify-between text-sm text-zinc-300">
-                  <span>Database Instances</span>
-                  <span className="font-mono text-green-400">{customScenario.databaseInstances}</span>
-                </label>
-                <input
-                  type="range"
-                  min="0"
-                  max="5"
-                  value={customScenario.databaseInstances}
-                  onChange={(e) => setCustomScenario({ databaseInstances: parseInt(e.target.value) })}
-                  className="w-full"
-                />
-                <p className="mt-1 text-xs text-zinc-500">4 vCPU, 16GB RAM each</p>
-              </div>
-              
-              <button
-                onClick={resetScenario}
-                className="w-full rounded-lg border border-zinc-700 px-4 py-2 text-sm text-zinc-300 transition-colors hover:bg-zinc-800"
-              >
+              <Slider label="Compute Instances" value={customScenario.computeInstances}
+                display={String(customScenario.computeInstances)} min={0} max={10}
+                hint="8 vCPU, 16 GB RAM each"
+                onChange={(v) => setCustomScenario({ computeInstances: v })} />
+              <Slider label="Block Storage" value={customScenario.storageTb}
+                display={`${customScenario.storageTb} TB`} min={0} max={50}
+                hint="SSD block storage"
+                onChange={(v) => setCustomScenario({ storageTb: v })} />
+              <Slider label="Data Transfer (Egress)" value={customScenario.dataTransferTb}
+                display={`${customScenario.dataTransferTb} TB`} min={0} max={100} step={5}
+                hint="Outbound data transfer"
+                onChange={(v) => setCustomScenario({ dataTransferTb: v })} />
+              <Slider label="Database Instances" value={customScenario.databaseInstances}
+                display={String(customScenario.databaseInstances)} min={0} max={5}
+                hint="4 vCPU, 16 GB RAM each"
+                onChange={(v) => setCustomScenario({ databaseInstances: v })} />
+              <button onClick={resetScenario}
+                className="w-full rounded-xl border border-white/[0.08] px-4 py-2.5 text-sm text-white/50 hover:text-white hover:bg-white/[0.05] transition-all">
                 Reset to Baseline
               </button>
             </div>
           </div>
-          
+
           {/* Results */}
-          <div className="p-6">
-            <div className="mb-4 flex items-center justify-between">
-              <h3 className="text-sm font-semibold text-white">Estimated Costs</h3>
+          <div className="p-5 overflow-y-auto scrollbar-hide">
+            <div className="flex items-center justify-between mb-4">
+              <p className="text-[10px] font-bold uppercase tracking-widest text-white/35">Estimated Monthly Cost</p>
               {cheapest && (
-                <div className="flex items-center gap-1 text-xs text-green-400">
+                <div className="flex items-center gap-1 text-xs text-[#00D084]">
                   <TrendingDown className="h-3 w-3" />
                   <span>Best: {cheapest.displayName}</span>
                 </div>
               )}
             </div>
-            
-            <div className="max-h-[500px] space-y-2 overflow-y-auto pr-2">
-              {estimates.map((estimate) => {
-                const isMin = estimate.total === minCost;
-                const relativePercent = isMin ? 0 : Math.round(((estimate.total - minCost) / minCost) * 100);
-                
-                return (
-                  <div
-                    key={estimate.datacenterId}
-                    className={`rounded-lg border p-3 ${
-                      isMin 
-                        ? 'border-green-500/50 bg-green-500/5' 
-                        : 'border-zinc-700 bg-zinc-800/30'
-                    }`}
-                  >
-                    <div className="mb-2 flex items-start justify-between">
-                      <div>
-                        <div className="text-sm font-medium text-white">{estimate.displayName}</div>
-                        <div className="text-xs text-zinc-400">{estimate.provider}</div>
+
+            {estimates.length === 0 ? (
+              <div className="bg-white/[0.03] border border-white/[0.06] rounded-2xl p-8 text-center">
+                <p className="text-sm text-white/40">No priced regions available</p>
+              </div>
+            ) : (
+              <div className="space-y-2">
+                {estimates.map((estimate) => {
+                  const isMin = estimate.total === minCost;
+                  const relativePercent = isMin ? 0 : Math.round(((estimate.total - minCost) / minCost) * 100);
+                  return (
+                    <div key={estimate.datacenterId}
+                      className={`rounded-xl border p-3.5 transition-all ${isMin ? 'border-[#00D084]/30 bg-[#00D084]/5' : 'border-white/[0.06] bg-white/[0.02]'}`}>
+                      <div className="flex items-start justify-between mb-2">
+                        <div className="min-w-0">
+                          <p className="text-sm font-semibold text-white">{estimate.displayName}</p>
+                          <p className="text-xs text-white/40">{estimate.provider}</p>
+                        </div>
+                        <div className="text-right flex-shrink-0 ml-3">
+                          <p className="text-xl font-bold text-white tabular-nums">{formatCurrency(estimate.total, false)}</p>
+                          {isMin
+                            ? <p className="text-xs text-[#00D084] font-semibold">Cheapest</p>
+                            : <p className="text-xs text-[#FF9500]">+{relativePercent}%</p>
+                          }
+                        </div>
                       </div>
-                      <div className="text-right">
-                        <div className="text-lg font-bold text-white">{formatCurrency(estimate.total, false)}</div>
-                        {!isMin && (
-                          <div className="text-xs text-yellow-400">+{relativePercent}%</div>
-                        )}
-                        {isMin && (
-                          <div className="text-xs text-green-400">Cheapest</div>
-                        )}
-                      </div>
-                    </div>
-                    
-                    <div className="grid grid-cols-2 gap-2 text-xs">
-                      <div className="flex justify-between">
-                        <span className="text-zinc-500">Compute:</span>
-                        <span className="text-zinc-300">{formatCurrency(estimate.breakdown.compute)}</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-zinc-500">Storage:</span>
-                        <span className="text-zinc-300">{formatCurrency(estimate.breakdown.storage)}</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-zinc-500">Transfer:</span>
-                        <span className="text-zinc-300">{formatCurrency(estimate.breakdown.dataTransfer)}</span>
-                      </div>
-                      <div className="flex justify-between">
-                        <span className="text-zinc-500">Database:</span>
-                        <span className="text-zinc-300">{formatCurrency(estimate.breakdown.database)}</span>
+                      <div className="grid grid-cols-2 gap-1.5 text-xs">
+                        {[
+                          ['Compute', estimate.breakdown.compute],
+                          ['Storage', estimate.breakdown.storage],
+                          ['Transfer', estimate.breakdown.dataTransfer],
+                          ['Database', estimate.breakdown.database],
+                        ].map(([label, val]) => (
+                          <div key={label as string} className="flex justify-between">
+                            <span className="text-white/30">{label}:</span>
+                            <span className="text-white/60 tabular-nums">{formatCurrency(val as number)}</span>
+                          </div>
+                        ))}
                       </div>
                     </div>
-                  </div>
-                );
-              })}
-            </div>
-            
-            <div className="mt-4 rounded-lg bg-zinc-800/50 p-3 text-xs text-zinc-400">
-              <strong>Note:</strong> Estimates based on on-demand pricing. Reserved instances and spot pricing can reduce costs by 30-70%.
+                  );
+                })}
+              </div>
+            )}
+
+            <div className="mt-4 bg-white/[0.03] border border-white/[0.06] rounded-xl p-3 text-xs text-white/30">
+              <strong className="text-white/50">Note:</strong> On-demand pricing. Reserved or spot instances can reduce costs by 30–70%.
             </div>
           </div>
         </div>
