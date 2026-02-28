@@ -38,6 +38,7 @@ export function LatencyCalculator({ isOpen, onClose }: LatencyCalculatorProps) {
       return createLatencyRoute(dc1, dc2, estimate);
     });
     setActiveRoutes(routes);
+    onClose();
   };
 
   if (!isOpen) return null;
