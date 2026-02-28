@@ -79,10 +79,12 @@ function HomeContent() {
   }, [canCompare, modalOpen, viewport.zoom, setViewport]);
   
   return (
-    <main className="min-h-screen bg-black">
+    <main className="bg-black min-h-screen md:h-screen md:flex md:flex-col md:overflow-hidden">
       <Header />
       <FilterBar />
-      <MapContainer />
+      <div className="relative md:flex-1 md:min-h-0">
+        <MapContainer />
+      </div>
       <Footer />
       
       {/* Comparison Footer (sticky bottom bar) */}
