@@ -8,11 +8,11 @@ import { DatacenterCard } from './DatacenterCard';
 
 export function DatacenterListView() {
   const { datacenters } = useDatacenterStore();
-  const { providers, providerTypes, capacityRange, pueRange, renewableOnly } = useFilterStore();
+  const { providers, providerTypes, countries, capacityRange, pueRange, renewableOnly } = useFilterStore();
 
   const filtered = useMemo(
-    () => filterDatacenters(datacenters, { providers, providerTypes, capacityRange, pueRange, renewableOnly }),
-    [datacenters, providers, providerTypes, capacityRange, pueRange, renewableOnly]
+    () => filterDatacenters(datacenters, { providers, providerTypes, countries, capacityRange, pueRange, renewableOnly }),
+    [datacenters, providers, providerTypes, countries, capacityRange, pueRange, renewableOnly]
   );
 
   return (

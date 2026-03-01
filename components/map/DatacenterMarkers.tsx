@@ -19,7 +19,7 @@ interface DatacenterMarkersProps {
 export const DatacenterMarkers = React.memo(function DatacenterMarkers({ onHoverChange }: DatacenterMarkersProps) {
   const { datacenters } = useDatacenterStore();
   const { viewport, selectDatacenter, selectedDatacenter } = useMapStore();
-  const { providers, providerTypes, capacityRange, pueRange, renewableOnly } = useFilterStore();
+  const { providers, providerTypes, countries, capacityRange, pueRange, renewableOnly } = useFilterStore();
   const [hoveredDatacenter, setHoveredDatacenter] = useState<Datacenter | null>(null);
   const hideTimeoutRef = useRef<NodeJS.Timeout | null>(null);
 
@@ -52,8 +52,8 @@ export const DatacenterMarkers = React.memo(function DatacenterMarkers({ onHover
   }, [viewport.zoom]);
 
   const filteredDatacenters = useMemo(() => {
-    return filterDatacenters(datacenters, { providers, providerTypes, capacityRange, pueRange, renewableOnly });
-  }, [datacenters, providers, providerTypes, capacityRange, pueRange, renewableOnly]);
+    return filterDatacenters(datacenters, { providers, providerTypes, countries, capacityRange, pueRange, renewableOnly });
+  }, [datacenters, providers, providerTypes, countries, capacityRange, pueRange, renewableOnly]);
 
   const datacentersWithOffsets = useMemo(() => calculateMarkerOffsets(filteredDatacenters), [filteredDatacenters]);
   const colocatedCounts = useMemo(() => buildColocatedCountMap(datacenters), [datacenters]);

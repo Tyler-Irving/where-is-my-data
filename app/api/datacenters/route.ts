@@ -13,6 +13,7 @@ interface RawDatacenter {
   lng: number;
   city?: string;
   state: string;
+  country?: string;
   region?: string;
   availabilityZones?: number;
   opened?: number;
@@ -40,6 +41,7 @@ export async function GET() {
       lng: dc.lng,
       city: dc.city,
       state: dc.state,
+      country: dc.country ?? 'US',
       powerStatus: 'none' as const,
       waterStatus: 'none' as const,
       verified: dc.verified,

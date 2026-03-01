@@ -10,11 +10,11 @@ export const ExportButton = React.memo(function ExportButton() {
   const [isOpen, setIsOpen] = useState(false);
   const [exported, setExported] = useState(false);
   const { datacenters } = useDatacenterStore();
-  const { providers, providerTypes, capacityRange, pueRange, renewableOnly } = useFilterStore();
+  const { providers, providerTypes, countries, capacityRange, pueRange, renewableOnly } = useFilterStore();
 
   const filteredDatacenters = React.useMemo(() => {
-    return filterDatacenters(datacenters, { providers, providerTypes, capacityRange, pueRange, renewableOnly });
-  }, [datacenters, providers, providerTypes, capacityRange, pueRange, renewableOnly]);
+    return filterDatacenters(datacenters, { providers, providerTypes, countries, capacityRange, pueRange, renewableOnly });
+  }, [datacenters, providers, providerTypes, countries, capacityRange, pueRange, renewableOnly]);
 
   const handleExport = (format: 'csv' | 'json') => {
     let content: string;
