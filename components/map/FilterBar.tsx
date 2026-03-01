@@ -57,7 +57,7 @@ const pillInactive = `${pillBase} bg-white/[0.05] border-white/[0.08] text-white
 
 export const FilterBar = React.memo(function FilterBar() {
   const {
-    providers, providerTypes, capacityRange, pueRange, renewableOnly,
+    providers, providerTypes, countries, capacityRange, pueRange, renewableOnly,
     toggleProvider, toggleProviderType, setCapacityRange, setPueRange,
     setRenewableOnly, clearFilters, hasActiveFilters,
   } = useFilterStore();
@@ -74,8 +74,8 @@ export const FilterBar = React.memo(function FilterBar() {
   const pueRef = useRef<HTMLDivElement>(null);
 
   const filteredDatacenters = useMemo(() => {
-    return filterDatacenters(datacenters, { providers, providerTypes, capacityRange, pueRange, renewableOnly });
-  }, [datacenters, providers, providerTypes, capacityRange, pueRange, renewableOnly]);
+    return filterDatacenters(datacenters, { providers, providerTypes, countries, capacityRange, pueRange, renewableOnly });
+  }, [datacenters, providers, providerTypes, countries, capacityRange, pueRange, renewableOnly]);
 
   const stats = useMemo(() => {
     const count = filteredDatacenters.length;
@@ -85,8 +85,8 @@ export const FilterBar = React.memo(function FilterBar() {
     const renewableCount = filteredDatacenters.filter(dc => dc.metadata?.renewable).length;
     const renewablePercent = count > 0 ? (renewableCount / count) * 100 : 0;
     const uniqueProviders = new Set(filteredDatacenters.map(dc => dc.provider)).size;
-    const uniqueStates = new Set(filteredDatacenters.map(dc => dc.state)).size;
-    return { count, totalCapacity, avgPue, renewablePercent, renewableCount, uniqueProviders, uniqueStates };
+    const uniqueCountries = new Set(filteredDatacenters.map(dc => dc.country ?? 'US')).size;
+    return { count, totalCapacity, avgPue, renewablePercent, renewableCount, uniqueProviders, uniqueCountries };
   }, [filteredDatacenters]);
 
   const availableProviders = useMemo(() => {
@@ -149,8 +149,8 @@ export const FilterBar = React.memo(function FilterBar() {
         <p className="text-lg font-bold text-[#BF5AF2] tabular-nums">{stats.uniqueProviders}</p>
       </div>
       <div className="bg-white/[0.04] rounded-xl p-3 col-span-2">
-        <p className="text-[10px] font-bold uppercase tracking-widest text-white/35 mb-1">Coverage</p>
-        <p className="text-lg font-bold text-[#0066FF] tabular-nums">{stats.uniqueStates} <span className="text-xs text-white/35 font-normal">states</span></p>
+        <p className="text-[10px] font-bold uppercase tracking-widest text-white/35 mb-1">Countries</p>
+        <p className="text-lg font-bold text-[#0066FF] tabular-nums">{stats.uniqueCountries} <span className="text-xs text-white/35 font-normal">countries</span></p>
       </div>
     </div>
   );
