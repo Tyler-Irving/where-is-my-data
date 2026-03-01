@@ -87,7 +87,6 @@ function HomeContent() {
   return (
     <main className="bg-black min-h-screen md:h-screen md:flex md:flex-col md:overflow-hidden">
       <Header />
-      <FilterBar />
 
       {/* View tab strip */}
       <div className="bg-black border-b border-white/[0.06] px-4 md:px-6 flex items-center gap-1.5 py-2 flex-shrink-0">
@@ -98,6 +97,8 @@ function HomeContent() {
           <LayoutGrid className="w-3 h-3" /> Datacenters
         </button>
       </div>
+
+      <FilterBar />
 
       <div className="relative md:flex-1 md:min-h-0">
         {activeView === 'map' ? <MapContainer /> : <DatacenterListView />}

@@ -1,6 +1,7 @@
 'use client';
 
-import React, { useState, useMemo, useEffect } from 'react';
+import React, { useState, useMemo, useEffect, useRef, useLayoutEffect } from 'react';
+import { createPortal } from 'react-dom';
 import { SlidersHorizontal, X } from 'lucide-react';
 import { useFilterStore } from '@/store/filterStore';
 import { useDatacenterStore } from '@/store/datacenterStore';
@@ -17,17 +18,36 @@ interface FilterDropdownProps {
   onClose: () => void;
   children: React.ReactNode;
   align?: 'left' | 'right';
+  anchorRef: React.RefObject<HTMLDivElement | null>;
 }
 
-const FilterDropdown: React.FC<FilterDropdownProps> = ({ isOpen, onClose, children, align = 'left' }) => {
-  if (!isOpen) return null;
-  return (
+const FilterDropdown: React.FC<FilterDropdownProps> = ({ isOpen, onClose, children, align = 'left', anchorRef }) => {
+  const [pos, setPos] = useState<{ top: number; left?: number; right?: number } | null>(null);
+
+  useLayoutEffect(() => {
+    if (!isOpen || !anchorRef.current) return;
+    const rect = anchorRef.current.getBoundingClientRect();
+    if (align === 'right') {
+      setPos({ top: rect.bottom + 8, right: window.innerWidth - rect.right });
+    } else {
+      const left = Math.min(rect.left, window.innerWidth - 268);
+      setPos({ top: rect.bottom + 8, left });
+    }
+  }, [isOpen, align]);
+
+  if (!isOpen || !pos) return null;
+
+  return createPortal(
     <>
       <div className="fixed inset-0 z-40" onClick={onClose} />
-      <div className={`absolute top-full ${align === 'left' ? 'left-0' : 'right-0'} mt-2 glass rounded-2xl z-50 min-w-[260px] max-h-[420px] overflow-y-auto shadow-2xl animate-in scale-in duration-200`}>
+      <div
+        className="fixed z-50 glass rounded-2xl min-w-[260px] max-h-[420px] overflow-y-auto shadow-2xl animate-in scale-in duration-200"
+        style={pos}
+      >
         {children}
       </div>
-    </>
+    </>,
+    document.body
   );
 };
 
@@ -46,6 +66,12 @@ export const FilterBar = React.memo(function FilterBar() {
   const comparisonCount = useComparisonStore((state) => state.selectedIds.length);
   const [openDropdown, setOpenDropdown] = useState<string | null>(null);
   const [mobileSheetOpen, setMobileSheetOpen] = useState(false);
+
+  const statsRef = useRef<HTMLDivElement>(null);
+  const typeRef = useRef<HTMLDivElement>(null);
+  const providerRef = useRef<HTMLDivElement>(null);
+  const capacityRef = useRef<HTMLDivElement>(null);
+  const pueRef = useRef<HTMLDivElement>(null);
 
   const filteredDatacenters = useMemo(() => {
     return filterDatacenters(datacenters, { providers, providerTypes, capacityRange, pueRange, renewableOnly });
@@ -131,7 +157,7 @@ export const FilterBar = React.memo(function FilterBar() {
 
   return (
     <>
-      <div className="sticky md:relative top-14 md:top-0 z-30 bg-black border-b border-white/[0.06]">
+      <div className="bg-black border-b border-white/[0.06]">
 
         {/* ─── Mobile bar ─── */}
         <div className="md:hidden flex items-center gap-2 px-4 py-2.5">
@@ -172,12 +198,12 @@ export const FilterBar = React.memo(function FilterBar() {
         <div className="hidden md:flex items-center gap-2 px-4 py-2.5 overflow-x-auto scrollbar-hide">
 
           {/* DC count / Stats */}
-          <div className="relative flex-shrink-0">
+          <div ref={statsRef} className="relative flex-shrink-0">
             <button onClick={() => setOpenDropdown(openDropdown === 'stats' ? null : 'stats')} className={`${pillInactive} gap-1`}>
               <span className="text-[#0066FF] font-black text-sm tabular-nums">{stats.count}</span>
               <span>DCs</span>
             </button>
-            <FilterDropdown isOpen={openDropdown === 'stats'} onClose={() => setOpenDropdown(null)}>
+            <FilterDropdown isOpen={openDropdown === 'stats'} onClose={() => setOpenDropdown(null)} anchorRef={statsRef}>
               <div className="p-4">
                 <p className="text-[10px] font-bold uppercase tracking-widest text-white/35 mb-3">Overview</p>
                 {statsGrid}
@@ -186,12 +212,12 @@ export const FilterBar = React.memo(function FilterBar() {
           </div>
 
           {/* Provider Type */}
-          <div className="relative flex-shrink-0">
+          <div ref={typeRef} className="relative flex-shrink-0">
             <button onClick={() => setOpenDropdown(openDropdown === 'type' ? null : 'type')} className={providerTypes.size > 0 ? pillActive : pillInactive}>
               Type
               {providerTypes.size > 0 && <span className="bg-white/25 rounded-full w-4 h-4 flex items-center justify-center text-[10px] font-black">{providerTypes.size}</span>}
             </button>
-            <FilterDropdown isOpen={openDropdown === 'type'} onClose={() => setOpenDropdown(null)}>
+            <FilterDropdown isOpen={openDropdown === 'type'} onClose={() => setOpenDropdown(null)} anchorRef={typeRef}>
               <div className="p-3">
                 <p className="text-[10px] font-bold uppercase tracking-widest text-white/35 mb-2 px-2">Provider Type</p>
                 {allProviderTypes.map((type) => (
@@ -205,12 +231,12 @@ export const FilterBar = React.memo(function FilterBar() {
           </div>
 
           {/* Provider */}
-          <div className="relative flex-shrink-0">
+          <div ref={providerRef} className="relative flex-shrink-0">
             <button onClick={() => setOpenDropdown(openDropdown === 'provider' ? null : 'provider')} className={providers.size > 0 ? pillActive : pillInactive}>
               Provider
               {providers.size > 0 && <span className="bg-white/25 rounded-full w-4 h-4 flex items-center justify-center text-[10px] font-black">{providers.size}</span>}
             </button>
-            <FilterDropdown isOpen={openDropdown === 'provider'} onClose={() => setOpenDropdown(null)}>
+            <FilterDropdown isOpen={openDropdown === 'provider'} onClose={() => setOpenDropdown(null)} anchorRef={providerRef}>
               <div className="p-3 max-h-[340px] overflow-y-auto scrollbar-hide">
                 <p className="text-[10px] font-bold uppercase tracking-widest text-white/35 mb-2 px-2">Provider</p>
                 {providerTypes.size > 0 && (
@@ -235,12 +261,12 @@ export const FilterBar = React.memo(function FilterBar() {
           </div>
 
           {/* Capacity */}
-          <div className="relative flex-shrink-0">
+          <div ref={capacityRef} className="relative flex-shrink-0">
             <button onClick={() => setOpenDropdown(openDropdown === 'capacity' ? null : 'capacity')} className={(capacityRange[0] !== 0 || capacityRange[1] !== 500) ? pillActive : pillInactive}>
               Capacity
               {(capacityRange[0] !== 0 || capacityRange[1] !== 500) && <span className="font-normal normal-case tracking-normal text-[10px]">{capacityRange[0]}–{capacityRange[1] === 500 ? '500+' : capacityRange[1]}MW</span>}
             </button>
-            <FilterDropdown isOpen={openDropdown === 'capacity'} onClose={() => setOpenDropdown(null)}>
+            <FilterDropdown isOpen={openDropdown === 'capacity'} onClose={() => setOpenDropdown(null)} anchorRef={capacityRef}>
               <div className="p-4 w-[280px]">
                 <p className="text-[10px] font-bold uppercase tracking-widest text-white/35 mb-3">Capacity (MW)</p>
                 <div className="bg-white/[0.04] rounded-xl px-3 py-2 mb-4 text-center">
@@ -264,12 +290,12 @@ export const FilterBar = React.memo(function FilterBar() {
           </div>
 
           {/* PUE */}
-          <div className="relative flex-shrink-0">
+          <div ref={pueRef} className="relative flex-shrink-0">
             <button onClick={() => setOpenDropdown(openDropdown === 'pue' ? null : 'pue')} className={(pueRange[0] !== 1.0 || pueRange[1] !== 2.0) ? pillActive : pillInactive}>
               PUE
               {(pueRange[0] !== 1.0 || pueRange[1] !== 2.0) && <span className="font-normal normal-case tracking-normal text-[10px]">{pueRange[0].toFixed(1)}–{pueRange[1].toFixed(1)}</span>}
             </button>
-            <FilterDropdown isOpen={openDropdown === 'pue'} onClose={() => setOpenDropdown(null)}>
+            <FilterDropdown isOpen={openDropdown === 'pue'} onClose={() => setOpenDropdown(null)} anchorRef={pueRef}>
               <div className="p-4 w-[280px]">
                 <p className="text-[10px] font-bold uppercase tracking-widest text-white/35 mb-1">PUE</p>
                 <p className="text-xs text-white/35 mb-3">Lower = more efficient</p>
