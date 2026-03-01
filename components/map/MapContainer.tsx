@@ -9,7 +9,6 @@ import { useFilterStore } from '@/store/filterStore';
 import { mockDatacenters } from '@/lib/data/mockDatacenters';
 import { DatacenterMarkers } from './DatacenterMarkers';
 import { MapControls } from './MapControls';
-import { MapLegend } from './MapLegend';
 import { LatencyLines } from '@/components/latency/LatencyLines';
 import { NetworkBackboneLines } from '@/components/network/NetworkBackboneLines';
 import { Datacenter } from '@/types/datacenter';
@@ -194,7 +193,6 @@ export const MapContainer = React.memo(function MapContainer() {
       </Map>
 
       <MapControls />
-      <MapLegend />
     </div>
   );
 });
