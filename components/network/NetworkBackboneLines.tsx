@@ -4,11 +4,9 @@ import { useMemo } from 'react';
 import { Layer, Source } from 'react-map-gl/mapbox';
 import { useNetworkStore } from '@/store/networkStore';
 import { useDatacenterStore } from '@/store/datacenterStore';
-import { 
-  getAllConnections, 
-  getConnectionsByProvider, 
-  getConnectionsByType,
-  getConnectionColor 
+import {
+  getAllConnections,
+  getConnectionColor
 } from '@/lib/utils/network';
 import type { FeatureCollection, LineString } from 'geojson';
 
@@ -75,11 +73,11 @@ export function NetworkBackboneLines() {
           notes: conn.notes || '',
         },
       };
-    }).filter(Boolean);
-    
+    }).filter((f): f is NonNullable<typeof f> => f !== null);
+
     const result: FeatureCollection<LineString> = {
       type: 'FeatureCollection',
-      features: features as any[],
+      features,
     };
     
     return result;
