@@ -189,33 +189,3 @@ export function formatLatency(latencyMs: number): string {
   if (latencyMs < 1) return '<1 ms';
   return `${latencyMs.toFixed(1)} ms`;
 }
-
-/**
- * Find optimal datacenter for lowest average latency to a set of target datacenters
- */
-export function findOptimalDatacenter(
-  candidates: Datacenter[],
-  targets: Datacenter[]
-): { datacenter: Datacenter; averageLatency: number } | null {
-  if (candidates.length === 0 || targets.length === 0) return null;
-  
-  let bestCandidate: Datacenter | null = null;
-  let lowestAvgLatency = Infinity;
-  
-  for (const candidate of candidates) {
-    const latencies = targets.map(target => 
-      calculateLatencyBetween(candidate, target).estimatedLatencyMs
-    );
-    const avgLatency = latencies.reduce((sum, l) => sum + l, 0) / latencies.length;
-    
-    if (avgLatency < lowestAvgLatency) {
-      lowestAvgLatency = avgLatency;
-      bestCandidate = candidate;
-    }
-  }
-  
-  return bestCandidate ? {
-    datacenter: bestCandidate,
-    averageLatency: Math.round(lowestAvgLatency * 10) / 10,
-  } : null;
-}

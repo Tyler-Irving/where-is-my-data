@@ -50,20 +50,6 @@ export function getProviderTextColor(providerName: string): string {
 }
 
 /**
- * Get all providers by type
- */
-export function getProvidersByType(type: string): ProviderMetadata[] {
-  return providersData.filter((p) => p.type === type) as ProviderMetadata[];
-}
-
-/**
- * Get all unique provider types
- */
-export function getAllProviderTypes(): string[] {
-  return Array.from(new Set(providersData.map((p) => p.type)));
-}
-
-/**
  * Get all providers
  */
 export function getAllProviders(): ProviderMetadata[] {

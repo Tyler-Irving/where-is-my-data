@@ -1,4 +1,6 @@
 import { NextResponse } from 'next/server';
+import { statSync } from 'fs';
+import { join } from 'path';
 import datacentersData from '@/lib/data/datacenters.json';
 
 interface RawDatacenter {
@@ -23,8 +25,10 @@ interface RawDatacenter {
   metadata?: Record<string, unknown>;
 }
 
-// Static date reflecting when the seed data was last compiled
-const DATA_LAST_UPDATED = '2026-02-20T00:00:00Z';
+// Reflects the actual last-write time of datacenters.json (updated by sync-peeringdb.mjs)
+const DATA_LAST_UPDATED = statSync(
+  join(process.cwd(), 'lib/data/datacenters.json')
+).mtime.toISOString();
 
 export async function GET() {
   try {

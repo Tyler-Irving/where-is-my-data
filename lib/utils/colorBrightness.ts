@@ -60,23 +60,3 @@ export function getDisplayColor(hexColor: string): string {
   }
   return hexColor;
 }
-
-/**
- * Get an accent color with optional glow for dark colors
- * Returns object with color and optional shadow/border styles
- */
-export function getAccentStyles(hexColor: string): {
-  backgroundColor: string;
-  boxShadow?: string;
-} {
-  if (isColorDark(hexColor)) {
-    const lightened = lightenColor(hexColor, 60);
-    return {
-      backgroundColor: lightened,
-      boxShadow: `0 0 8px ${lightened}`,
-    };
-  }
-  return {
-    backgroundColor: hexColor,
-  };
-}
