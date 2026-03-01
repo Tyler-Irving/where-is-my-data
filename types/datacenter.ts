@@ -37,7 +37,8 @@ export interface Datacenter {
     type?: string;
     sqft?: number;
     
-    // Legacy PeeringDB fields (for backward compatibility)
+    // PeeringDB fields
+    peeringDbId?: number;
     netCount?: number;
     ixCount?: number;
     carrierCount?: number;

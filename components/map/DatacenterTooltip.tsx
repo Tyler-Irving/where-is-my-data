@@ -77,6 +77,13 @@ export const DatacenterTooltip = React.memo(function DatacenterTooltip({
                 <span className="text-white/25">· {datacenter.metadata.region.replace(/-/g, ' ')}</span>
               )}
             </div>
+            {datacenter.metadata?.address1 && (
+              <p className="text-xs text-white/30 mt-0.5 pl-4.5">
+                {datacenter.metadata.address1}
+                {datacenter.metadata.address2 ? `, ${datacenter.metadata.address2}` : ''}
+                {datacenter.metadata.zipcode ? ` ${datacenter.metadata.zipcode}` : ''}
+              </p>
+            )}
           </div>
 
           {/* Metrics */}
@@ -98,6 +105,18 @@ export const DatacenterTooltip = React.memo(function DatacenterTooltip({
                   {datacenter.metadata.renewable ? '✓ Renewable' : 'Standard'}
                 </span>
               )}
+            </div>
+          )}
+
+          {/* Connectivity (PeeringDB) */}
+          {(datacenter.metadata?.netCount || datacenter.metadata?.ixCount || datacenter.metadata?.carrierCount) && (
+            <div className="mb-3">
+              <p className="text-[10px] font-bold uppercase tracking-widest text-white/35 mb-2">Connectivity</p>
+              <div className="grid grid-cols-3 gap-2">
+                {metricCell('Networks', <span className="text-[#0066FF] tabular-nums">{datacenter.metadata.netCount ?? '—'}</span>)}
+                {metricCell('Exchanges', <span className="text-[#BF5AF2] tabular-nums">{datacenter.metadata.ixCount ?? '—'}</span>)}
+                {metricCell('Carriers', <span className="text-[#00D084] tabular-nums">{datacenter.metadata.carrierCount ?? '—'}</span>)}
+              </div>
             </div>
           )}
 
@@ -171,7 +190,7 @@ export const DatacenterTooltip = React.memo(function DatacenterTooltip({
           </div>
 
           {/* External links */}
-          {(datacenter.metadata?.statusDashboard || datacenter.metadata?.url) && (
+          {(datacenter.metadata?.statusDashboard || datacenter.metadata?.url || datacenter.metadata?.peeringDbId) && (
             <div className="grid grid-cols-2 gap-2 mb-2">
               {datacenter.metadata.statusDashboard && (
                 <a href={datacenter.metadata.statusDashboard} target="_blank" rel="noopener noreferrer"
@@ -185,6 +204,13 @@ export const DatacenterTooltip = React.memo(function DatacenterTooltip({
                   className="h-8 flex items-center justify-center rounded-lg text-xs font-semibold bg-white/[0.05] text-white/50 hover:text-white hover:bg-white/[0.10] border border-white/[0.08] transition-colors"
                   onClick={(e) => e.stopPropagation()}>
                   Website
+                </a>
+              )}
+              {datacenter.metadata.peeringDbId && (
+                <a href={`https://www.peeringdb.com/fac/${datacenter.metadata.peeringDbId}`} target="_blank" rel="noopener noreferrer"
+                  className="h-8 flex items-center justify-center rounded-lg text-xs font-semibold bg-white/[0.05] text-white/50 hover:text-white hover:bg-white/[0.10] border border-white/[0.08] transition-colors"
+                  onClick={(e) => e.stopPropagation()}>
+                  PeeringDB ↗
                 </a>
               )}
             </div>

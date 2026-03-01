@@ -72,14 +72,23 @@ export function DatacenterCard({ datacenter }: DatacenterCardProps) {
         <p className="text-sm font-bold text-white leading-snug mb-1">
           {datacenter.metadata?.displayName || datacenter.name}
         </p>
-        <div className="flex items-center gap-1.5 mb-3 text-xs text-white/50">
-          <svg className="w-3 h-3 text-white/25 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-            <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-          </svg>
-          <span>{[datacenter.city, datacenter.state].filter(Boolean).join(', ')}</span>
-          {datacenter.metadata?.region && (
-            <span className="text-white/25">· {datacenter.metadata.region.replace(/-/g, ' ')}</span>
+        <div className="mb-3">
+          <div className="flex items-center gap-1.5 text-xs text-white/50">
+            <svg className="w-3 h-3 text-white/25 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+              <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+            </svg>
+            <span>{[datacenter.city, datacenter.state].filter(Boolean).join(', ')}</span>
+            {datacenter.metadata?.region && (
+              <span className="text-white/25">· {datacenter.metadata.region.replace(/-/g, ' ')}</span>
+            )}
+          </div>
+          {datacenter.metadata?.address1 && (
+            <p className="text-xs text-white/30 mt-0.5 pl-4">
+              {datacenter.metadata.address1}
+              {datacenter.metadata.address2 ? `, ${datacenter.metadata.address2}` : ''}
+              {datacenter.metadata.zipcode ? ` ${datacenter.metadata.zipcode}` : ''}
+            </p>
           )}
         </div>
 
@@ -118,6 +127,27 @@ export function DatacenterCard({ datacenter }: DatacenterCardProps) {
                 </p>
               </div>
             )}
+          </div>
+        )}
+
+        {/* Connectivity (PeeringDB) */}
+        {(datacenter.metadata?.netCount || datacenter.metadata?.ixCount || datacenter.metadata?.carrierCount) && (
+          <div className="mb-3">
+            <p className="text-[10px] font-bold uppercase tracking-widest text-white/35 mb-2">Connectivity</p>
+            <div className="grid grid-cols-3 gap-2">
+              <div className="bg-white/[0.04] rounded-xl p-2.5">
+                <p className="text-[10px] font-bold uppercase tracking-widest text-white/35 mb-0.5">Networks</p>
+                <p className="text-sm font-bold text-[#0066FF] tabular-nums">{datacenter.metadata.netCount ?? '—'}</p>
+              </div>
+              <div className="bg-white/[0.04] rounded-xl p-2.5">
+                <p className="text-[10px] font-bold uppercase tracking-widest text-white/35 mb-0.5">Exchanges</p>
+                <p className="text-sm font-bold text-[#BF5AF2] tabular-nums">{datacenter.metadata.ixCount ?? '—'}</p>
+              </div>
+              <div className="bg-white/[0.04] rounded-xl p-2.5">
+                <p className="text-[10px] font-bold uppercase tracking-widest text-white/35 mb-0.5">Carriers</p>
+                <p className="text-sm font-bold text-[#00D084] tabular-nums">{datacenter.metadata.carrierCount ?? '—'}</p>
+              </div>
+            </div>
           </div>
         )}
 
@@ -187,7 +217,7 @@ export function DatacenterCard({ datacenter }: DatacenterCardProps) {
         </div>
 
         {/* External links */}
-        {(datacenter.metadata?.statusDashboard || datacenter.metadata?.url) && (
+        {(datacenter.metadata?.statusDashboard || datacenter.metadata?.url || datacenter.metadata?.peeringDbId) && (
           <div className="flex gap-1.5 mt-2">
             {datacenter.metadata.statusDashboard && (
               <a
@@ -209,6 +239,17 @@ export function DatacenterCard({ datacenter }: DatacenterCardProps) {
                 onClick={(e) => e.stopPropagation()}
               >
                 Website
+              </a>
+            )}
+            {datacenter.metadata.peeringDbId && (
+              <a
+                href={`https://www.peeringdb.com/fac/${datacenter.metadata.peeringDbId}`}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="flex-1 h-8 flex items-center justify-center rounded-lg text-xs font-semibold bg-white/[0.05] text-white/50 hover:text-white hover:bg-white/[0.10] border border-white/[0.08] transition-colors"
+                onClick={(e) => e.stopPropagation()}
+              >
+                PeeringDB ↗
               </a>
             )}
           </div>

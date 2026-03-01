@@ -555,7 +555,13 @@
       "LEED Gold"
     ],
     "metadata": {
-      "url": "https://www.apple.com/environment/"
+      "url": "https://www.apple.com/environment/",
+      "peeringDbId": 11380,
+      "netCount": 4,
+      "ixCount": 0,
+      "carrierCount": 0,
+      "address1": "200 S Virginia St",
+      "zipcode": "89501-2405"
     },
     "verified": true,
     "source": "official"
@@ -583,7 +589,14 @@
     "metadata": {
       "url": "https://www.equinix.com/data-centers/americas-colocation/united-states-colocation/silicon-valley-data-centers/sv1",
       "type": "IBX",
-      "sqft": 58000
+      "sqft": 58000,
+      "peeringDbId": 510,
+      "netCount": 8,
+      "ixCount": 2,
+      "carrierCount": 0,
+      "address1": "444 Toyama Dr",
+      "zipcode": "94089",
+      "clli": "SNVBCA"
     },
     "verified": true,
     "source": "official"
@@ -612,7 +625,13 @@
     "metadata": {
       "url": "https://www.equinix.com/data-centers/americas-colocation/united-states-colocation/washington-dc-data-centers/dc2",
       "type": "IBX",
-      "sqft": 72000
+      "sqft": 72000,
+      "peeringDbId": 8340,
+      "netCount": 2,
+      "ixCount": 0,
+      "carrierCount": 0,
+      "address1": "21635 Red Rum Drive",
+      "zipcode": "20147"
     },
     "verified": true,
     "source": "official"
@@ -1149,7 +1168,13 @@
       "LEED Gold"
     ],
     "metadata": {
-      "url": "https://sustainability.fb.com/data-centers/"
+      "url": "https://sustainability.fb.com/data-centers/",
+      "peeringDbId": 7875,
+      "netCount": 3,
+      "ixCount": 1,
+      "carrierCount": 2,
+      "address1": "14100 Park Vista Boulevard",
+      "zipcode": "76177"
     },
     "verified": true,
     "source": "official"
@@ -1377,7 +1402,13 @@
     ],
     "metadata": {
       "url": "https://www.equinix.com/data-centers/americas-colocation/united-states-colocation/new-york-data-centers/ny4",
-      "type": "IBX"
+      "type": "IBX",
+      "peeringDbId": 16827,
+      "netCount": 0,
+      "ixCount": 1,
+      "carrierCount": 0,
+      "address1": "600 Jefferson Avenue",
+      "zipcode": "07094"
     },
     "verified": true,
     "source": "official"
@@ -1404,7 +1435,14 @@
     ],
     "metadata": {
       "url": "https://www.equinix.com/data-centers/americas-colocation/united-states-colocation/chicago-data-centers/ch1",
-      "type": "IBX"
+      "type": "IBX",
+      "peeringDbId": 7,
+      "netCount": 329,
+      "ixCount": 10,
+      "carrierCount": 13,
+      "address1": "350 E Cermak Rd",
+      "zipcode": "60616-1568",
+      "clli": "CHCGIL"
     },
     "verified": true,
     "source": "official"
@@ -1431,7 +1469,14 @@
     ],
     "metadata": {
       "url": "https://www.equinix.com/data-centers/americas-colocation/united-states-colocation/dallas-data-centers/da2",
-      "type": "IBX"
+      "type": "IBX",
+      "peeringDbId": 4,
+      "netCount": 166,
+      "ixCount": 5,
+      "carrierCount": 8,
+      "address1": "1950 N Stemmons Fwy",
+      "zipcode": "75207-3137",
+      "clli": "DLLSTX"
     },
     "verified": true,
     "source": "official"
@@ -1458,7 +1503,13 @@
     ],
     "metadata": {
       "url": "https://www.equinix.com/data-centers/americas-colocation/united-states-colocation/los-angeles-data-centers/la3",
-      "type": "IBX"
+      "type": "IBX",
+      "peeringDbId": 333,
+      "netCount": 53,
+      "ixCount": 3,
+      "carrierCount": 3,
+      "address1": "445 North Douglas Street",
+      "zipcode": "90245-3411"
     },
     "verified": true,
     "source": "official"
@@ -1485,7 +1536,14 @@
     ],
     "metadata": {
       "url": "https://www.equinix.com/data-centers/americas-colocation/united-states-colocation/seattle-data-centers/se2",
-      "type": "IBX"
+      "type": "IBX",
+      "peeringDbId": 71,
+      "netCount": 234,
+      "ixCount": 5,
+      "carrierCount": 9,
+      "address1": "2001 Sixth Avenue",
+      "zipcode": "98121",
+      "clli": "STTLWAWB"
     },
     "verified": true,
     "source": "official"
@@ -1511,7 +1569,13 @@
       "SOC 2"
     ],
     "metadata": {
-      "url": "https://www.digitalrealty.com/data-centers"
+      "url": "https://www.digitalrealty.com/data-centers",
+      "peeringDbId": 8340,
+      "netCount": 2,
+      "ixCount": 0,
+      "carrierCount": 0,
+      "address1": "21635 Red Rum Drive",
+      "zipcode": "20147"
     },
     "verified": true,
     "source": "official"
@@ -1537,7 +1601,13 @@
       "SOC 2"
     ],
     "metadata": {
-      "url": "https://www.digitalrealty.com/data-centers"
+      "url": "https://www.digitalrealty.com/data-centers",
+      "peeringDbId": 10830,
+      "netCount": 0,
+      "ixCount": 0,
+      "carrierCount": 0,
+      "address1": "2805 Lafayette St",
+      "zipcode": "95050"
     },
     "verified": true,
     "source": "official"
@@ -1563,7 +1633,13 @@
       "SOC 2"
     ],
     "metadata": {
-      "url": "https://www.digitalrealty.com/data-centers"
+      "url": "https://www.digitalrealty.com/data-centers",
+      "peeringDbId": 10476,
+      "netCount": 0,
+      "ixCount": 0,
+      "carrierCount": 0,
+      "address1": "216 W Jackson Blvd",
+      "zipcode": "60606"
     },
     "verified": true,
     "source": "official"
@@ -1589,7 +1665,13 @@
       "SOC 2"
     ],
     "metadata": {
-      "url": "https://www.digitalrealty.com/data-centers"
+      "url": "https://www.digitalrealty.com/data-centers",
+      "peeringDbId": 1021,
+      "netCount": 8,
+      "ixCount": 0,
+      "carrierCount": 1,
+      "address1": "3180 Irving Blvd.",
+      "zipcode": "75247"
     },
     "verified": true,
     "source": "official"
@@ -1616,7 +1698,14 @@
     ],
     "metadata": {
       "url": "https://www.coresite.com/data-centers/locations/los-angeles/one-wilshire",
-      "notes": "Historic carrier hotel"
+      "notes": "Historic carrier hotel",
+      "peeringDbId": 19,
+      "netCount": 340,
+      "ixCount": 5,
+      "carrierCount": 9,
+      "address1": "624 S. Grand Ave.",
+      "zipcode": "90017",
+      "clli": "LSANCARC"
     },
     "verified": true,
     "source": "official"
@@ -1668,7 +1757,14 @@
       "SOC 2"
     ],
     "metadata": {
-      "url": "https://www.coresite.com/data-centers/locations/denver/de1"
+      "url": "https://www.coresite.com/data-centers/locations/denver/de1",
+      "peeringDbId": 389,
+      "netCount": 109,
+      "ixCount": 3,
+      "carrierCount": 5,
+      "address1": "910 15th Street",
+      "zipcode": "80202",
+      "clli": "DNVRCO26"
     },
     "verified": true,
     "source": "official"
@@ -1772,7 +1868,13 @@
       "SOC 2"
     ],
     "metadata": {
-      "url": "https://cyrusone.com/data-centers/"
+      "url": "https://cyrusone.com/data-centers/",
+      "peeringDbId": 2302,
+      "netCount": 9,
+      "ixCount": 2,
+      "carrierCount": 2,
+      "address1": "21111 Ridgetop Circle",
+      "zipcode": "20166"
     },
     "verified": true,
     "source": "official"
@@ -1798,7 +1900,13 @@
       "SOC 2"
     ],
     "metadata": {
-      "url": "https://www.qtsdatacenters.com/data-centers"
+      "url": "https://www.qtsdatacenters.com/data-centers",
+      "peeringDbId": 3951,
+      "netCount": 1,
+      "ixCount": 0,
+      "carrierCount": 0,
+      "address1": "999 Lee St. S.W.",
+      "zipcode": "30310"
     },
     "verified": true,
     "source": "official"
@@ -1824,7 +1932,13 @@
       "SOC 2"
     ],
     "metadata": {
-      "url": "https://www.qtsdatacenters.com/data-centers"
+      "url": "https://www.qtsdatacenters.com/data-centers",
+      "peeringDbId": 10476,
+      "netCount": 0,
+      "ixCount": 0,
+      "carrierCount": 0,
+      "address1": "216 W Jackson Blvd",
+      "zipcode": "60606"
     },
     "verified": true,
     "source": "official"
@@ -1878,7 +1992,13 @@
     ],
     "metadata": {
       "url": "https://www.switch.com/",
-      "notes": "World's largest Tier IV datacenter campus"
+      "notes": "World's largest Tier IV datacenter campus",
+      "peeringDbId": 770,
+      "netCount": 44,
+      "ixCount": 1,
+      "carrierCount": 2,
+      "address1": "7135 S Decatur Boulevard",
+      "zipcode": "89118"
     },
     "verified": true,
     "source": "official"
@@ -1905,7 +2025,13 @@
       "Tier IV Gold"
     ],
     "metadata": {
-      "url": "https://www.switch.com/"
+      "url": "https://www.switch.com/",
+      "peeringDbId": 11380,
+      "netCount": 4,
+      "ixCount": 0,
+      "carrierCount": 0,
+      "address1": "200 S Virginia St",
+      "zipcode": "89501-2405"
     },
     "verified": true,
     "source": "official"
@@ -1931,7 +2057,13 @@
       "SOC 2"
     ],
     "metadata": {
-      "url": "https://www.switch.com/"
+      "url": "https://www.switch.com/",
+      "peeringDbId": 3951,
+      "netCount": 1,
+      "ixCount": 0,
+      "carrierCount": 0,
+      "address1": "999 Lee St. S.W.",
+      "zipcode": "30310"
     },
     "verified": true,
     "source": "official"
@@ -2434,7 +2566,13 @@
       "SOC 2"
     ],
     "metadata": {
-      "url": "https://www.microsoft.com/en-us/datacenter"
+      "url": "https://www.microsoft.com/en-us/datacenter",
+      "peeringDbId": 5545,
+      "netCount": 4,
+      "ixCount": 1,
+      "carrierCount": 1,
+      "address1": "2200 M St NE",
+      "zipcode": "98848"
     },
     "verified": true,
     "source": "official"
@@ -2460,7 +2598,13 @@
       "SOC 2"
     ],
     "metadata": {
-      "url": "https://www.microsoft.com/en-us/datacenter"
+      "url": "https://www.microsoft.com/en-us/datacenter",
+      "peeringDbId": 1484,
+      "netCount": 5,
+      "ixCount": 0,
+      "carrierCount": 2,
+      "address1": "9999 Westover Hills Blvd",
+      "zipcode": "78254"
     },
     "verified": true,
     "source": "official"
@@ -2486,7 +2630,13 @@
       "SOC 2"
     ],
     "metadata": {
-      "url": "https://www.microsoft.com/en-us/datacenter"
+      "url": "https://www.microsoft.com/en-us/datacenter",
+      "peeringDbId": 10476,
+      "netCount": 0,
+      "ixCount": 0,
+      "carrierCount": 0,
+      "address1": "216 W Jackson Blvd",
+      "zipcode": "60606"
     },
     "verified": true,
     "source": "official"
@@ -2714,7 +2864,12 @@
       "SOC 2"
     ],
     "metadata": {
-      "url": "https://www.flexential.com/data-centers"
+      "url": "https://www.flexential.com/data-centers",
+      "peeringDbId": 1221,
+      "netCount": 9,
+      "ixCount": 0,
+      "carrierCount": 1,
+      "address1": "1850 Pearl"
     },
     "verified": true,
     "source": "official"
@@ -2740,7 +2895,14 @@
       "SOC 2"
     ],
     "metadata": {
-      "url": "https://www.flexential.com/data-centers"
+      "url": "https://www.flexential.com/data-centers",
+      "peeringDbId": 13512,
+      "netCount": 2,
+      "ixCount": 0,
+      "carrierCount": 0,
+      "address1": "1335 NW Northrup St",
+      "zipcode": "97209-2807",
+      "clli": "PTLGORIA"
     },
     "verified": true,
     "source": "official"
@@ -3000,7 +3162,14 @@
       "PCI DSS"
     ],
     "metadata": {
-      "url": "https://www.equinix.com/data-centers/americas-colocation/united-states-colocation/chicago-data-centers/ch2"
+      "url": "https://www.equinix.com/data-centers/americas-colocation/united-states-colocation/chicago-data-centers/ch2",
+      "peeringDbId": 7,
+      "netCount": 329,
+      "ixCount": 10,
+      "carrierCount": 13,
+      "address1": "350 E Cermak Rd",
+      "zipcode": "60616-1568",
+      "clli": "CHCGIL"
     },
     "verified": true,
     "source": "official",
@@ -3118,7 +3287,14 @@
       "SOC 2"
     ],
     "metadata": {
-      "url": "https://www.digitalrealty.com/data-centers/americas/portland"
+      "url": "https://www.digitalrealty.com/data-centers/americas/portland",
+      "peeringDbId": 2444,
+      "netCount": 10,
+      "ixCount": 1,
+      "carrierCount": 2,
+      "address1": "3935 NE Aloclek Dr",
+      "address2": "Building C",
+      "zipcode": "97124"
     },
     "verified": true,
     "source": "official",
@@ -3147,7 +3323,14 @@
       "SOC 2"
     ],
     "metadata": {
-      "url": "https://www.digitalrealty.com/data-centers/americas/atlanta"
+      "url": "https://www.digitalrealty.com/data-centers/americas/atlanta",
+      "peeringDbId": 125,
+      "netCount": 190,
+      "ixCount": 4,
+      "carrierCount": 7,
+      "address1": "56 Marietta Street",
+      "zipcode": "30303",
+      "clli": "ATLNGA"
     },
     "verified": true,
     "source": "official",
@@ -3176,7 +3359,13 @@
       "SOC 2"
     ],
     "metadata": {
-      "url": "https://cyrusone.com/data-centers/houston/"
+      "url": "https://cyrusone.com/data-centers/houston/",
+      "peeringDbId": 16591,
+      "netCount": 0,
+      "ixCount": 0,
+      "carrierCount": 0,
+      "address1": "11003 Corporate Centre Drive",
+      "zipcode": "77041"
     },
     "verified": true,
     "source": "official",
@@ -3205,7 +3394,13 @@
       "SOC 2"
     ],
     "metadata": {
-      "url": "https://cyrusone.com/data-centers/phoenix/"
+      "url": "https://cyrusone.com/data-centers/phoenix/",
+      "peeringDbId": 1488,
+      "netCount": 16,
+      "ixCount": 1,
+      "carrierCount": 2,
+      "address1": "2335 South Ellis Road",
+      "zipcode": "85286"
     },
     "verified": true,
     "source": "official",
@@ -3234,7 +3429,14 @@
       "SOC 2"
     ],
     "metadata": {
-      "url": "https://cyrusone.com/data-centers/cincinnati/"
+      "url": "https://cyrusone.com/data-centers/cincinnati/",
+      "peeringDbId": 1467,
+      "netCount": 7,
+      "ixCount": 1,
+      "carrierCount": 1,
+      "address1": "209-229 West 7th St",
+      "zipcode": "45202",
+      "clli": "CNCNOH"
     },
     "verified": true,
     "source": "official",
@@ -3294,7 +3496,14 @@
       "HIPAA"
     ],
     "metadata": {
-      "url": "https://www.qtsdatacenters.com/data-centers/dallas-fort-worth"
+      "url": "https://www.qtsdatacenters.com/data-centers/dallas-fort-worth",
+      "peeringDbId": 3363,
+      "netCount": 14,
+      "ixCount": 3,
+      "carrierCount": 3,
+      "address1": "6431 Longhorn Drive",
+      "zipcode": "75063",
+      "clli": "IRNGTXEM"
     },
     "verified": true,
     "source": "official",
@@ -3323,7 +3532,13 @@
       "SOC 2"
     ],
     "metadata": {
-      "url": "https://www.qtsdatacenters.com/data-centers/sacramento"
+      "url": "https://www.qtsdatacenters.com/data-centers/sacramento",
+      "peeringDbId": 3359,
+      "netCount": 13,
+      "ixCount": 1,
+      "carrierCount": 1,
+      "address1": "1100 North Market Blvd",
+      "zipcode": "95834"
     },
     "verified": true,
     "source": "official",
@@ -3383,7 +3598,14 @@
       "PCI DSS"
     ],
     "metadata": {
-      "url": "https://www.coresite.com/data-centers/locations/chicago/ch1"
+      "url": "https://www.coresite.com/data-centers/locations/chicago/ch1",
+      "peeringDbId": 440,
+      "netCount": 71,
+      "ixCount": 6,
+      "carrierCount": 3,
+      "address1": "427 S. LaSalle",
+      "zipcode": "60605",
+      "clli": "CHCGILWU"
     },
     "verified": true,
     "source": "official",
@@ -3412,7 +3634,14 @@
       "SOC 2"
     ],
     "metadata": {
-      "url": "https://www.coresite.com/data-centers/locations/boston/bo1"
+      "url": "https://www.coresite.com/data-centers/locations/boston/bo1",
+      "peeringDbId": 584,
+      "netCount": 38,
+      "ixCount": 2,
+      "carrierCount": 3,
+      "address1": "70 Innerbelt Rd",
+      "zipcode": "02143",
+      "clli": "SOVLMAAB"
     },
     "verified": true,
     "source": "official",
@@ -3441,7 +3670,12 @@
       "SOC 2"
     ],
     "metadata": {
-      "url": "https://www.lumen.com/en-us/hybrid-it-cloud/colocation.html"
+      "url": "https://www.lumen.com/en-us/hybrid-it-cloud/colocation.html",
+      "peeringDbId": 1221,
+      "netCount": 9,
+      "ixCount": 0,
+      "carrierCount": 1,
+      "address1": "1850 Pearl"
     },
     "verified": true,
     "source": "official",
@@ -3470,7 +3704,13 @@
       "SOC 2"
     ],
     "metadata": {
-      "url": "https://www.lumen.com/en-us/hybrid-it-cloud/colocation.html"
+      "url": "https://www.lumen.com/en-us/hybrid-it-cloud/colocation.html",
+      "peeringDbId": 8599,
+      "netCount": 7,
+      "ixCount": 1,
+      "carrierCount": 0,
+      "address1": "140 4th Ave N",
+      "zipcode": "98109"
     },
     "verified": true,
     "source": "official",
@@ -3499,12 +3739,2460 @@
       "SOC 2"
     ],
     "metadata": {
-      "url": "https://www.lumen.com/en-us/hybrid-it-cloud/colocation.html"
+      "url": "https://www.lumen.com/en-us/hybrid-it-cloud/colocation.html",
+      "peeringDbId": 9855,
+      "netCount": 0,
+      "ixCount": 0,
+      "carrierCount": 0,
+      "address1": "1001 3rd Ave South",
+      "zipcode": "55404"
     },
     "verified": true,
     "source": "official",
     "lastUpdated": "2026-02-22T09:10:45.329Z",
     "powerStatus": "none",
     "waterStatus": "none"
+  },
+  {
+    "id": "pdb-1",
+    "provider": "Equinix",
+    "providerType": "colocation",
+    "name": "Equinix DC1-DC15,DC21-DC22 - Ashburn",
+    "displayName": "Equinix DC1-DC15,DC21-DC22 - Ashburn",
+    "city": "Ashburn",
+    "state": "VA",
+    "country": "US",
+    "lat": 39.016363,
+    "lng": -77.459023,
+    "verified": false,
+    "source": "community",
+    "metadata": {
+      "url": "http://www.equinix.com/",
+      "address1": "21715 Filigree Ct",
+      "address2": "Building F",
+      "zipcode": "20147-6205",
+      "clli": "ASBNVA",
+      "peeringDbId": 1,
+      "netCount": 503,
+      "ixCount": 8,
+      "carrierCount": 13
+    }
+  },
+  {
+    "id": "pdb-2",
+    "provider": "Digital Realty",
+    "providerType": "colocation",
+    "name": "Digital Realty SFO (200 Paul)",
+    "displayName": "Digital Realty SFO (200 Paul)",
+    "city": "San Francisco",
+    "state": "CA",
+    "country": "US",
+    "lat": 37.723407,
+    "lng": -122.397923,
+    "verified": false,
+    "source": "community",
+    "metadata": {
+      "url": "https://www.digitalrealty.com",
+      "address1": "200 Paul Ave",
+      "zipcode": "94110",
+      "clli": "SNFCCA",
+      "peeringDbId": 2,
+      "netCount": 45,
+      "ixCount": 2,
+      "carrierCount": 2
+    }
+  },
+  {
+    "id": "pdb-5",
+    "provider": "Equinix",
+    "providerType": "colocation",
+    "name": "Equinix SV8 - Silicon Valley, Palo Alto",
+    "displayName": "Equinix SV8 - Silicon Valley, Palo Alto",
+    "city": "Palo Alto",
+    "state": "CA",
+    "country": "US",
+    "lat": 37.445896,
+    "lng": -122.160775,
+    "verified": false,
+    "source": "community",
+    "metadata": {
+      "url": "https://www.equinix.com/locations/americas-colocation/united-states-colocation/silicon-valley-data-centers/sv8/",
+      "address1": "529 Bryant St",
+      "zipcode": "94301-1704",
+      "clli": "PLALCA",
+      "peeringDbId": 5,
+      "netCount": 68,
+      "ixCount": 4,
+      "carrierCount": 2
+    }
+  },
+  {
+    "id": "pdb-6",
+    "provider": "Equinix",
+    "providerType": "colocation",
+    "name": "Equinix SV1/SV5/SV10 - Silicon Valley, San Jose",
+    "displayName": "Equinix SV1/SV5/SV10 - Silicon Valley, San Jose",
+    "city": "San Jose",
+    "state": "CA",
+    "country": "US",
+    "lat": 37.241767,
+    "lng": -121.782967,
+    "verified": false,
+    "source": "community",
+    "metadata": {
+      "url": "https://www.equinix.com/locations/americas-colocation/united-states-colocation/silicon-valley-data-centers/",
+      "address1": "11 Great Oaks Blvd",
+      "zipcode": "95119-1242",
+      "clli": "SNJSCA",
+      "peeringDbId": 6,
+      "netCount": 280,
+      "ixCount": 8,
+      "carrierCount": 7
+    }
+  },
+  {
+    "id": "pdb-8",
+    "provider": "Equinix",
+    "providerType": "colocation",
+    "name": "Equinix LA1 - Los Angeles",
+    "displayName": "Equinix LA1 - Los Angeles",
+    "city": "Los Angeles",
+    "state": "CA",
+    "country": "US",
+    "lat": 34.047501,
+    "lng": -118.2573,
+    "verified": false,
+    "source": "community",
+    "metadata": {
+      "url": "https://www.equinix.com/locations/americas-colocation/united-states-colocation/los-angeles-data-centers/la1/",
+      "address1": "600 W 7th St",
+      "zipcode": "90017-3859",
+      "clli": "LSANCA",
+      "peeringDbId": 8,
+      "netCount": 142,
+      "ixCount": 6,
+      "carrierCount": 9
+    }
+  },
+  {
+    "id": "pdb-9",
+    "provider": "Equinix",
+    "providerType": "colocation",
+    "name": "Equinix NY1 - New York, Newark",
+    "displayName": "Equinix NY1 - New York, Newark",
+    "city": "Newark",
+    "state": "NJ",
+    "country": "US",
+    "lat": 40.736844,
+    "lng": -74.173402,
+    "verified": false,
+    "source": "community",
+    "metadata": {
+      "url": "https://www.equinix.com/locations/americas-colocation/united-states-colocation/new-york-data-centers/ny1/",
+      "address1": "165 Halsey St",
+      "zipcode": "07102-2834",
+      "clli": "NWRKNJ",
+      "peeringDbId": 9,
+      "netCount": 34,
+      "ixCount": 2,
+      "carrierCount": 5
+    }
+  },
+  {
+    "id": "pdb-10",
+    "provider": "Digital Realty",
+    "providerType": "colocation",
+    "name": "Digital Realty NYC (60 Hudson)",
+    "displayName": "Digital Realty NYC (60 Hudson)",
+    "city": "New York",
+    "state": "NY",
+    "country": "US",
+    "lat": 40.717723,
+    "lng": -74.008299,
+    "verified": false,
+    "source": "community",
+    "metadata": {
+      "url": "https://www.digitalrealty.com",
+      "address1": "60 Hudson St",
+      "zipcode": "10013-3315",
+      "clli": "NYCMNY",
+      "peeringDbId": 10,
+      "netCount": 160,
+      "ixCount": 8,
+      "carrierCount": 8
+    }
+  },
+  {
+    "id": "pdb-11",
+    "provider": "Equinix",
+    "providerType": "colocation",
+    "name": "Equinix AT2/AT3 - Atlanta",
+    "displayName": "Equinix AT2/AT3 - Atlanta",
+    "city": "Atlanta",
+    "state": "GA",
+    "country": "US",
+    "lat": 33.755456,
+    "lng": -84.39153,
+    "verified": false,
+    "source": "community",
+    "metadata": {
+      "url": "http://www.equinix.com/",
+      "address1": "56 Marietta St NW",
+      "zipcode": "30303-2885",
+      "clli": "ATLNGA",
+      "peeringDbId": 11,
+      "netCount": 23,
+      "ixCount": 1,
+      "carrierCount": 3
+    }
+  },
+  {
+    "id": "pdb-15",
+    "provider": "Equinix",
+    "providerType": "colocation",
+    "name": "Equinix MI1 - Miami, NOTA",
+    "displayName": "Equinix MI1 - Miami, NOTA",
+    "city": "Miami",
+    "state": "FL",
+    "country": "US",
+    "lat": 25.782648,
+    "lng": -80.193157,
+    "verified": false,
+    "source": "community",
+    "metadata": {
+      "url": "https://www.equinix.com/locations/americas-colocation/united-states-colocation/miami-data-centers/mi1/",
+      "address1": "50 NE 9th St",
+      "zipcode": "33132-1709",
+      "clli": "MIAUFL",
+      "peeringDbId": 15,
+      "netCount": 324,
+      "ixCount": 9,
+      "carrierCount": 15
+    }
+  },
+  {
+    "id": "pdb-16",
+    "provider": "Digital Realty",
+    "providerType": "colocation",
+    "name": "Digital Realty NYC (111 8th Ave)",
+    "displayName": "Digital Realty NYC (111 8th Ave)",
+    "city": "New York",
+    "state": "NY",
+    "country": "US",
+    "lat": 40.741469,
+    "lng": -74.003387,
+    "verified": false,
+    "source": "community",
+    "metadata": {
+      "url": "https://www.digitalrealty.com",
+      "address1": "111 8th Ave",
+      "zipcode": "10011",
+      "clli": "NYCMNY",
+      "peeringDbId": 16,
+      "netCount": 132,
+      "ixCount": 6,
+      "carrierCount": 3
+    }
+  },
+  {
+    "id": "pdb-20",
+    "provider": "CoreSite",
+    "providerType": "colocation",
+    "name": "CoreSite - San Jose (SV1)",
+    "displayName": "CoreSite - San Jose (SV1)",
+    "city": "San Jose",
+    "state": "CA",
+    "country": "US",
+    "lat": 37.334147,
+    "lng": -121.891649,
+    "verified": false,
+    "source": "community",
+    "metadata": {
+      "url": "http://www.coresite.com",
+      "address1": "55 S. Market Street",
+      "zipcode": "95113",
+      "clli": "SNJSCAJN",
+      "peeringDbId": 20,
+      "netCount": 56,
+      "ixCount": 4,
+      "carrierCount": 4
+    }
+  },
+  {
+    "id": "pdb-23",
+    "provider": "Digital Realty",
+    "providerType": "colocation",
+    "name": "Digital Realty SFO (365 Main)",
+    "displayName": "Digital Realty SFO (365 Main)",
+    "city": "San Francisco",
+    "state": "CA",
+    "country": "US",
+    "lat": 37.788669,
+    "lng": -122.390509,
+    "verified": false,
+    "source": "community",
+    "metadata": {
+      "url": "https://www.digitalrealty.com",
+      "address1": "365 Main Street",
+      "zipcode": "94105",
+      "clli": "SNFCCA",
+      "peeringDbId": 23,
+      "netCount": 36,
+      "ixCount": 3,
+      "carrierCount": 2
+    }
+  },
+  {
+    "id": "pdb-36",
+    "provider": "Equinix",
+    "providerType": "colocation",
+    "name": "Equinix NY2/NY4/NY5/NY6 - New York, Secaucus",
+    "displayName": "Equinix NY2/NY4/NY5/NY6 - New York, Secaucus",
+    "city": "Secaucus",
+    "state": "NJ",
+    "country": "US",
+    "lat": 40.778534,
+    "lng": -74.072237,
+    "verified": false,
+    "source": "community",
+    "metadata": {
+      "url": "https://www.equinix.com/locations/americas-colocation/united-states-colocation/new-york-data-centers/",
+      "address1": "800 Secaucus Road",
+      "zipcode": "07094",
+      "clli": "SCCSNJ",
+      "peeringDbId": 36,
+      "netCount": 132,
+      "ixCount": 9,
+      "carrierCount": 7
+    }
+  },
+  {
+    "id": "pdb-38",
+    "provider": "Equinix",
+    "providerType": "colocation",
+    "name": "Equinix NY9 - New York, 111 8th Avenue",
+    "displayName": "Equinix NY9 - New York, 111 8th Avenue",
+    "city": "New York",
+    "state": "NY",
+    "country": "US",
+    "lat": 40.741469,
+    "lng": -74.003387,
+    "verified": false,
+    "source": "community",
+    "metadata": {
+      "url": "https://www.equinix.com/locations/americas-colocation/united-states-colocation/new-york-data-centers/ny9/",
+      "address1": "111 8th Ave",
+      "zipcode": "10011",
+      "clli": "NYCMNY",
+      "peeringDbId": 38,
+      "netCount": 82,
+      "ixCount": 4,
+      "carrierCount": 4
+    }
+  },
+  {
+    "id": "pdb-69",
+    "provider": "Equinix",
+    "providerType": "colocation",
+    "name": "Equinix DA3 - Dallas",
+    "displayName": "Equinix DA3 - Dallas",
+    "city": "Dallas",
+    "state": "TX",
+    "country": "US",
+    "lat": 32.800955,
+    "lng": -96.81955,
+    "verified": false,
+    "source": "community",
+    "metadata": {
+      "url": "https://www.equinix.com/locations/americas-colocation/united-states-colocation/dallas-data-centers/da3/",
+      "address1": "1950 N Stemmons Fwy",
+      "zipcode": "75207",
+      "clli": "DLLSTX",
+      "peeringDbId": 69,
+      "netCount": 104,
+      "ixCount": 6,
+      "carrierCount": 6
+    }
+  },
+  {
+    "id": "pdb-86",
+    "provider": "Equinix",
+    "providerType": "colocation",
+    "name": "Equinix SE2/SE3 - Seattle",
+    "displayName": "Equinix SE2/SE3 - Seattle",
+    "city": "Seattle",
+    "state": "WA",
+    "country": "US",
+    "lat": 47.614358,
+    "lng": -122.338864,
+    "verified": false,
+    "source": "community",
+    "metadata": {
+      "url": "https://www.equinix.com/locations/americas-colocation/united-states-colocation/seattle-data-centers/",
+      "address1": "2001 Sixth Avenue",
+      "zipcode": "98121",
+      "clli": "STTLWA",
+      "peeringDbId": 86,
+      "netCount": 110,
+      "ixCount": 5,
+      "carrierCount": 4
+    }
+  },
+  {
+    "id": "pdb-120",
+    "provider": "Digital Realty",
+    "providerType": "colocation",
+    "name": "Digital Realty NYC (32 AofA)",
+    "displayName": "Digital Realty NYC (32 AofA)",
+    "city": "New York",
+    "state": "NY",
+    "country": "US",
+    "lat": 40.72,
+    "lng": -74.004561,
+    "verified": false,
+    "source": "community",
+    "metadata": {
+      "url": "https://www.digitalrealty.com",
+      "address1": "32 6th Ave (Avenue of the Americas)",
+      "zipcode": "10013",
+      "clli": "NYCMNY",
+      "peeringDbId": 120,
+      "netCount": 40,
+      "ixCount": 3,
+      "carrierCount": 1
+    }
+  },
+  {
+    "id": "pdb-146",
+    "provider": "Equinix",
+    "providerType": "colocation",
+    "name": "Equinix PH1 - Philadelphia",
+    "displayName": "Equinix PH1 - Philadelphia",
+    "city": "Philadelphia",
+    "state": "PA",
+    "country": "US",
+    "lat": 39.959668,
+    "lng": -75.161377,
+    "verified": false,
+    "source": "community",
+    "metadata": {
+      "url": "http://www.equinix.com/",
+      "address1": "401 North Broad Street",
+      "zipcode": "19108",
+      "peeringDbId": 146,
+      "netCount": 20,
+      "ixCount": 1,
+      "carrierCount": 0
+    }
+  },
+  {
+    "id": "pdb-171",
+    "provider": "Digital Realty",
+    "providerType": "colocation",
+    "name": "Digital Realty PHX10 (120 E Van Buren)",
+    "displayName": "Digital Realty PHX10 (120 E Van Buren)",
+    "city": "Phoenix",
+    "state": "AZ",
+    "country": "US",
+    "lat": 33.452003,
+    "lng": -112.072042,
+    "verified": false,
+    "source": "community",
+    "metadata": {
+      "url": "https://www.digitalrealty.com",
+      "address1": "120 East Van Buren Street",
+      "zipcode": "85004",
+      "clli": "PHNXAZ",
+      "peeringDbId": 171,
+      "netCount": 32,
+      "ixCount": 3,
+      "carrierCount": 2
+    }
+  },
+  {
+    "id": "pdb-186",
+    "provider": "Netrality Data Centers",
+    "providerType": "colocation",
+    "name": "Netrality - Indy Telcom Center - 733 W. Henry",
+    "displayName": "Netrality - Indy Telcom Center - 733 W. Henry",
+    "city": "Indianapolis",
+    "state": "IN",
+    "country": "US",
+    "lat": 39.75988,
+    "lng": -86.172275,
+    "verified": false,
+    "source": "community",
+    "metadata": {
+      "url": "https://netrality.com/data-center/733-indy-telcom-center-indianapolis/",
+      "address1": "733 W. Henry St",
+      "zipcode": "46225",
+      "clli": "IPLVIN",
+      "peeringDbId": 186,
+      "netCount": 41,
+      "ixCount": 2,
+      "carrierCount": 2
+    }
+  },
+  {
+    "id": "pdb-219",
+    "provider": "Markley Group",
+    "providerType": "colocation",
+    "name": "Markley Group One Summer Street Boston",
+    "displayName": "Markley Group One Summer Street Boston",
+    "city": "Boston",
+    "state": "MA",
+    "country": "US",
+    "lat": 42.354692,
+    "lng": -71.060266,
+    "verified": false,
+    "source": "community",
+    "metadata": {
+      "url": "http://www.markleygroup.com/",
+      "address1": "1 Summer Street",
+      "zipcode": "02110",
+      "clli": "BSTNMA",
+      "peeringDbId": 219,
+      "netCount": 80,
+      "ixCount": 1,
+      "carrierCount": 3
+    }
+  },
+  {
+    "id": "pdb-275",
+    "provider": "1547 Critical Systems Realty",
+    "providerType": "colocation",
+    "name": "PTOR1",
+    "displayName": "PTOR1",
+    "city": "Portland",
+    "state": "OR",
+    "country": "US",
+    "lat": 45.521366,
+    "lng": -122.680792,
+    "verified": false,
+    "source": "community",
+    "metadata": {
+      "url": "https://www.1547realty.com",
+      "address1": "921 SW Washington St",
+      "zipcode": "97205",
+      "clli": "PTLDORPB",
+      "peeringDbId": 275,
+      "netCount": 69,
+      "ixCount": 2,
+      "carrierCount": 3
+    }
+  },
+  {
+    "id": "pdb-283",
+    "provider": "365 Data Centers",
+    "providerType": "colocation",
+    "name": "365 Data Centers Chicago (CH6)",
+    "displayName": "365 Data Centers Chicago (CH6)",
+    "city": "Chicago",
+    "state": "IL",
+    "country": "US",
+    "lat": 41.876212,
+    "lng": -87.631453,
+    "verified": false,
+    "source": "community",
+    "metadata": {
+      "url": "https://www.365datacenters.com/chicago-data-center/",
+      "address1": "427 S. La Salle",
+      "zipcode": "60605",
+      "peeringDbId": 283,
+      "netCount": 21,
+      "ixCount": 2,
+      "carrierCount": 0
+    }
+  },
+  {
+    "id": "pdb-332",
+    "provider": "Netrality Data Centers",
+    "providerType": "colocation",
+    "name": "Netrality St. Louis - 900 Walnut",
+    "displayName": "Netrality St. Louis - 900 Walnut",
+    "city": "St. Louis",
+    "state": "MO",
+    "country": "US",
+    "lat": 38.625536,
+    "lng": -90.195238,
+    "verified": false,
+    "source": "community",
+    "metadata": {
+      "url": "https://netrality.com/data-center/900-walnut-st-louis/",
+      "address1": "900 Walnut - Netrality Data Center Meet Me Room",
+      "address2": "900 Walnut Street",
+      "zipcode": "63101",
+      "peeringDbId": 332,
+      "netCount": 42,
+      "ixCount": 5,
+      "carrierCount": 2
+    }
+  },
+  {
+    "id": "pdb-350",
+    "provider": "Tishman Real Estate Services",
+    "providerType": "colocation",
+    "name": "165 Halsey Meet-Me Room",
+    "displayName": "165 Halsey Meet-Me Room",
+    "city": "Newark",
+    "state": "NJ",
+    "country": "US",
+    "lat": 40.736844,
+    "lng": -74.173402,
+    "verified": false,
+    "source": "community",
+    "metadata": {
+      "url": "http://www.165halsey.com/",
+      "address1": "165 Halsey St",
+      "zipcode": "07102-2834",
+      "clli": "NWRKNJ",
+      "peeringDbId": 350,
+      "netCount": 105,
+      "ixCount": 5,
+      "carrierCount": 6
+    }
+  },
+  {
+    "id": "pdb-363",
+    "provider": "CoreSite",
+    "providerType": "colocation",
+    "name": "CoreSite - Los Angeles (LA2)",
+    "displayName": "CoreSite - Los Angeles (LA2)",
+    "city": "Los Angeles",
+    "state": "CA",
+    "country": "US",
+    "lat": 34.058096,
+    "lng": -118.235357,
+    "verified": false,
+    "source": "community",
+    "metadata": {
+      "url": "http://www.coresite.com",
+      "address1": "900 N. Alameda",
+      "zipcode": "90012",
+      "clli": "LSANCAVJ",
+      "peeringDbId": 363,
+      "netCount": 194,
+      "ixCount": 3,
+      "carrierCount": 7
+    }
+  },
+  {
+    "id": "pdb-402",
+    "provider": "Digital Realty",
+    "providerType": "colocation",
+    "name": "Digital Realty DFW (2323 Bryan St)",
+    "displayName": "Digital Realty DFW (2323 Bryan St)",
+    "city": "Dallas",
+    "state": "TX",
+    "country": "US",
+    "lat": 32.787212,
+    "lng": -96.794219,
+    "verified": false,
+    "source": "community",
+    "metadata": {
+      "url": "https://www.digitalrealty.com",
+      "address1": "2323 Bryan St.",
+      "zipcode": "75201",
+      "clli": "DLLSTX",
+      "peeringDbId": 402,
+      "netCount": 61,
+      "ixCount": 4,
+      "carrierCount": 3
+    }
+  },
+  {
+    "id": "pdb-403",
+    "provider": "Digital Realty",
+    "providerType": "colocation",
+    "name": "Digital Realty LAX (600 W 7th)",
+    "displayName": "Digital Realty LAX (600 W 7th)",
+    "city": "Los Angeles",
+    "state": "CA",
+    "country": "US",
+    "lat": 34.047335,
+    "lng": -118.25745,
+    "verified": false,
+    "source": "community",
+    "metadata": {
+      "url": "https://www.digitalrealty.com",
+      "address1": "600 West 7th Street",
+      "zipcode": "90017",
+      "clli": "LSANCA",
+      "peeringDbId": 403,
+      "netCount": 54,
+      "ixCount": 1,
+      "carrierCount": 1
+    }
+  },
+  {
+    "id": "pdb-409",
+    "provider": "Netrality Data Centers",
+    "providerType": "colocation",
+    "name": "Netrality Houston - 1301 Fannin",
+    "displayName": "Netrality Houston - 1301 Fannin",
+    "city": "Houston",
+    "state": "TX",
+    "country": "US",
+    "lat": 29.753242,
+    "lng": -95.365882,
+    "verified": false,
+    "source": "community",
+    "metadata": {
+      "url": "https://netrality.com/data-center/1301-fannin-houston/",
+      "address1": "1301 Fannin - Netrality Data Center Meet Me Room",
+      "address2": "1301 Fannin Street",
+      "zipcode": "77002",
+      "peeringDbId": 409,
+      "netCount": 29,
+      "ixCount": 6,
+      "carrierCount": 2
+    }
+  },
+  {
+    "id": "pdb-410",
+    "provider": "GI Property Management",
+    "providerType": "colocation",
+    "name": "KOMO Plaza Seattle (Formerly Fisher Plaza)",
+    "displayName": "KOMO Plaza Seattle (Formerly Fisher Plaza)",
+    "city": "Seattle",
+    "state": "WA",
+    "country": "US",
+    "lat": 47.619238,
+    "lng": -122.348278,
+    "verified": false,
+    "source": "community",
+    "metadata": {
+      "url": "http://www.komoplaza.com/",
+      "address1": "140 4th Ave N",
+      "zipcode": "98109",
+      "clli": "STTLWAJM",
+      "peeringDbId": 410,
+      "netCount": 21,
+      "ixCount": 2,
+      "carrierCount": 1
+    }
+  },
+  {
+    "id": "pdb-435",
+    "provider": "Netrality Data Centers",
+    "providerType": "colocation",
+    "name": "Netrality Kansas City - 1102 Grand",
+    "displayName": "Netrality Kansas City - 1102 Grand",
+    "city": "Kansas City",
+    "state": "MO",
+    "country": "US",
+    "lat": 39.100941,
+    "lng": -94.581036,
+    "verified": false,
+    "source": "community",
+    "metadata": {
+      "url": "https://netrality.com/data-center/1102-grand-kansas-city/",
+      "address1": "1102 Grand - Netrality Data Center Meet Me Room",
+      "address2": "1102 Grand Boulevard",
+      "zipcode": "64106",
+      "peeringDbId": 435,
+      "netCount": 81,
+      "ixCount": 4,
+      "carrierCount": 5
+    }
+  },
+  {
+    "id": "pdb-436",
+    "provider": "Equinix",
+    "providerType": "colocation",
+    "name": "Equinix SV3 - Silicon Valley, San Jose",
+    "displayName": "Equinix SV3 - Silicon Valley, San Jose",
+    "city": "San Jose",
+    "state": "CA",
+    "country": "US",
+    "lat": 37.388235,
+    "lng": -121.888457,
+    "verified": false,
+    "source": "community",
+    "metadata": {
+      "url": "https://www.equinix.com/locations/americas-colocation/united-states-colocation/silicon-valley-data-centers/sv3/",
+      "address1": "1735 Lundy Ave",
+      "zipcode": "95131",
+      "peeringDbId": 436,
+      "netCount": 23,
+      "ixCount": 2,
+      "carrierCount": 1
+    }
+  },
+  {
+    "id": "pdb-437",
+    "provider": "Equinix",
+    "providerType": "colocation",
+    "name": "Equinix SV2 - Silicon Valley, Santa Clara",
+    "displayName": "Equinix SV2 - Silicon Valley, Santa Clara",
+    "city": "Santa Clara",
+    "state": "CA",
+    "country": "US",
+    "lat": 37.378463,
+    "lng": -121.954945,
+    "verified": false,
+    "source": "community",
+    "metadata": {
+      "url": "https://www.equinix.com/locations/americas-colocation/united-states-colocation/silicon-valley-data-centers/sv2/",
+      "address1": "1350 Duane Ave",
+      "zipcode": "95054",
+      "peeringDbId": 437,
+      "netCount": 24,
+      "ixCount": 2,
+      "carrierCount": 2
+    }
+  },
+  {
+    "id": "pdb-466",
+    "provider": "Digital Realty",
+    "providerType": "colocation",
+    "name": "Digital Realty CHI (350 E Cermak)",
+    "displayName": "Digital Realty CHI (350 E Cermak)",
+    "city": "Chicago",
+    "state": "IL",
+    "country": "US",
+    "lat": 41.85365,
+    "lng": -87.618342,
+    "verified": false,
+    "source": "community",
+    "metadata": {
+      "url": "https://www.digitalrealty.com",
+      "address1": "350 E Cermak Rd.",
+      "zipcode": "60616-1568",
+      "clli": "CHCGIL",
+      "peeringDbId": 466,
+      "netCount": 97,
+      "ixCount": 7,
+      "carrierCount": 5
+    }
+  },
+  {
+    "id": "pdb-505",
+    "provider": "Equinix",
+    "providerType": "colocation",
+    "name": "Equinix DA - Dallas (previously Infomart Dallas)",
+    "displayName": "Equinix DA - Dallas (previously Infomart Dallas)",
+    "city": "Dallas",
+    "state": "TX",
+    "country": "US",
+    "lat": 32.800748,
+    "lng": -96.819412,
+    "verified": false,
+    "source": "community",
+    "metadata": {
+      "url": "https://www.equinix.com",
+      "address1": "1950 N Stemmons Fwy",
+      "zipcode": "75207-3134",
+      "peeringDbId": 505,
+      "netCount": 58,
+      "ixCount": 3,
+      "carrierCount": 4
+    }
+  },
+  {
+    "id": "pdb-539",
+    "provider": "Equinix",
+    "providerType": "colocation",
+    "name": "Equinix DA4 - Dallas",
+    "displayName": "Equinix DA4 - Dallas",
+    "city": "Dallas",
+    "state": "TX",
+    "country": "US",
+    "lat": 32.787212,
+    "lng": -96.794219,
+    "verified": false,
+    "source": "community",
+    "metadata": {
+      "url": "https://www.equinix.com/locations/americas-colocation/united-states-colocation/dallas-data-centers/da4/",
+      "address1": "2323 Bryan St.",
+      "zipcode": "75201",
+      "clli": "DLLSTX",
+      "peeringDbId": 539,
+      "netCount": 26,
+      "ixCount": 3,
+      "carrierCount": 4
+    }
+  },
+  {
+    "id": "pdb-547",
+    "provider": "Hurricane Electric",
+    "providerType": "colocation",
+    "name": "Hurricane Electric Fremont 2",
+    "displayName": "Hurricane Electric Fremont 2",
+    "city": "Fremont",
+    "state": "CA",
+    "country": "US",
+    "lat": 37.471809,
+    "lng": -121.920111,
+    "verified": false,
+    "source": "community",
+    "metadata": {
+      "url": "https://he.net",
+      "statusDashboard": "https://he.net",
+      "address1": "48233 Warm Springs Blvd",
+      "zipcode": "94539-7654",
+      "clli": "FRMTCA",
+      "peeringDbId": 547,
+      "netCount": 304,
+      "ixCount": 15,
+      "carrierCount": 2
+    }
+  },
+  {
+    "id": "pdb-558",
+    "provider": "Equinix",
+    "providerType": "colocation",
+    "name": "Equinix MI2 - Miami",
+    "displayName": "Equinix MI2 - Miami",
+    "city": "Miami",
+    "state": "FL",
+    "country": "US",
+    "lat": 25.775869,
+    "lng": -80.19313,
+    "verified": false,
+    "source": "community",
+    "metadata": {
+      "url": "https://www.equinix.com/locations/americas-colocation/united-states-colocation/miami-data-centers/mi2/",
+      "address1": "36 NE 2nd St",
+      "zipcode": "33132-2113",
+      "clli": "MIAUFL",
+      "peeringDbId": 558,
+      "netCount": 28,
+      "ixCount": 3,
+      "carrierCount": 2
+    }
+  },
+  {
+    "id": "pdb-561",
+    "provider": "365 Data Centers",
+    "providerType": "colocation",
+    "name": "365 Data Centers Nashville (NA1)",
+    "displayName": "365 Data Centers Nashville (NA1)",
+    "city": "Nashville",
+    "state": "TN",
+    "country": "US",
+    "lat": 36.162626,
+    "lng": -86.778674,
+    "verified": false,
+    "source": "community",
+    "metadata": {
+      "url": "https://www.365datacenters.com/nashville-data-center/",
+      "address1": "147 Fourth Avenue",
+      "zipcode": "37219",
+      "peeringDbId": 561,
+      "netCount": 22,
+      "ixCount": 2,
+      "carrierCount": 2
+    }
+  },
+  {
+    "id": "pdb-572",
+    "provider": "Iron Mountain Data Centers",
+    "providerType": "colocation",
+    "name": "Iron Mountain Data Center - Phoenix (AZP-1)",
+    "displayName": "Iron Mountain Data Center - Phoenix (AZP-1)",
+    "city": "Phoenix",
+    "state": "AZ",
+    "country": "US",
+    "lat": 33.454411,
+    "lng": -111.976435,
+    "verified": false,
+    "source": "community",
+    "metadata": {
+      "url": "https://www.ironmountain.com/digital-transformation/data-centers/locations/phoenix-data-center",
+      "address1": "615 N. 48th Street",
+      "zipcode": "85008",
+      "clli": "PHNHAZ",
+      "peeringDbId": 572,
+      "netCount": 30,
+      "ixCount": 3,
+      "carrierCount": 3
+    }
+  },
+  {
+    "id": "pdb-575",
+    "provider": "1623 Farnam",
+    "providerType": "colocation",
+    "name": "1623 Farnam - Omaha",
+    "displayName": "1623 Farnam - Omaha",
+    "city": "Omaha",
+    "state": "NE",
+    "country": "US",
+    "lat": 41.257352,
+    "lng": -95.938191,
+    "verified": false,
+    "source": "community",
+    "metadata": {
+      "url": "http://www.1623Farnam.com",
+      "address1": "1623 Farnam St.",
+      "zipcode": "68102",
+      "clli": "OMAHNE",
+      "peeringDbId": 575,
+      "netCount": 46,
+      "ixCount": 1,
+      "carrierCount": 7
+    }
+  },
+  {
+    "id": "pdb-581",
+    "provider": "QTS Realty Trust",
+    "providerType": "colocation",
+    "name": "QTS Atlanta-Metro (ATL1)",
+    "displayName": "QTS Atlanta-Metro (ATL1)",
+    "city": "Atlanta",
+    "state": "GA",
+    "country": "US",
+    "lat": 33.777526,
+    "lng": -84.421036,
+    "verified": false,
+    "source": "community",
+    "metadata": {
+      "url": "http://www.qtsdatacenters.com/data-centers/atlanta-metro",
+      "address1": "1033 Jefferson St. NW",
+      "zipcode": "30318",
+      "clli": "ATLNGA",
+      "peeringDbId": 581,
+      "netCount": 21,
+      "ixCount": 2,
+      "carrierCount": 3
+    }
+  },
+  {
+    "id": "pdb-668",
+    "provider": "CoreSite",
+    "providerType": "colocation",
+    "name": "CoreSite - Reston (VA1)",
+    "displayName": "CoreSite - Reston (VA1)",
+    "city": "Reston",
+    "state": "VA",
+    "country": "US",
+    "lat": 38.950631,
+    "lng": -77.364541,
+    "verified": false,
+    "source": "community",
+    "metadata": {
+      "url": "http://www.coresite.com",
+      "address1": "12100 Sunrise Valley Drive",
+      "zipcode": "20191",
+      "clli": "RSTNVA14",
+      "peeringDbId": 668,
+      "netCount": 78,
+      "ixCount": 6,
+      "carrierCount": 5
+    }
+  },
+  {
+    "id": "pdb-669",
+    "provider": "CoreSite",
+    "providerType": "colocation",
+    "name": "CoreSite - Miami (MI1)",
+    "displayName": "CoreSite - Miami (MI1)",
+    "city": "Miami",
+    "state": "FL",
+    "country": "US",
+    "lat": 25.797548,
+    "lng": -80.230038,
+    "verified": false,
+    "source": "community",
+    "metadata": {
+      "url": "http://www.coresite.com",
+      "address1": "2115 NW 22nd Street",
+      "zipcode": "33142",
+      "clli": "MIASFLVR",
+      "peeringDbId": 669,
+      "netCount": 22,
+      "ixCount": 2,
+      "carrierCount": 2
+    }
+  },
+  {
+    "id": "pdb-670",
+    "provider": "CoreSite",
+    "providerType": "colocation",
+    "name": "CoreSite - New York (NY1)",
+    "displayName": "CoreSite - New York (NY1)",
+    "city": "New York",
+    "state": "NY",
+    "country": "US",
+    "lat": 40.72,
+    "lng": -74.004561,
+    "verified": false,
+    "source": "community",
+    "metadata": {
+      "url": "http://www.coresite.com",
+      "address1": "32 Avenue of the Americas",
+      "zipcode": "10013",
+      "clli": "NYCMNYAA",
+      "peeringDbId": 670,
+      "netCount": 36,
+      "ixCount": 4,
+      "carrierCount": 2
+    }
+  },
+  {
+    "id": "pdb-679",
+    "provider": "ColoHouse Premier Datacenter",
+    "providerType": "colocation",
+    "name": "ColoHouse Miami",
+    "displayName": "ColoHouse Miami",
+    "city": "Miami",
+    "state": "FL",
+    "country": "US",
+    "lat": 25.775811,
+    "lng": -80.192959,
+    "verified": false,
+    "source": "community",
+    "metadata": {
+      "url": "http://www.colohouse.com/",
+      "address1": "36 NE 2nd Street",
+      "zipcode": "33132",
+      "peeringDbId": 679,
+      "netCount": 43,
+      "ixCount": 3,
+      "carrierCount": 1
+    }
+  },
+  {
+    "id": "pdb-702",
+    "provider": "Hurricane Electric",
+    "providerType": "colocation",
+    "name": "Hurricane Electric Fremont 1",
+    "displayName": "Hurricane Electric Fremont 1",
+    "city": "Fremont",
+    "state": "CA",
+    "country": "US",
+    "lat": 37.489879,
+    "lng": -121.931012,
+    "verified": false,
+    "source": "community",
+    "metadata": {
+      "url": "http://he.net/colocation.html",
+      "address1": "760 Mission Ct",
+      "zipcode": "94539",
+      "clli": "FRMTCA",
+      "peeringDbId": 702,
+      "netCount": 43,
+      "ixCount": 3,
+      "carrierCount": 0
+    }
+  },
+  {
+    "id": "pdb-737",
+    "provider": "Telehouse - Global Data Centers",
+    "providerType": "colocation",
+    "name": "Telehouse - Teleport Center (New York)",
+    "displayName": "Telehouse - Teleport Center (New York)",
+    "city": "Staten Island",
+    "state": "NY",
+    "country": "US",
+    "lat": 40.606231,
+    "lng": -74.173722,
+    "verified": false,
+    "source": "community",
+    "metadata": {
+      "url": "http://www.telehouse.com",
+      "address1": "The Teleport",
+      "address2": "7 Teleport Drive",
+      "zipcode": "10311",
+      "clli": "NYCRNY",
+      "peeringDbId": 737,
+      "netCount": 40,
+      "ixCount": 3,
+      "carrierCount": 0
+    }
+  },
+  {
+    "id": "pdb-803",
+    "provider": "Cologix",
+    "providerType": "colocation",
+    "name": "Cologix MIN1",
+    "displayName": "Cologix MIN1",
+    "city": "Minneapolis",
+    "state": "MN",
+    "country": "US",
+    "lat": 44.971408,
+    "lng": -93.25458,
+    "verified": false,
+    "source": "community",
+    "metadata": {
+      "url": "http://www.cologix.com/",
+      "address1": "511 11th Ave S Ste 100",
+      "zipcode": "55415-1567",
+      "clli": "MPLSMN",
+      "peeringDbId": 803,
+      "netCount": 76,
+      "ixCount": 6,
+      "carrierCount": 9
+    }
+  },
+  {
+    "id": "pdb-917",
+    "provider": "PhoenixNAP",
+    "providerType": "colocation",
+    "name": "PhoenixNAP",
+    "displayName": "PhoenixNAP",
+    "city": "Phoenix",
+    "state": "AZ",
+    "country": "US",
+    "lat": 33.41601,
+    "lng": -112.009445,
+    "verified": false,
+    "source": "community",
+    "metadata": {
+      "url": "https://phoenixnap.com/colocation/phoenix",
+      "address1": "3402 E. University Dr.",
+      "zipcode": "85034",
+      "peeringDbId": 917,
+      "netCount": 75,
+      "ixCount": 3,
+      "carrierCount": 3
+    }
+  },
+  {
+    "id": "pdb-940",
+    "provider": "Equinix",
+    "providerType": "colocation",
+    "name": "Equinix AT1 - Atlanta",
+    "displayName": "Equinix AT1 - Atlanta",
+    "city": "Atlanta",
+    "state": "GA",
+    "country": "US",
+    "lat": 33.758567,
+    "lng": -84.387874,
+    "verified": false,
+    "source": "community",
+    "metadata": {
+      "url": "http://www.equinix.com/",
+      "address1": "180 Peachtree",
+      "address2": "2nd and 6th Floors",
+      "zipcode": "30303",
+      "clli": "ATLNGA",
+      "peeringDbId": 940,
+      "netCount": 58,
+      "ixCount": 3,
+      "carrierCount": 6
+    }
+  },
+  {
+    "id": "pdb-968",
+    "provider": "Equinix",
+    "providerType": "colocation",
+    "name": "Equinix CH3 - Elk Grove",
+    "displayName": "Equinix CH3 - Elk Grove",
+    "city": "Elk Grove Village",
+    "state": "IL",
+    "country": "US",
+    "lat": 42.001171,
+    "lng": -87.954882,
+    "verified": false,
+    "source": "community",
+    "metadata": {
+      "url": "http://www.equinix.com",
+      "address1": "1905 Lunt Ave",
+      "zipcode": "60007",
+      "peeringDbId": 968,
+      "netCount": 44,
+      "ixCount": 2,
+      "carrierCount": 3
+    }
+  },
+  {
+    "id": "pdb-1112",
+    "provider": "RagingWire Data Centers - NTT",
+    "providerType": "colocation",
+    "name": "RagingWire VA1 - NTT",
+    "displayName": "RagingWire VA1 - NTT",
+    "city": "Ashburn",
+    "state": "VA",
+    "country": "US",
+    "lat": 39.022561,
+    "lng": -77.455012,
+    "verified": false,
+    "source": "community",
+    "metadata": {
+      "url": "http://www.ragingwire.com",
+      "address1": "44664 Guilford Drive",
+      "zipcode": "20147",
+      "clli": "CLPPVA01",
+      "peeringDbId": 1112,
+      "netCount": 25,
+      "ixCount": 1,
+      "carrierCount": 2
+    }
+  },
+  {
+    "id": "pdb-1177",
+    "provider": "QTS Realty Trust",
+    "providerType": "colocation",
+    "name": "QTS Piscataway (PNJ1)",
+    "displayName": "QTS Piscataway (PNJ1)",
+    "city": "Piscataway",
+    "state": "NJ",
+    "country": "US",
+    "lat": 40.556905,
+    "lng": -74.484735,
+    "verified": false,
+    "source": "community",
+    "metadata": {
+      "url": "http://www.qtsdatacenters.com/data-centers/piscataway",
+      "address1": "101 Possumtown Road",
+      "zipcode": "08854",
+      "peeringDbId": 1177,
+      "netCount": 35,
+      "ixCount": 3,
+      "carrierCount": 2
+    }
+  },
+  {
+    "id": "pdb-1223",
+    "provider": "DataBank",
+    "providerType": "colocation",
+    "name": "DataBank Ashburn (IAD1)",
+    "displayName": "DataBank Ashburn (IAD1)",
+    "city": "Ashburn",
+    "state": "VA",
+    "country": "US",
+    "lat": 39.015966,
+    "lng": -77.48158,
+    "verified": false,
+    "source": "community",
+    "metadata": {
+      "url": "https://www.databank.com/data-centers/northern-virginia/ashburn-campus/ashburn/",
+      "address1": "21635 Red Rum Dr.",
+      "zipcode": "20147",
+      "peeringDbId": 1223,
+      "netCount": 34,
+      "ixCount": 2,
+      "carrierCount": 2
+    }
+  },
+  {
+    "id": "pdb-1272",
+    "provider": "Telehouse - Global Data Centers",
+    "providerType": "colocation",
+    "name": "Telehouse - New York Chelsea",
+    "displayName": "Telehouse - New York Chelsea",
+    "city": "New York",
+    "state": "NY",
+    "country": "US",
+    "lat": 40.743209,
+    "lng": -74.007954,
+    "verified": false,
+    "source": "community",
+    "metadata": {
+      "url": "http://www.telehouse.com/",
+      "address1": "85 10th Avenue",
+      "zipcode": "10011",
+      "peeringDbId": 1272,
+      "netCount": 44,
+      "ixCount": 5,
+      "carrierCount": 0
+    }
+  },
+  {
+    "id": "pdb-1337",
+    "provider": "CoreSite",
+    "providerType": "colocation",
+    "name": "CoreSite - Atlanta (AT1)",
+    "displayName": "CoreSite - Atlanta (AT1)",
+    "city": "Atlanta",
+    "state": "GA",
+    "country": "US",
+    "lat": 33.755801,
+    "lng": -84.390928,
+    "verified": false,
+    "source": "community",
+    "metadata": {
+      "url": "http://www.coresite.com",
+      "address1": "55 Marietta Street",
+      "address2": "Suites 570 & 800",
+      "zipcode": "30303",
+      "clli": "ATLNGAMA",
+      "peeringDbId": 1337,
+      "netCount": 70,
+      "ixCount": 4,
+      "carrierCount": 4
+    }
+  },
+  {
+    "id": "pdb-1384",
+    "provider": "Digital Realty",
+    "providerType": "colocation",
+    "name": "Digital Realty CHI (2200 Busse Rd.)",
+    "displayName": "Digital Realty CHI (2200 Busse Rd.)",
+    "city": "Elk Grove Village",
+    "state": "IL",
+    "country": "US",
+    "lat": 41.994269,
+    "lng": -87.962053,
+    "verified": false,
+    "source": "community",
+    "metadata": {
+      "url": "https://www.digitalrealty.com",
+      "address1": "2200 Busse Rd.",
+      "zipcode": "60007",
+      "peeringDbId": 1384,
+      "netCount": 20,
+      "ixCount": 2,
+      "carrierCount": 1
+    }
+  },
+  {
+    "id": "pdb-1476",
+    "provider": "DataBank",
+    "providerType": "colocation",
+    "name": "Databank Houston West (HOU1) (HOU2)",
+    "displayName": "Databank Houston West (HOU1) (HOU2)",
+    "city": "Houston",
+    "state": "TX",
+    "country": "US",
+    "lat": 29.844182,
+    "lng": -95.556656,
+    "verified": false,
+    "source": "community",
+    "metadata": {
+      "url": "http://www.databank.com",
+      "address1": "5150 & 5170 Westway Park Blvd",
+      "zipcode": "77041",
+      "peeringDbId": 1476,
+      "netCount": 33,
+      "ixCount": 2,
+      "carrierCount": 3
+    }
+  },
+  {
+    "id": "pdb-1517",
+    "provider": "60 Hudson Owner",
+    "providerType": "colocation",
+    "name": "60 Hudson",
+    "displayName": "60 Hudson",
+    "city": "New York",
+    "state": "NY",
+    "country": "US",
+    "lat": 40.717723,
+    "lng": -74.008299,
+    "verified": false,
+    "source": "community",
+    "metadata": {
+      "url": "https://60hudsonstreet.com/",
+      "address1": "60 Hudson St.",
+      "zipcode": "10013",
+      "clli": "NYCMNY",
+      "peeringDbId": 1517,
+      "netCount": 28,
+      "ixCount": 2,
+      "carrierCount": 2
+    }
+  },
+  {
+    "id": "pdb-1619",
+    "provider": "CoreSite",
+    "providerType": "colocation",
+    "name": "CoreSite - Santa Clara (SV4)",
+    "displayName": "CoreSite - Santa Clara (SV4)",
+    "city": "Santa Clara",
+    "state": "CA",
+    "country": "US",
+    "lat": 37.376259,
+    "lng": -121.970705,
+    "verified": false,
+    "source": "community",
+    "metadata": {
+      "url": "http://www.coresite.com",
+      "address1": "2972 Stender Way",
+      "zipcode": "95054",
+      "clli": "SNTCCAQM",
+      "peeringDbId": 1619,
+      "netCount": 21,
+      "ixCount": 3,
+      "carrierCount": 2
+    }
+  },
+  {
+    "id": "pdb-1671",
+    "provider": "CoreSite",
+    "providerType": "colocation",
+    "name": "CoreSite - Secaucus (NY2)",
+    "displayName": "CoreSite - Secaucus (NY2)",
+    "city": "Secaucus",
+    "state": "NJ",
+    "country": "US",
+    "lat": 40.784501,
+    "lng": -74.065119,
+    "verified": false,
+    "source": "community",
+    "metadata": {
+      "url": "http://www.coresite.com",
+      "address1": "2 Emerson Lane",
+      "zipcode": "07094",
+      "clli": "SCCSNJ",
+      "peeringDbId": 1671,
+      "netCount": 30,
+      "ixCount": 3,
+      "carrierCount": 2
+    }
+  },
+  {
+    "id": "pdb-1707",
+    "provider": "710facility@ittns.northwestern.edu",
+    "providerType": "colocation",
+    "name": "Northwestern University co-location facility",
+    "displayName": "Northwestern University co-location facility",
+    "city": "Chicago",
+    "state": "IL",
+    "country": "US",
+    "lat": 41.895233,
+    "lng": -87.616861,
+    "verified": false,
+    "source": "community",
+    "metadata": {
+      "url": "http://www.startap.net/starlight/ENGINEERING/network_operations.html",
+      "address1": "710 N. Lake Shore Drive",
+      "zipcode": "60611",
+      "peeringDbId": 1707,
+      "netCount": 20,
+      "ixCount": 0,
+      "carrierCount": 0
+    }
+  },
+  {
+    "id": "pdb-1816",
+    "provider": "H5 Data Centers",
+    "providerType": "colocation",
+    "name": "H5 Data Centers New York",
+    "displayName": "H5 Data Centers New York",
+    "city": "New York",
+    "state": "NY",
+    "country": "US",
+    "lat": 40.726868,
+    "lng": -74.007703,
+    "verified": false,
+    "source": "community",
+    "metadata": {
+      "url": "https://h5datacenters.com/new-york-colocation.html",
+      "address1": "325 Hudson Street",
+      "zipcode": "10013",
+      "peeringDbId": 1816,
+      "netCount": 26,
+      "ixCount": 3,
+      "carrierCount": 0
+    }
+  },
+  {
+    "id": "pdb-1917",
+    "provider": "EdgeConneX",
+    "providerType": "colocation",
+    "name": "EdgeConneX Phoenix (EDCPHX01)",
+    "displayName": "EdgeConneX Phoenix (EDCPHX01)",
+    "city": "Tempe",
+    "state": "AZ",
+    "country": "US",
+    "lat": 33.395544,
+    "lng": -111.97012,
+    "verified": false,
+    "source": "community",
+    "metadata": {
+      "url": "http://www.edgeconnex.com",
+      "address1": "3011 S. 52nd St",
+      "zipcode": "85282",
+      "peeringDbId": 1917,
+      "netCount": 39,
+      "ixCount": 3,
+      "carrierCount": 2
+    }
+  },
+  {
+    "id": "pdb-1922",
+    "provider": "EdgeConneX",
+    "providerType": "colocation",
+    "name": "EdgeConneX Portland (EDCPOR01)",
+    "displayName": "EdgeConneX Portland (EDCPOR01)",
+    "city": "Hillsboro",
+    "state": "OR",
+    "country": "US",
+    "lat": 45.548296,
+    "lng": -122.907473,
+    "verified": false,
+    "source": "community",
+    "metadata": {
+      "url": "http://www.edgeconnex.com",
+      "address1": "6327 NE Evergreen Parkway",
+      "address2": "Building C",
+      "zipcode": "97124",
+      "clli": "HLBOORNF",
+      "peeringDbId": 1922,
+      "netCount": 25,
+      "ixCount": 2,
+      "carrierCount": 2
+    }
+  },
+  {
+    "id": "pdb-1941",
+    "provider": "Lifeline Data Centers",
+    "providerType": "colocation",
+    "name": "Lifeline Eastgate",
+    "displayName": "Lifeline Eastgate",
+    "city": "Indianapolis",
+    "state": "IN",
+    "country": "US",
+    "lat": 39.775998,
+    "lng": -86.04275,
+    "verified": false,
+    "source": "community",
+    "metadata": {
+      "url": "http://www.lifelinedatacenters.com/",
+      "address1": "401 N Shadeland Ave.",
+      "zipcode": "46219",
+      "peeringDbId": 1941,
+      "netCount": 29,
+      "ixCount": 2,
+      "carrierCount": 2
+    }
+  },
+  {
+    "id": "pdb-1946",
+    "provider": "Cologix",
+    "providerType": "colocation",
+    "name": "Cologix JAX1",
+    "displayName": "Cologix JAX1",
+    "city": "Jacksonville",
+    "state": "FL",
+    "country": "US",
+    "lat": 30.331403,
+    "lng": -81.66242,
+    "verified": false,
+    "source": "community",
+    "metadata": {
+      "url": "http://www.cologix.com",
+      "address1": "421 W. Church St.",
+      "peeringDbId": 1946,
+      "netCount": 33,
+      "ixCount": 1,
+      "carrierCount": 2
+    }
+  },
+  {
+    "id": "pdb-1947",
+    "provider": "Digital Realty",
+    "providerType": "colocation",
+    "name": "Digital Realty MIA (36 NE 2nd St)",
+    "displayName": "Digital Realty MIA (36 NE 2nd St)",
+    "city": "Miami",
+    "state": "FL",
+    "country": "US",
+    "lat": 25.775811,
+    "lng": -80.192959,
+    "verified": false,
+    "source": "community",
+    "metadata": {
+      "url": "https://www.digitalrealty.com",
+      "address1": "36 NE 2nd Street",
+      "zipcode": "33132",
+      "peeringDbId": 1947,
+      "netCount": 32,
+      "ixCount": 4,
+      "carrierCount": 1
+    }
+  },
+  {
+    "id": "pdb-1976",
+    "provider": "MDC Data Centers",
+    "providerType": "colocation",
+    "name": "MDC McAllen",
+    "displayName": "MDC McAllen",
+    "city": "McAllen",
+    "state": "TX",
+    "country": "US",
+    "lat": 26.201918,
+    "lng": -98.231633,
+    "verified": false,
+    "source": "community",
+    "metadata": {
+      "url": "http://www.mdcdatacenters.com",
+      "address1": "422 S 11th St",
+      "address2": "200 S 10th St",
+      "zipcode": "78501-4800",
+      "clli": "MCALTX",
+      "peeringDbId": 1976,
+      "netCount": 28,
+      "ixCount": 1,
+      "carrierCount": 2
+    }
+  },
+  {
+    "id": "pdb-1978",
+    "provider": "Netrality Data Centers",
+    "providerType": "colocation",
+    "name": "Netrality St. Louis - 210 N Tucker",
+    "displayName": "Netrality St. Louis - 210 N Tucker",
+    "city": "St. Louis",
+    "state": "MO",
+    "country": "US",
+    "lat": 38.629332,
+    "lng": -90.197305,
+    "verified": false,
+    "source": "community",
+    "metadata": {
+      "url": "https://netrality.com/data-center/210-north-tucker-st-louis/",
+      "address1": "210 N Tucker - Netrality Data Center Meet Me Room",
+      "address2": "210 N Tucker Boulevard",
+      "zipcode": "63101",
+      "peeringDbId": 1978,
+      "netCount": 41,
+      "ixCount": 5,
+      "carrierCount": 3
+    }
+  },
+  {
+    "id": "pdb-2018",
+    "provider": "Netrality Data Centers",
+    "providerType": "colocation",
+    "name": "Netrality - Indy Telcom Center - 701 W. Henry",
+    "displayName": "Netrality - Indy Telcom Center - 701 W. Henry",
+    "city": "Indianapolis",
+    "state": "IN",
+    "country": "US",
+    "lat": 39.759534,
+    "lng": -86.170711,
+    "verified": false,
+    "source": "community",
+    "metadata": {
+      "url": "https://netrality.com/data-center/701-indy-telcom-center-indianapolis/",
+      "address1": "701 W. Henry St.",
+      "zipcode": "46225",
+      "peeringDbId": 2018,
+      "netCount": 21,
+      "ixCount": 2,
+      "carrierCount": 1
+    }
+  },
+  {
+    "id": "pdb-2079",
+    "provider": "910Telecom",
+    "providerType": "colocation",
+    "name": "910Telecom Denver",
+    "displayName": "910Telecom Denver",
+    "city": "Denver",
+    "state": "CO",
+    "country": "US",
+    "lat": 39.745636,
+    "lng": -104.995636,
+    "verified": false,
+    "source": "community",
+    "metadata": {
+      "url": "http://910telecom.com/Carriers",
+      "address1": "910-15th Street",
+      "zipcode": "80202-2912",
+      "clli": "DNVRCO",
+      "peeringDbId": 2079,
+      "netCount": 57,
+      "ixCount": 1,
+      "carrierCount": 4
+    }
+  },
+  {
+    "id": "pdb-2084",
+    "provider": "123.Net",
+    "providerType": "colocation",
+    "name": "123.NET - DC1 - 24700 Northwestern Hwy.",
+    "displayName": "123.NET - DC1 - 24700 Northwestern Hwy.",
+    "city": "Southfield",
+    "state": "MI",
+    "country": "US",
+    "lat": 42.471634,
+    "lng": -83.238056,
+    "verified": false,
+    "source": "community",
+    "metadata": {
+      "url": "http://www.123.net",
+      "address1": "24700 Northwestern Hwy.",
+      "zipcode": "48075",
+      "clli": "SFLDMI",
+      "peeringDbId": 2084,
+      "netCount": 55,
+      "ixCount": 2,
+      "carrierCount": 2
+    }
+  },
+  {
+    "id": "pdb-2086",
+    "provider": "365 Data Centers",
+    "providerType": "colocation",
+    "name": "365 Data Centers Tampa (TA1)",
+    "displayName": "365 Data Centers Tampa (TA1)",
+    "city": "Tampa",
+    "state": "FL",
+    "country": "US",
+    "lat": 27.949981,
+    "lng": -82.458383,
+    "verified": false,
+    "source": "community",
+    "metadata": {
+      "url": "https://www.365datacenters.com/tampa-data-center/",
+      "address1": "655 North Franklin St",
+      "zipcode": "33062",
+      "peeringDbId": 2086,
+      "netCount": 28,
+      "ixCount": 2,
+      "carrierCount": 3
+    }
+  },
+  {
+    "id": "pdb-2111",
+    "provider": "Netrality Data Centers",
+    "providerType": "colocation",
+    "name": "Netrality Philadelphia - 401 N Broad",
+    "displayName": "Netrality Philadelphia - 401 N Broad",
+    "city": "Philadelphia",
+    "state": "PA",
+    "country": "US",
+    "lat": 39.959889,
+    "lng": -75.161752,
+    "verified": false,
+    "source": "community",
+    "metadata": {
+      "url": "https://netrality.com/data-center/401-north-broad-philadelphia/",
+      "address1": "401 N Broad Street - Netrality Data Center Meet Me Room",
+      "zipcode": "19108",
+      "clli": "PHLAPAFG",
+      "peeringDbId": 2111,
+      "netCount": 48,
+      "ixCount": 3,
+      "carrierCount": 2
+    }
+  },
+  {
+    "id": "pdb-2261",
+    "provider": "Equinix",
+    "providerType": "colocation",
+    "name": "Equinix DA6 - Dallas",
+    "displayName": "Equinix DA6 - Dallas",
+    "city": "Dallas",
+    "state": "TX",
+    "country": "US",
+    "lat": 32.800748,
+    "lng": -96.819412,
+    "verified": false,
+    "source": "community",
+    "metadata": {
+      "url": "https://www.equinix.com/locations/americas-colocation/united-states-colocation/dallas-data-centers/da6/",
+      "address1": "1950 N Stemmons Fwy",
+      "zipcode": "75207-3134",
+      "clli": "DLLUTX",
+      "peeringDbId": 2261,
+      "netCount": 77,
+      "ixCount": 6,
+      "carrierCount": 6
+    }
+  },
+  {
+    "id": "pdb-2365",
+    "provider": "QTS Realty Trust",
+    "providerType": "colocation",
+    "name": "QTS Richmond (RIC1)",
+    "displayName": "QTS Richmond (RIC1)",
+    "city": "Sandston",
+    "state": "VA",
+    "country": "US",
+    "lat": 37.488073,
+    "lng": -77.244177,
+    "verified": false,
+    "source": "community",
+    "metadata": {
+      "url": "http://www.qtsdatacenters.com/data-centers/richmond",
+      "address1": "6000 Technology Blvd",
+      "zipcode": "23150",
+      "peeringDbId": 2365,
+      "netCount": 22,
+      "ixCount": 3,
+      "carrierCount": 3
+    }
+  },
+  {
+    "id": "pdb-2375",
+    "provider": "Cologix",
+    "providerType": "colocation",
+    "name": "Cologix DAL1",
+    "displayName": "Cologix DAL1",
+    "city": "Dallas",
+    "state": "TX",
+    "country": "US",
+    "lat": 32.800748,
+    "lng": -96.819412,
+    "verified": false,
+    "source": "community",
+    "metadata": {
+      "url": "http://www.cologix.com",
+      "address1": "1950 N Stemmons Fwy",
+      "zipcode": "75207-3134",
+      "peeringDbId": 2375,
+      "netCount": 23,
+      "ixCount": 2,
+      "carrierCount": 2
+    }
+  },
+  {
+    "id": "pdb-2377",
+    "provider": "Cologix",
+    "providerType": "colocation",
+    "name": "Cologix COL1",
+    "displayName": "Cologix COL1",
+    "city": "Columbus",
+    "state": "OH",
+    "country": "US",
+    "lat": 40.116491,
+    "lng": -83.001985,
+    "verified": false,
+    "source": "community",
+    "metadata": {
+      "url": "http://www.cologix.com",
+      "address1": "555 Scherers Court",
+      "zipcode": "43085",
+      "clli": "CLMBOH",
+      "peeringDbId": 2377,
+      "netCount": 29,
+      "ixCount": 2,
+      "carrierCount": 1
+    }
+  },
+  {
+    "id": "pdb-2378",
+    "provider": "Cologix",
+    "providerType": "colocation",
+    "name": "Cologix COL2",
+    "displayName": "Cologix COL2",
+    "city": "Columbus",
+    "state": "OH",
+    "country": "US",
+    "lat": 40.116491,
+    "lng": -83.001985,
+    "verified": false,
+    "source": "community",
+    "metadata": {
+      "url": "http://www.cologix.com",
+      "address1": "555 Scherers Court",
+      "zipcode": "43085",
+      "peeringDbId": 2378,
+      "netCount": 23,
+      "ixCount": 2,
+      "carrierCount": 2
+    }
+  },
+  {
+    "id": "pdb-2445",
+    "provider": "Flexential",
+    "providerType": "colocation",
+    "name": "Flexential - Salt Lake City/Downtown (SLC04)",
+    "displayName": "Flexential - Salt Lake City/Downtown (SLC04)",
+    "city": "Salt Lake City",
+    "state": "UT",
+    "country": "US",
+    "lat": 40.756302,
+    "lng": -111.954307,
+    "verified": false,
+    "source": "community",
+    "metadata": {
+      "url": "https://www.flexential.com/",
+      "address1": "572 S Delong St",
+      "zipcode": "84101",
+      "peeringDbId": 2445,
+      "netCount": 24,
+      "ixCount": 3,
+      "carrierCount": 1
+    }
+  },
+  {
+    "id": "pdb-2447",
+    "provider": "Flexential",
+    "providerType": "colocation",
+    "name": "Flexential - Portland/Hillsboro 2 (PDX02)",
+    "displayName": "Flexential - Portland/Hillsboro 2 (PDX02)",
+    "city": "Hillsboro",
+    "state": "OR",
+    "country": "US",
+    "lat": 45.557854,
+    "lng": -122.917023,
+    "verified": false,
+    "source": "community",
+    "metadata": {
+      "url": "https://www.flexential.com/",
+      "address1": "5737 NE Huffman St",
+      "zipcode": "97124",
+      "peeringDbId": 2447,
+      "netCount": 23,
+      "ixCount": 1,
+      "carrierCount": 3
+    }
+  },
+  {
+    "id": "pdb-2526",
+    "provider": "DRFortress",
+    "providerType": "colocation",
+    "name": "DRFortress HNL",
+    "displayName": "DRFortress HNL",
+    "city": "Honolulu",
+    "state": "HI",
+    "country": "US",
+    "lat": 21.335678,
+    "lng": -157.917855,
+    "verified": false,
+    "source": "community",
+    "metadata": {
+      "url": "http://www.drfortress.com",
+      "address1": "3375 Koapaka St",
+      "zipcode": "96819",
+      "peeringDbId": 2526,
+      "netCount": 26,
+      "ixCount": 1,
+      "carrierCount": 0
+    }
+  },
+  {
+    "id": "pdb-2578",
+    "provider": "Equinix",
+    "providerType": "colocation",
+    "name": "Equinix DA2 - Dallas",
+    "displayName": "Equinix DA2 - Dallas",
+    "city": "Dallas",
+    "state": "TX",
+    "country": "US",
+    "lat": 32.800955,
+    "lng": -96.81955,
+    "verified": false,
+    "source": "community",
+    "metadata": {
+      "url": "https://www.equinix.com/locations/americas-colocation/united-states-colocation/dallas-data-centers/da2/",
+      "address1": "1950 N Stemmons Fwy",
+      "zipcode": "75207",
+      "clli": "DLLSTX",
+      "peeringDbId": 2578,
+      "netCount": 49,
+      "ixCount": 5,
+      "carrierCount": 6
+    }
+  },
+  {
+    "id": "pdb-2763",
+    "provider": "CoreSite",
+    "providerType": "colocation",
+    "name": "CoreSite - Reston (VA2)",
+    "displayName": "CoreSite - Reston (VA2)",
+    "city": "Reston",
+    "state": "VA",
+    "country": "US",
+    "lat": 38.948974,
+    "lng": -77.364545,
+    "verified": false,
+    "source": "community",
+    "metadata": {
+      "url": "http://www.coresite.com",
+      "address1": "12098 Sunrise Valley Drive",
+      "zipcode": "20191",
+      "clli": "RSTNVA14",
+      "peeringDbId": 2763,
+      "netCount": 20,
+      "ixCount": 3,
+      "carrierCount": 2
+    }
+  },
+  {
+    "id": "pdb-2861",
+    "provider": "VPLS",
+    "providerType": "colocation",
+    "name": "Evocative DA4",
+    "displayName": "Evocative DA4",
+    "city": "Dallas",
+    "state": "TX",
+    "country": "US",
+    "lat": 32.837967,
+    "lng": -96.878307,
+    "verified": false,
+    "source": "community",
+    "metadata": {
+      "url": "https://www.evocative.com/",
+      "address1": "1515 Round Table Dr",
+      "zipcode": "75247",
+      "peeringDbId": 2861,
+      "netCount": 49,
+      "ixCount": 4,
+      "carrierCount": 2
+    }
+  },
+  {
+    "id": "pdb-2975",
+    "provider": "H5 Data Centers",
+    "providerType": "colocation",
+    "name": "H5 Data Centers Cleveland",
+    "displayName": "H5 Data Centers Cleveland",
+    "city": "Cleveland",
+    "state": "OH",
+    "country": "US",
+    "lat": 41.506167,
+    "lng": -81.68395,
+    "verified": false,
+    "source": "community",
+    "metadata": {
+      "url": "http://h5datacenters.com/",
+      "address1": "1525 Rockwell Ave",
+      "zipcode": "44114",
+      "clli": "CLEYOHIG",
+      "peeringDbId": 2975,
+      "netCount": 20,
+      "ixCount": 5,
+      "carrierCount": 3
+    }
+  },
+  {
+    "id": "pdb-3312",
+    "provider": "Cologix",
+    "providerType": "colocation",
+    "name": "Cologix MIN3",
+    "displayName": "Cologix MIN3",
+    "city": "Minneapolis",
+    "state": "MN",
+    "country": "US",
+    "lat": 44.971408,
+    "lng": -93.25458,
+    "verified": false,
+    "source": "community",
+    "metadata": {
+      "url": "https://www.cologix.com",
+      "address1": "511 11th Ave S Ste 200",
+      "zipcode": "55415-1537",
+      "clli": "MPLSMN",
+      "peeringDbId": 3312,
+      "netCount": 22,
+      "ixCount": 3,
+      "carrierCount": 3
+    }
+  },
+  {
+    "id": "pdb-3344",
+    "provider": "CoreSite",
+    "providerType": "colocation",
+    "name": "CoreSite - Santa Clara (SV7)",
+    "displayName": "CoreSite - Santa Clara (SV7)",
+    "city": "Santa Clara",
+    "state": "CA",
+    "country": "US",
+    "lat": 37.3761,
+    "lng": -121.973055,
+    "verified": false,
+    "source": "community",
+    "metadata": {
+      "url": "http://www.coresite.com",
+      "address1": "3020 Coronado Drive",
+      "zipcode": "95054",
+      "clli": "SNTCCA",
+      "peeringDbId": 3344,
+      "netCount": 20,
+      "ixCount": 2,
+      "carrierCount": 0
+    }
+  },
+  {
+    "id": "pdb-3398",
+    "provider": "Netrality Data Centers",
+    "providerType": "colocation",
+    "name": "Netrality Chicago - 717 S Wells",
+    "displayName": "Netrality Chicago - 717 S Wells",
+    "city": "Chicago",
+    "state": "IL",
+    "country": "US",
+    "lat": 41.872911,
+    "lng": -87.63327,
+    "verified": false,
+    "source": "community",
+    "metadata": {
+      "url": "https://netrality.com/locations/data-center-chicago/",
+      "address1": "717 S Wells - Netrality Data Center Meet Me Room",
+      "address2": "717 S Wells Street",
+      "zipcode": "60607",
+      "peeringDbId": 3398,
+      "netCount": 22,
+      "ixCount": 4,
+      "carrierCount": 2
+    }
+  },
+  {
+    "id": "pdb-3725",
+    "provider": "Digital Realty",
+    "providerType": "colocation",
+    "name": "Digital Realty ATL (250 Williams)",
+    "displayName": "Digital Realty ATL (250 Williams)",
+    "city": "Atlanta",
+    "state": "GA",
+    "country": "US",
+    "lat": 33.761611,
+    "lng": -84.391309,
+    "verified": false,
+    "source": "community",
+    "metadata": {
+      "url": "https://www.digitalrealty.com",
+      "address1": "250 Williams St NW",
+      "zipcode": "30303",
+      "peeringDbId": 3725,
+      "netCount": 72,
+      "ixCount": 3,
+      "carrierCount": 6
+    }
+  },
+  {
+    "id": "pdb-4284",
+    "provider": "DataBank",
+    "providerType": "colocation",
+    "name": "DataBank Dallas (DFW1)",
+    "displayName": "DataBank Dallas (DFW1)",
+    "city": "Dallas",
+    "state": "TX",
+    "country": "US",
+    "lat": 32.778287,
+    "lng": -96.7984,
+    "verified": false,
+    "source": "community",
+    "metadata": {
+      "url": "https://www.databank.com/data-centers/dallas/dfw1/",
+      "address1": "400 South Akard St",
+      "zipcode": "75202",
+      "peeringDbId": 4284,
+      "netCount": 41,
+      "ixCount": 4,
+      "carrierCount": 3
+    }
+  },
+  {
+    "id": "pdb-4292",
+    "provider": "DataBank",
+    "providerType": "colocation",
+    "name": "DataBank Pittsburgh (PIT1)",
+    "displayName": "DataBank Pittsburgh (PIT1)",
+    "city": "Pittsburgh",
+    "state": "PA",
+    "country": "US",
+    "lat": 40.451062,
+    "lng": -80.005186,
+    "verified": false,
+    "source": "community",
+    "metadata": {
+      "url": "https://www.databank.com/data-centers/pittsburgh/pit1/",
+      "address1": "100 South Commons",
+      "zipcode": "15212",
+      "peeringDbId": 4292,
+      "netCount": 38,
+      "ixCount": 1,
+      "carrierCount": 2
+    }
+  },
+  {
+    "id": "pdb-4293",
+    "provider": "DataBank",
+    "providerType": "colocation",
+    "name": "DataBank Salt Lake City (SLC1)",
+    "displayName": "DataBank Salt Lake City (SLC1)",
+    "city": "Salt Lake City",
+    "state": "UT",
+    "country": "US",
+    "lat": 40.768519,
+    "lng": -111.885833,
+    "verified": false,
+    "source": "community",
+    "metadata": {
+      "url": "https://www.databank.com/data-centers/salt-lake-city/slc1/",
+      "address1": "179 Social Hall Avenue",
+      "zipcode": "84111",
+      "peeringDbId": 4293,
+      "netCount": 39,
+      "ixCount": 3,
+      "carrierCount": 3
+    }
+  },
+  {
+    "id": "pdb-4294",
+    "provider": "DataBank",
+    "providerType": "colocation",
+    "name": "DataBank Salt Lake City (SLC2)",
+    "displayName": "DataBank Salt Lake City (SLC2)",
+    "city": "Bluffdale",
+    "state": "UT",
+    "country": "US",
+    "lat": 40.480032,
+    "lng": -111.904533,
+    "verified": false,
+    "source": "community",
+    "metadata": {
+      "url": "https://www.databank.com/data-centers/salt-lake-city/granite-point-campus/slc2/",
+      "address1": "14944 Pony Express Road",
+      "zipcode": "84065",
+      "peeringDbId": 4294,
+      "netCount": 22,
+      "ixCount": 2,
+      "carrierCount": 2
+    }
+  },
+  {
+    "id": "pdb-5183",
+    "provider": "Serverhosh Internet Service",
+    "providerType": "colocation",
+    "name": "WowRack",
+    "displayName": "WowRack",
+    "city": "Tukwila",
+    "state": "WA",
+    "country": "US",
+    "lat": 47.49312,
+    "lng": -122.293712,
+    "verified": false,
+    "source": "community",
+    "metadata": {
+      "url": "https://www.wowrack.com",
+      "address1": "12201 Tukwila International Blvd",
+      "zipcode": "98168",
+      "peeringDbId": 5183,
+      "netCount": 21,
+      "ixCount": 3,
+      "carrierCount": 1
+    }
+  },
+  {
+    "id": "pdb-5693",
+    "provider": "RACK59 Partners",
+    "providerType": "colocation",
+    "name": "RACK59 Data Center",
+    "displayName": "RACK59 Data Center",
+    "city": "Oklahoma City",
+    "state": "OK",
+    "country": "US",
+    "lat": 35.466482,
+    "lng": -97.649302,
+    "verified": false,
+    "source": "community",
+    "metadata": {
+      "url": "http://www.RACK59.com",
+      "address1": "7725 W Reno Ave, Ste #304",
+      "zipcode": "73127",
+      "clli": "OKCYOKWE",
+      "peeringDbId": 5693,
+      "netCount": 25,
+      "ixCount": 1,
+      "carrierCount": 2
+    }
+  },
+  {
+    "id": "pdb-6011",
+    "provider": "H5 Data Centers",
+    "providerType": "colocation",
+    "name": "H5 Data Centers San Antonio",
+    "displayName": "H5 Data Centers San Antonio",
+    "city": "San Antonio",
+    "state": "TX",
+    "country": "US",
+    "lat": 29.429369,
+    "lng": -98.486791,
+    "verified": false,
+    "source": "community",
+    "metadata": {
+      "url": "https://h5datacenters.com/san-antonio-data-center.html",
+      "address1": "100 Taylor St",
+      "zipcode": "78205",
+      "peeringDbId": 6011,
+      "netCount": 21,
+      "ixCount": 1,
+      "carrierCount": 2
+    }
+  },
+  {
+    "id": "pdb-9145",
+    "provider": "NOCIX",
+    "providerType": "colocation",
+    "name": "1530 SWIFT - NOCIX",
+    "displayName": "1530 SWIFT - NOCIX",
+    "city": "North Kansas City",
+    "state": "MO",
+    "country": "US",
+    "lat": 39.136878,
+    "lng": -94.577558,
+    "verified": false,
+    "source": "community",
+    "metadata": {
+      "url": "http://www.1530swift.com",
+      "statusDashboard": "http://speedtest.nocix.net",
+      "address1": "1530 Swift St",
+      "zipcode": "64116",
+      "clli": "SFTNKCMO",
+      "peeringDbId": 9145,
+      "netCount": 150,
+      "ixCount": 15,
+      "carrierCount": 4
+    }
+  },
+  {
+    "id": "pdb-10674",
+    "provider": "Energy Group Networks",
+    "providerType": "colocation",
+    "name": "OpenColo",
+    "displayName": "OpenColo",
+    "city": "Santa Clara",
+    "state": "CA",
+    "country": "US",
+    "lat": 37.378892,
+    "lng": -121.956248,
+    "verified": false,
+    "source": "community",
+    "metadata": {
+      "url": "https://opencolo.com/our-facility/",
+      "address1": "3223 Kenneth St",
+      "zipcode": "95054",
+      "peeringDbId": 10674,
+      "netCount": 22,
+      "ixCount": 3,
+      "carrierCount": 0
+    }
+  },
+  {
+    "id": "pdb-11762",
+    "provider": "Equinix",
+    "providerType": "colocation",
+    "name": "Equinix DA11 - Dallas",
+    "displayName": "Equinix DA11 - Dallas",
+    "city": "Dallas",
+    "state": "TX",
+    "country": "US",
+    "lat": 32.801347,
+    "lng": -96.821074,
+    "verified": false,
+    "source": "community",
+    "metadata": {
+      "url": "https://www.equinix.com/locations/americas-colocation/united-states-colocation/dallas-data-centers/da11/",
+      "address1": "1990 N Stemmons Fwy",
+      "zipcode": "75207-3107",
+      "clli": "DLLSTX",
+      "peeringDbId": 11762,
+      "netCount": 51,
+      "ixCount": 3,
+      "carrierCount": 4
+    }
+  },
+  {
+    "id": "pdb-14101",
+    "provider": "FIBERSTATE",
+    "providerType": "colocation",
+    "name": "FIBERSTATE Salt Lake City (SLC1)",
+    "displayName": "FIBERSTATE Salt Lake City (SLC1)",
+    "city": "Draper",
+    "state": "UT",
+    "country": "US",
+    "lat": 40.511814,
+    "lng": -111.887967,
+    "verified": false,
+    "source": "community",
+    "metadata": {
+      "url": "https://fiberstate.com",
+      "address1": "106 E 13200 S",
+      "zipcode": "84020",
+      "clli": "SLC",
+      "peeringDbId": 14101,
+      "netCount": 24,
+      "ixCount": 1,
+      "carrierCount": 0
+    }
   }
 ]
