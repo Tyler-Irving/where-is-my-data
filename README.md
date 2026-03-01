@@ -62,6 +62,7 @@ cp .env.example .env.local
 Edit `.env.local` and add your Mapbox token:
 ```bash
 NEXT_PUBLIC_MAPBOX_TOKEN=your_mapbox_token_here
+PEERING_DB_KEY=your_peering_db_key
 ```
 
 Get your token at: https://account.mapbox.com/access-tokens/
