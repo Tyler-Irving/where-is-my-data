@@ -1,14 +1,14 @@
 'use client';
 
-import React, { useEffect, useState, useMemo } from 'react';
-import Map, { Source, Layer } from 'react-map-gl/mapbox';
-import { useMapStore } from '@/store/mapStore';
+import React, { useEffect, useState, useMemo, useRef, useCallback } from 'react';
+import Map, { Source, Layer, type MapRef } from 'react-map-gl/mapbox';
+import { useMapStore, COUNTRY_CONFIGS, _setMapInstance } from '@/store/mapStore';
+import { CountrySwitcher } from './CountrySwitcher';
 import { useDatacenterStore } from '@/store/datacenterStore';
 import { useFilterStore } from '@/store/filterStore';
 import { mockDatacenters } from '@/lib/data/mockDatacenters';
 import { DatacenterMarkers } from './DatacenterMarkers';
 import { MapControls } from './MapControls';
-import { MapLegend } from './MapLegend';
 import { LatencyLines } from '@/components/latency/LatencyLines';
 import { NetworkBackboneLines } from '@/components/network/NetworkBackboneLines';
 import { Datacenter } from '@/types/datacenter';
@@ -49,15 +49,17 @@ function LoadingDots() {
 }
 
 export const MapContainer = React.memo(function MapContainer() {
-  const { viewport, setViewport } = useMapStore();
+  const { viewport, setViewport, activeCountry } = useMapStore();
+  const countryConfig = COUNTRY_CONFIGS[activeCountry] ?? COUNTRY_CONFIGS['US'];
+  const mapRef = useRef<MapRef>(null);
   const { datacenters, setDatacenters } = useDatacenterStore();
-  const { providers, providerTypes, capacityRange, pueRange, renewableOnly } = useFilterStore();
+  const { providers, providerTypes, countries, capacityRange, pueRange, renewableOnly, setCountry } = useFilterStore();
   const [isLoading, setIsLoading] = React.useState(true);
   const [hoveredDatacenter, setHoveredDatacenter] = useState<Datacenter | null>(null);
 
   const filterCriteria = useMemo(() => ({
-    providers, providerTypes, capacityRange, pueRange, renewableOnly,
-  }), [providers, providerTypes, capacityRange, pueRange, renewableOnly]);
+    providers, providerTypes, countries, capacityRange, pueRange, renewableOnly,
+  }), [providers, providerTypes, countries, capacityRange, pueRange, renewableOnly]);
 
   useEffect(() => {
     async function fetchDatacenters() {
@@ -93,6 +95,69 @@ export const MapContainer = React.memo(function MapContainer() {
     return { type: 'FeatureCollection' as const, features };
   }, [hoveredDatacenter, datacenters, filterCriteria]);
 
+  // Always-current ref so handleLoad (created once) reads fresh config values.
+  const countryConfigRef = useRef(countryConfig);
+  countryConfigRef.current = countryConfig;
+
+  // Monotonic counter: each country-switch animation gets a unique ID so stale
+  // moveend callbacks from interrupted animations are silently discarded.
+  const animationGenRef = useRef(0);
+
+  // Fires once when Mapbox finishes loading. Sets projection/bounds imperatively.
+  // Must NOT be reactive (no countryConfig dep) — re-creating it would not re-run
+  // onLoad, and it uses countryConfigRef to stay fresh.
+  const handleLoad = useCallback(() => {
+    const map = mapRef.current?.getMap();
+    if (!map) return;
+    _setMapInstance(map);
+    map.setProjection('mercator');
+    map.setMaxBounds(countryConfigRef.current.maxBounds);
+    map.setMinZoom(countryConfigRef.current.minZoom);
+  }, []); // intentionally empty — handleLoad only runs once via onLoad; countryConfigRef is a ref
+
+  // When the active country changes, drive navigation imperatively:
+  // 1. Clear old bounds so the camera can move freely.
+  // 2. flyTo the new country with a smooth easeInOut curve.
+  // 3. Once the animation finishes, lock bounds + apply the country filter.
+  //
+  // Delaying setCountry until moveend keeps current-country markers visible
+  // during the flight, eliminating the "markers snap before camera moves" choppiness.
+  // The animationGenRef guards against stale moveend callbacks on rapid clicks.
+  useEffect(() => {
+    const map = mapRef.current?.getMap();
+    if (!map || !map.loaded()) return;
+
+    const cfg = countryConfigRef.current;
+    const targetCountry = activeCountry;
+    const myGen = ++animationGenRef.current;
+
+    // null is valid at runtime but not in mapbox-gl's TypeScript types
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    map.setMaxBounds(null as any);
+    map.setMinZoom(0);
+
+    map.flyTo({
+      center: [cfg.viewport.longitude, cfg.viewport.latitude],
+      zoom: cfg.viewport.zoom,
+      bearing: 0,
+      pitch: 0,
+      duration: 1200,
+      easing: (t) => t < 0.5 ? 2 * t * t : -1 + (4 - 2 * t) * t,
+    });
+
+    map.once('moveend', () => {
+      if (animationGenRef.current !== myGen) return; // superseded by a newer animation
+      map.setMaxBounds(cfg.maxBounds);
+      map.setMinZoom(cfg.minZoom);
+      setCountry(targetCountry); // apply filter after landing, not before takeoff
+    });
+  }, [activeCountry, setCountry]); // intentionally omit countryConfigRef — it's a ref, always current
+
+  const handleMove = useCallback(
+    (evt: { viewState: Parameters<typeof setViewport>[0] }) => setViewport(evt.viewState),
+    [setViewport]
+  );
+
   const connectionLineLayer = useMemo(() => {
     const providerColor = hoveredDatacenter ? getProviderColor(hoveredDatacenter.provider) : '#6B7280';
     const displayColor = getDisplayColor(providerColor);
@@ -106,14 +171,15 @@ export const MapContainer = React.memo(function MapContainer() {
   return (
     <div className="relative w-full h-[calc(100vh-9.5rem)] md:h-full">
       {isLoading && <LoadingDots />}
+      <CountrySwitcher />
 
       <Map
-        {...viewport}
-        onMove={evt => setViewport(evt.viewState)}
+        ref={mapRef}
+        initialViewState={viewport}
+        onMove={handleMove}
+        onLoad={handleLoad}
         mapStyle="mapbox://styles/mapbox/dark-v11"
         mapboxAccessToken={MAPBOX_TOKEN}
-        maxBounds={[[-125, 24], [-66, 49]]}
-        minZoom={3}
         maxZoom={12}
       >
         {connectionLines.features.length > 0 && (
@@ -127,7 +193,6 @@ export const MapContainer = React.memo(function MapContainer() {
       </Map>
 
       <MapControls />
-      <MapLegend />
     </div>
   );
 });

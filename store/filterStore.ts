@@ -6,16 +6,19 @@ export interface FilterState {
   // Active filters
   providers: Set<string>;
   providerTypes: Set<ProviderType>;
+  countries: Set<string>;
   capacityRange: [number, number]; // MW
   pueRange: [number, number];
   renewableOnly: boolean;
-  
+
   // UI state
   isPanelOpen: boolean;
-  
+
   // Actions
   toggleProvider: (provider: string) => void;
   toggleProviderType: (type: ProviderType) => void;
+  toggleCountry: (country: string) => void;
+  setCountry: (code: string) => void;
   setCapacityRange: (range: [number, number]) => void;
   setPueRange: (range: [number, number]) => void;
   setRenewableOnly: (value: boolean) => void;
@@ -30,6 +33,7 @@ const DEFAULT_PUE_RANGE: [number, number] = [1.0, 2.0];
 export const useFilterStore = create<FilterState>((set, get) => ({
   providers: new Set(),
   providerTypes: new Set(),
+  countries: new Set(),
   capacityRange: DEFAULT_CAPACITY_RANGE,
   pueRange: DEFAULT_PUE_RANGE,
   renewableOnly: false,
@@ -56,7 +60,20 @@ export const useFilterStore = create<FilterState>((set, get) => ({
       }
       return { providerTypes: newSet };
     }),
-  
+
+  toggleCountry: (country) =>
+    set((state) => {
+      const newSet = new Set(state.countries);
+      if (newSet.has(country)) {
+        newSet.delete(country);
+      } else {
+        newSet.add(country);
+      }
+      return { countries: newSet };
+    }),
+
+  setCountry: (code) => set({ countries: new Set([code]) }),
+
   setCapacityRange: (range) => set({ capacityRange: range }),
   
   setPueRange: (range) => set({ pueRange: range }),
@@ -69,16 +86,18 @@ export const useFilterStore = create<FilterState>((set, get) => ({
     set({
       providers: new Set(),
       providerTypes: new Set(),
+      countries: new Set(),
       capacityRange: DEFAULT_CAPACITY_RANGE,
       pueRange: DEFAULT_PUE_RANGE,
       renewableOnly: false,
     }),
-  
+
   hasActiveFilters: () => {
     const state = get();
     return (
       state.providers.size > 0 ||
       state.providerTypes.size > 0 ||
+      state.countries.size > 0 ||
       state.capacityRange[0] !== DEFAULT_CAPACITY_RANGE[0] ||
       state.capacityRange[1] !== DEFAULT_CAPACITY_RANGE[1] ||
       state.pueRange[0] !== DEFAULT_PUE_RANGE[0] ||

@@ -4,16 +4,18 @@
  *
  * Syncs PeeringDB facility data into lib/data/datacenters.json.
  *
- * What it does:
- *   1. Fetches all US facilities from PeeringDB (paginated)
- *   2. Matches existing colocation/tech-giant DCs by city + name similarity
+ * What it does (US mode, default):
+ *   1. Fetches all facilities for the target country from PeeringDB (paginated)
+ *   2. Matches existing colocation/tech-giant DCs by city + name similarity (US only)
  *   3. Enriches matched DCs with: peeringDbId, netCount, ixCount, carrierCount,
  *      address1, address2, zipcode, clli
- *   4. Adds new notable facilities (net_count >= NET_COUNT_THRESHOLD) as new entries
+ *   4. Adds new notable facilities (net_count >= threshold) as new entries
  *   5. Writes updated lib/data/datacenters.json
  *
  * Usage:
- *   node scripts/sync-peeringdb.mjs
+ *   node scripts/sync-peeringdb.mjs              # US (default)
+ *   node scripts/sync-peeringdb.mjs --country DE  # Germany
+ *   node scripts/sync-peeringdb.mjs --country GB  # United Kingdom
  *
  * Requires PEERING_DB_KEY in .env.local
  */
@@ -25,12 +27,21 @@ import { fileURLToPath } from 'url';
 const __dirname = dirname(fileURLToPath(import.meta.url));
 const ROOT = resolve(__dirname, '..');
 
+// ─── CLI args ────────────────────────────────────────────────────────────────
+
+const args = process.argv.slice(2);
+const countryArgIdx = args.indexOf('--country');
+const COUNTRY = countryArgIdx >= 0 ? (args[countryArgIdx + 1] ?? 'US').toUpperCase() : 'US';
+
 // ─── Config ─────────────────────────────────────────────────────────────────
 
-/** Minimum PeeringDB net_count for a new facility to be added to the dataset */
-const NET_COUNT_THRESHOLD = 20;
+/**
+ * Minimum net_count for a new facility to be added.
+ * Lower threshold for non-US countries to capture more quality hubs.
+ */
+const NET_COUNT_THRESHOLD = COUNTRY === 'US' ? 20 : 10;
 
-/** Minimum name similarity score (0–1) to accept a match between an existing DC and a PeeringDB facility */
+/** Minimum name similarity score (0–1) to accept a match */
 const MATCH_THRESHOLD = 0.3;
 
 /** Only match these providerTypes to PeeringDB (cloud regions are not single PDB facilities) */
@@ -59,16 +70,16 @@ function loadEnv() {
 
 // ─── PeeringDB fetcher ───────────────────────────────────────────────────────
 
-async function fetchAllUsFacilities(apiKey) {
+async function fetchAllFacilities(apiKey, country) {
   const facilities = [];
   let skip = 0;
   const limit = 500;
 
-  console.log('Fetching US facilities from PeeringDB...');
+  console.log(`Fetching ${country} facilities from PeeringDB...`);
 
   while (true) {
     const url =
-      `https://www.peeringdb.com/api/fac?country=US&status=ok&depth=0&limit=${limit}&skip=${skip}`;
+      `https://www.peeringdb.com/api/fac?country=${country}&status=ok&depth=0&limit=${limit}&skip=${skip}`;
 
     const res = await fetch(url, {
       headers: {
@@ -90,7 +101,7 @@ async function fetchAllUsFacilities(apiKey) {
     skip += limit;
   }
 
-  console.log(`\nTotal US facilities fetched: ${facilities.length}\n`);
+  console.log(`\nTotal ${country} facilities fetched: ${facilities.length}\n`);
   return facilities;
 }
 
@@ -112,10 +123,8 @@ function nameSimilarity(a, b) {
   const na = normalizeName(a);
   const nb = normalizeName(b);
 
-  // Substring containment is a strong signal
   if (na.includes(nb) || nb.includes(na)) return 1.0;
 
-  // Jaccard similarity on words longer than 2 chars
   const wordsA = new Set(na.split(/\s+/).filter((w) => w.length > 2));
   const wordsB = new Set(nb.split(/\s+/).filter((w) => w.length > 2));
   if (wordsA.size === 0 || wordsB.size === 0) return 0;
@@ -131,17 +140,13 @@ function nameSimilarity(a, b) {
  */
 function normalizeOrgName(orgName) {
   return orgName
-    .replace(/,?\s*(Inc\.?|LLC\.?|Ltd\.?|Corp\.?|Corporation|Limited|Co\.)$/i, '')
+    .replace(/,?\s*(Inc\.?|LLC\.?|Ltd\.?|Corp\.?|Corporation|Limited|Co\.|GmbH\.?|AG\.?|SE\.?)$/i, '')
     .replace(/\s+/g, ' ')
     .trim();
 }
 
 // ─── Matching ─────────────────────────────────────────────────────────────────
 
-/**
- * Build a city-keyed lookup from PeeringDB facilities.
- * city (lowercase) → facility[]
- */
 function buildCityLookup(facilities) {
   const lookup = {};
   for (const fac of facilities) {
@@ -152,10 +157,6 @@ function buildCityLookup(facilities) {
   return lookup;
 }
 
-/**
- * Find the best-matching PeeringDB facility for an existing DC.
- * Returns the facility or null if no match above threshold.
- */
 function findBestMatch(dc, pdbByCity) {
   const dcCity = (dc.city ?? '').toLowerCase();
   const candidates = pdbByCity[dcCity] ?? [];
@@ -163,7 +164,7 @@ function findBestMatch(dc, pdbByCity) {
 
   const dcName = dc.displayName || dc.name || '';
   let best = null;
-  let bestScore = MATCH_THRESHOLD - 0.001; // must exceed threshold
+  let bestScore = MATCH_THRESHOLD - 0.001;
 
   for (const fac of candidates) {
     const score = nameSimilarity(dcName, fac.name);
@@ -179,6 +180,9 @@ function findBestMatch(dc, pdbByCity) {
 // ─── Main ─────────────────────────────────────────────────────────────────────
 
 async function main() {
+  console.log(`Country: ${COUNTRY}`);
+  console.log(`Net count threshold: ${NET_COUNT_THRESHOLD}\n`);
+
   // Load API key
   const env = loadEnv();
   const apiKey = env['PEERING_DB_KEY'];
@@ -193,47 +197,57 @@ async function main() {
   console.log(`Loaded ${existingDcs.length} existing datacenters\n`);
 
   // Fetch from PeeringDB
-  const pdbFacilities = await fetchAllUsFacilities(apiKey);
+  const pdbFacilities = await fetchAllFacilities(apiKey, COUNTRY);
 
   // Build city lookup
   const pdbByCity = buildCityLookup(pdbFacilities);
 
-  // ── Step 1: Enrich existing DCs ──────────────────────────────────────────
+  // ── Step 1: Enrich existing DCs (US only — non-US has no base entries yet) ──
   const matchedPdbIds = new Set();
   let enrichedCount = 0;
   const unmatchedNames = [];
 
-  const enrichedDcs = existingDcs.map((dc) => {
-    const providerType = dc.providerType ?? dc.metadata?.providerType;
+  let enrichedDcs = existingDcs;
 
-    // Only attempt to match colocation and tech-giant facilities
-    if (!MATCHABLE_TYPES.has(providerType)) return dc;
+  if (COUNTRY === 'US') {
+    enrichedDcs = existingDcs.map((dc) => {
+      const providerType = dc.providerType ?? dc.metadata?.providerType;
 
-    const match = findBestMatch(dc, pdbByCity);
-    if (!match) {
-      unmatchedNames.push(dc.displayName || dc.name);
-      return dc;
+      if (!MATCHABLE_TYPES.has(providerType)) return dc;
+
+      const match = findBestMatch(dc, pdbByCity);
+      if (!match) {
+        unmatchedNames.push(dc.displayName || dc.name);
+        return dc;
+      }
+
+      matchedPdbIds.add(match.id);
+      enrichedCount++;
+
+      return {
+        ...dc,
+        metadata: {
+          ...(dc.metadata ?? {}),
+          peeringDbId: match.id,
+          netCount: match.net_count,
+          ixCount: match.ix_count,
+          carrierCount: match.carrier_count,
+          ...(match.address1 ? { address1: match.address1 } : {}),
+          ...(match.address2 ? { address2: match.address2 } : {}),
+          ...(match.zipcode ? { zipcode: match.zipcode } : {}),
+          ...(match.clli ? { clli: match.clli } : {}),
+        },
+      };
+    });
+  } else {
+    // For non-US: mark existing entries for that country as already matched
+    // so we don't duplicate entries if re-running the script
+    for (const dc of existingDcs) {
+      if (dc.country === COUNTRY && dc.metadata?.peeringDbId) {
+        matchedPdbIds.add(dc.metadata.peeringDbId);
+      }
     }
-
-    matchedPdbIds.add(match.id);
-    enrichedCount++;
-
-    return {
-      ...dc,
-      metadata: {
-        ...(dc.metadata ?? {}),
-        peeringDbId: match.id,
-        netCount: match.net_count,
-        ixCount: match.ix_count,
-        carrierCount: match.carrier_count,
-        // Only overwrite address fields if PeeringDB has them
-        ...(match.address1 ? { address1: match.address1 } : {}),
-        ...(match.address2 ? { address2: match.address2 } : {}),
-        ...(match.zipcode ? { zipcode: match.zipcode } : {}),
-        ...(match.clli ? { clli: match.clli } : {}),
-      },
-    };
-  });
+  }
 
   // ── Step 2: Add new notable facilities ───────────────────────────────────
   const newDcs = [];
@@ -242,7 +256,6 @@ async function main() {
     if (matchedPdbIds.has(fac.id)) continue;
     if ((fac.net_count ?? 0) < NET_COUNT_THRESHOLD) continue;
     if (!fac.latitude || !fac.longitude) continue;
-    if (!fac.state) continue;
 
     const provider = normalizeOrgName(fac.org_name ?? 'Unknown');
 
@@ -253,8 +266,8 @@ async function main() {
       name: fac.name,
       displayName: fac.name,
       city: fac.city ?? '',
-      state: fac.state,
-      country: 'US',
+      state: fac.state ?? '',
+      country: COUNTRY,
       lat: fac.latitude,
       lng: fac.longitude,
       verified: false,
@@ -280,9 +293,11 @@ async function main() {
 
   // ── Summary ───────────────────────────────────────────────────────────────
   console.log('─'.repeat(52));
-  console.log('✅ Sync complete!\n');
-  console.log(`PeeringDB US facilities fetched:   ${pdbFacilities.length}`);
-  console.log(`Existing DCs enriched:             ${enrichedCount}`);
+  console.log('Sync complete!\n');
+  console.log(`PeeringDB ${COUNTRY} facilities fetched:  ${pdbFacilities.length}`);
+  if (COUNTRY === 'US') {
+    console.log(`Existing DCs enriched:             ${enrichedCount}`);
+  }
   console.log(`New DCs added (net_count ≥ ${NET_COUNT_THRESHOLD}):    ${newDcs.length}`);
   console.log(`Final datacenter count:            ${finalDcs.length}`);
 
@@ -294,7 +309,7 @@ async function main() {
   }
 
   console.log('\nNext steps:');
-  console.log('  npm run dev     → verify new data in the app');
+  console.log('  npm run dev       → verify new data in the app');
   console.log('  npm run typecheck → confirm no TS errors');
 }
 

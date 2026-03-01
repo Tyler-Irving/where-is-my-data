@@ -22,6 +22,7 @@ function makeDC(overrides: Partial<Datacenter> = {}): Datacenter {
 const defaultFilters = {
   providers: new Set<string>(),
   providerTypes: new Set<ProviderType>(),
+  countries: new Set<string>(),
   capacityRange: [0, 500] as [number, number],
   pueRange: [1.0, 2.0] as [number, number],
   renewableOnly: false,

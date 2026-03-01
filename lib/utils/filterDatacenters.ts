@@ -6,6 +6,7 @@ const DEFAULT_PUE_RANGE: [number, number] = [1.0, 2.0];
 interface FilterCriteria {
   providers: Set<string>;
   providerTypes: Set<ProviderType>;
+  countries: Set<string>;
   capacityRange: [number, number];
   pueRange: [number, number];
   renewableOnly: boolean;
@@ -16,9 +17,11 @@ interface FilterCriteria {
  * Shared across MapContainer, DatacenterMarkers, FilterBar, and ExportButton.
  */
 export function filterDatacenters(datacenters: Datacenter[], filters: FilterCriteria): Datacenter[] {
-  const { providers, providerTypes, capacityRange, pueRange, renewableOnly } = filters;
+  const { providers, providerTypes, countries, capacityRange, pueRange, renewableOnly } = filters;
 
   return datacenters.filter((dc) => {
+    if (countries.size > 0 && !countries.has(dc.country ?? 'US')) return false;
+
     if (providers.size > 0 && !providers.has(dc.provider)) return false;
 
     if (providerTypes.size > 0) {

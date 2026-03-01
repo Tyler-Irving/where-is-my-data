@@ -12,6 +12,7 @@ export interface Datacenter {
   lng: number;
   city?: string;
   state: string;
+  country?: string;
   powerStatus: IssueStatus;
   waterStatus: IssueStatus;
   verified: boolean;
