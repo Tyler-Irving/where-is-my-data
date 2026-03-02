@@ -46,6 +46,7 @@ export interface DatacenterPricing {
   provider: string;
   region: string;
   displayName: string;
+  country?: string;
   pricing: {
     compute: {
       pricePerHour: number;

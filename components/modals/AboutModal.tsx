@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { X, Info, Check } from 'lucide-react';
+import { useDatacenterStore } from '@/store/datacenterStore';
 
 interface AboutModalProps {
   isOpen: boolean;
@@ -9,10 +10,22 @@ interface AboutModalProps {
 }
 
 export const AboutModal = React.memo(function AboutModal({ isOpen, onClose }: AboutModalProps) {
+  const datacenters = useDatacenterStore(state => state.datacenters);
+
   if (!isOpen) return null;
 
+  const totalCount = datacenters.length || 181;
+  const providerCount = datacenters.length > 0
+    ? new Set(datacenters.map(dc => dc.provider)).size
+    : 27;
+  const lastUpdated = datacenters[0]?.lastUpdated
+    ? new Date(datacenters[0].lastUpdated).toLocaleDateString('en-US', {
+        month: 'long', day: 'numeric', year: 'numeric'
+      })
+    : 'Syncing…';
+
   const features = [
-    '131 datacenter locations across the US',
+    `${totalCount} datacenter locations`,
     'Filter by provider, type, capacity & PUE',
     'Search by name, city, or state',
     'Latency calculator between regions',
@@ -58,11 +71,27 @@ export const AboutModal = React.memo(function AboutModal({ isOpen, onClose }: Ab
 
         {/* Scrollable content */}
         <div className="overflow-y-auto scrollbar-hide flex-1 p-5 space-y-6">
+          {/* Live stats */}
+          <div className="grid grid-cols-3 gap-3">
+            <div className="bg-white/[0.04] rounded-xl p-4">
+              <p className="text-[10px] font-bold uppercase tracking-widest text-white/35 mb-1">Datacenters</p>
+              <p className="text-xl font-bold text-white tabular-nums">{totalCount}</p>
+            </div>
+            <div className="bg-white/[0.04] rounded-xl p-4">
+              <p className="text-[10px] font-bold uppercase tracking-widest text-white/35 mb-1">Providers</p>
+              <p className="text-xl font-bold text-white tabular-nums">{providerCount}</p>
+            </div>
+            <div className="bg-white/[0.04] rounded-xl p-4">
+              <p className="text-[10px] font-bold uppercase tracking-widest text-white/35 mb-1">Last Updated</p>
+              <p className="text-sm font-bold text-[#00D084] leading-tight">{lastUpdated}</p>
+            </div>
+          </div>
+
           {/* Overview */}
           <section>
             <p className="text-[10px] font-bold uppercase tracking-widest text-white/35 mb-3">What is this?</p>
             <p className="text-sm text-white/60 leading-relaxed">
-              An interactive map showing <span className="text-white font-semibold">131 datacenter locations</span> across the United States from <span className="text-white font-semibold">major providers</span>. Explore hyperscale cloud facilities, colocation centers, tech giant datacenters, and edge computing infrastructure all in one place.
+              An interactive map showing <span className="text-white font-semibold">{totalCount} datacenter locations</span> from <span className="text-white font-semibold">major providers</span> across the US and Europe. Explore hyperscale cloud facilities, colocation centers, tech giant datacenters, and edge computing infrastructure all in one place.
             </p>
           </section>
 
