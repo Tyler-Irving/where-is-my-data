@@ -4,6 +4,7 @@ import React, { useState, useEffect, useCallback, useRef } from 'react';
 import { Search, X } from 'lucide-react';
 import { useDatacenterStore } from '@/store/datacenterStore';
 import { useMapStore } from '@/store/mapStore';
+import type { Datacenter } from '@/types/datacenter';
 
 interface SearchBarProps {
   onSearchResults?: (count: number) => void;
@@ -12,15 +13,21 @@ interface SearchBarProps {
 
 export const SearchBar = React.memo(function SearchBar({ onSearchResults, onResultSelected }: SearchBarProps) {
   const [query, setQuery] = useState('');
+  const [debouncedQuery, setDebouncedQuery] = useState(query);
   const [isFocused, setIsFocused] = useState(false);
   const [showResults, setShowResults] = useState(false);
   const inputRef = useRef<HTMLInputElement>(null);
   const { datacenters } = useDatacenterStore();
   const { setViewport, selectDatacenter } = useMapStore();
 
+  useEffect(() => {
+    const timer = setTimeout(() => setDebouncedQuery(query), 150);
+    return () => clearTimeout(timer);
+  }, [query]);
+
   const results = React.useMemo(() => {
-    if (!query.trim()) return [];
-    const searchLower = query.toLowerCase().trim();
+    if (!debouncedQuery.trim()) return [];
+    const searchLower = debouncedQuery.toLowerCase().trim();
     return datacenters.filter((dc) =>
       dc.name.toLowerCase().includes(searchLower) ||
       dc.provider.toLowerCase().includes(searchLower) ||
@@ -28,7 +35,7 @@ export const SearchBar = React.memo(function SearchBar({ onSearchResults, onResu
       dc.state.toLowerCase().includes(searchLower) ||
       dc.metadata?.region?.toLowerCase().includes(searchLower)
     ).slice(0, 8);
-  }, [query, datacenters]);
+  }, [debouncedQuery, datacenters]);
 
   useEffect(() => { onSearchResults?.(results.length); }, [results.length, onSearchResults]);
 
@@ -48,7 +55,7 @@ export const SearchBar = React.memo(function SearchBar({ onSearchResults, onResu
     return () => window.removeEventListener('keydown', handleKeyDown);
   }, [query]);
 
-  const handleSelectResult = useCallback((datacenter: typeof datacenters[0]) => {
+  const handleSelectResult = useCallback((datacenter: Datacenter) => {
     setViewport({ longitude: datacenter.lng, latitude: datacenter.lat, zoom: 8, bearing: 0, pitch: 0 });
     selectDatacenter(datacenter.id);
     setQuery('');
