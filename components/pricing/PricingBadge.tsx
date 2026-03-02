@@ -1,6 +1,7 @@
 'use client';
 
 import { DollarSign } from 'lucide-react';
+import { Badge } from '@/components/ui/badge';
 import { getPricingForDatacenter, formatCurrency, getPricingTier } from '@/lib/utils/pricing';
 import { usePricingStore } from '@/store/pricingStore';
 
@@ -24,10 +25,10 @@ export function PricingBadge({ datacenterId, variant = 'compact', className = ''
 
   if (variant === 'compact') {
     return (
-      <div className={`inline-flex items-center gap-1 rounded-md bg-zinc-800/50 px-2 py-1 text-xs ${className}`}>
+      <Badge variant="outline" className={`gap-1 rounded-md bg-zinc-800/50 border-zinc-700/50 px-2 py-1 text-xs font-normal ${className}`}>
         <DollarSign className="h-3 w-3 text-green-400" />
         <span className="font-medium">{formatCurrency(pricing.totalBaselineMonthly, false)}/mo</span>
-      </div>
+      </Badge>
     );
   }
 
