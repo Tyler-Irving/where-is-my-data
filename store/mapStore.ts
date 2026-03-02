@@ -27,11 +27,17 @@ export interface CountryConfig {
   label: string;
   flag: string;
   viewport: { latitude: number; longitude: number; zoom: number };
-  maxBounds: [[number, number], [number, number]];
+  maxBounds?: [[number, number], [number, number]];
   minZoom: number;
 }
 
 export const COUNTRY_CONFIGS: Record<string, CountryConfig> = {
+  GLOBAL: {
+    label: 'World',
+    flag: '🌍',
+    viewport: { latitude: 20, longitude: 0, zoom: 2 },
+    minZoom: 1,
+  },
   US: {
     label: 'United States',
     flag: '🇺🇸',
@@ -42,13 +48,34 @@ export const COUNTRY_CONFIGS: Record<string, CountryConfig> = {
   DE: {
     label: 'Germany',
     flag: '🇩🇪',
-    viewport: { latitude: 51.2, longitude: 10.5, zoom: 5.5 },
-    maxBounds: [[5.0, 46.5], [16.0, 56.0]],
-    minZoom: 5,
+    viewport: { latitude: 51.2, longitude: 10.5, zoom: 3.5 },
+    maxBounds: [[1.0, 44.0], [22.0, 59.0]],
+    minZoom: 3,
+  },
+  GB: {
+    label: 'United Kingdom',
+    flag: '🇬🇧',
+    viewport: { latitude: 54.5, longitude: 0.5, zoom: 4.5 },
+    maxBounds: [[-13.0, 48.5], [5.0, 63.0]],
+    minZoom: 3,
+  },
+  NL: {
+    label: 'Netherlands',
+    flag: '🇳🇱',
+    viewport: { latitude: 52.2, longitude: 5.3, zoom: 5.5 },
+    maxBounds: [[0.5, 48.5], [11.0, 56.5]],
+    minZoom: 4,
+  },
+  SG: {
+    label: 'Singapore',
+    flag: '🇸🇬',
+    viewport: { latitude: 1.35, longitude: 103.82, zoom: 10.5 },
+    maxBounds: [[103.5, 1.1], [104.1, 1.6]],
+    minZoom: 9,
   },
 };
 
-export const DEFAULT_COUNTRY = 'US';
+export const DEFAULT_COUNTRY = 'GLOBAL';
 
 export interface ViewportState {
   latitude: number;
@@ -73,9 +100,9 @@ interface MapState {
 }
 
 const initialViewport: ViewportState = {
-  latitude: 38.5,
-  longitude: -96.0,
-  zoom: 3.5,
+  latitude: 20,
+  longitude: 0,
+  zoom: 2,
   bearing: 0,
   pitch: 0,
 };
