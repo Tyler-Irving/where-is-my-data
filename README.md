@@ -11,7 +11,7 @@ Interactive map of cloud and colocation datacenters. Browse 299 facilities acros
 **Map & Search**
 - 299 datacenters across 70+ cloud, colocation, and edge providers — global coverage
 - Real-time search by name, provider, city, or state
-- Filter by country, provider type, capacity (MW), PUE, and renewable energy status
+- Filter by provider type, capacity (MW), PUE, and renewable energy status
 - Shareable URLs — any filtered view is bookmarkable and linkable
 
 **Compare & Analyze**
@@ -70,14 +70,26 @@ npm run typecheck    # TypeScript check
 
 ## Syncing PeeringDB data
 
-The `scripts/sync-peeringdb.mjs` script enriches colocation and tech-giant facilities with PeeringDB metadata (network count, IX count, carrier count, address). It can also discover new notable facilities not already in the dataset.
+**Enrich existing facilities:**
+
+`scripts/sync-peeringdb.mjs` enriches colocation and tech-giant facilities with PeeringDB metadata (network count, IX count, carrier count, address) and discovers new notable facilities.
 
 ```bash
 node scripts/sync-peeringdb.mjs              # Sync US facilities (default)
 node scripts/sync-peeringdb.mjs --country DE # Sync a specific country
 ```
 
-Requires `PEERING_DB_KEY` in `.env.local`.
+**Fetch facilities for a new country:**
+
+Country-specific fetch scripts write staged JSON to `lib/data/staging/` for review before merging:
+
+```bash
+npx ts-node scripts/fetch-peeringdb-gb.ts   # United Kingdom
+npx ts-node scripts/fetch-peeringdb-nl.ts   # Netherlands
+npx ts-node scripts/fetch-peeringdb-sg.ts   # Singapore
+```
+
+All scripts read `PEERING_DB_KEY` from `.env.local` (optional — falls back to unauthenticated).
 
 ---
 
@@ -100,7 +112,7 @@ store/        datacenterStore, filterStore, mapStore, comparisonStore,
               latencyStore, pricingStore
 hooks/        useUrlSync.ts
 types/        datacenter.ts, latency.ts, pricing.ts
-scripts/      sync-peeringdb.mjs
+scripts/      sync-peeringdb.mjs, fetch-peeringdb-{gb,nl,sg}.ts
 ```
 
 ---
@@ -116,7 +128,7 @@ scripts/      sync-peeringdb.mjs
 | 🇸🇬 Singapore | 17 |
 | **Total** | **299** |
 
-Map defaults to a global view. Use the country switcher (top-center of the map) to jump to a specific region, or the Country filter to show multiple countries simultaneously.
+Map defaults to a global view. Use the country switcher (top-center of the map) to jump to a specific region.
 
 ---
 
@@ -133,10 +145,8 @@ Data is a mix of `source: official`, `community`, and `estimated` — each datac
 
 ## Roadmap
 
-**In progress**
-- 3D globe view to support multi-country navigation
-
 **Planned**
+- 3D globe view
 - Live pricing API (replace static estimates)
 - Historical timeline — datacenter growth by year
 - Compliance indicators — GDPR, HIPAA, SOC 2, ISO 27001 per region
