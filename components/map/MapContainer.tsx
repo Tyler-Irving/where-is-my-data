@@ -53,7 +53,7 @@ export const MapContainer = React.memo(function MapContainer() {
   const countryConfig = COUNTRY_CONFIGS[activeCountry] ?? COUNTRY_CONFIGS['US'];
   const mapRef = useRef<MapRef>(null);
   const { datacenters, setDatacenters } = useDatacenterStore();
-  const { providers, providerTypes, countries, capacityRange, pueRange, renewableOnly, setCountry } = useFilterStore();
+  const { providers, providerTypes, countries, capacityRange, pueRange, renewableOnly, setCountry, clearCountry } = useFilterStore();
   const setPricingData = usePricingStore((s) => s.setPricingData);
   const [isLoading, setIsLoading] = React.useState(true);
   const [hoveredDatacenter, setHoveredDatacenter] = useState<Datacenter | null>(null);
@@ -136,7 +136,8 @@ export const MapContainer = React.memo(function MapContainer() {
     if (!map) return;
     _setMapInstance(map);
     map.setProjection('mercator');
-    map.setMaxBounds(countryConfigRef.current.maxBounds);
+    // eslint-disable-next-line @typescript-eslint/no-explicit-any
+    map.setMaxBounds((countryConfigRef.current.maxBounds ?? null) as any);
     map.setMinZoom(countryConfigRef.current.minZoom);
   }, []); // intentionally empty — handleLoad only runs once via onLoad; countryConfigRef is a ref
 
@@ -172,11 +173,17 @@ export const MapContainer = React.memo(function MapContainer() {
 
     map.once('moveend', () => {
       if (animationGenRef.current !== myGen) return; // superseded by a newer animation
-      map.setMaxBounds(cfg.maxBounds);
+      // eslint-disable-next-line @typescript-eslint/no-explicit-any
+      map.setMaxBounds((cfg.maxBounds ?? null) as any);
       map.setMinZoom(cfg.minZoom);
-      setCountry(targetCountry); // apply filter after landing, not before takeoff
+      // GLOBAL view shows all countries; individual country codes filter to that country
+      if (targetCountry === 'GLOBAL') {
+        clearCountry();
+      } else {
+        setCountry(targetCountry);
+      }
     });
-  }, [activeCountry, setCountry]); // intentionally omit countryConfigRef — it's a ref, always current
+  }, [activeCountry, setCountry, clearCountry]); // intentionally omit countryConfigRef — it's a ref, always current
 
   const handleMove = useCallback(
     (evt: { viewState: Parameters<typeof setViewport>[0] }) => setViewport(evt.viewState),

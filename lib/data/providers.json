@@ -238,5 +238,515 @@
     "textColor": "#FFFFFF",
     "website": "https://x.ai",
     "logoUrl": null
+  },
+  {
+    "id": "telehouse",
+    "name": "Telehouse",
+    "fullName": "Telehouse Europe",
+    "type": "colocation",
+    "color": "#E63946",
+    "textColor": "#FFFFFF",
+    "website": "https://www.telehouse.net",
+    "logoUrl": null
+  },
+  {
+    "id": "global-switch",
+    "name": "Global Switch",
+    "fullName": "Global Switch",
+    "type": "colocation",
+    "color": "#2EC4B6",
+    "textColor": "#FFFFFF",
+    "website": "https://www.globalswitch.com",
+    "logoUrl": null
+  },
+  {
+    "id": "virtus-data-centres",
+    "name": "Virtus Data Centres",
+    "fullName": "Virtus Data Centres",
+    "type": "colocation",
+    "color": "#1B4332",
+    "textColor": "#FFFFFF",
+    "website": "https://www.virtus.com",
+    "logoUrl": null
+  },
+  {
+    "id": "interxion",
+    "name": "Interxion",
+    "fullName": "Interxion (Digital Realty)",
+    "type": "colocation",
+    "color": "#FF6B35",
+    "textColor": "#FFFFFF",
+    "website": "https://www.interxion.com",
+    "logoUrl": null
+  },
+  {
+    "id": "datum",
+    "name": "Datum",
+    "fullName": "Datum Datacentres",
+    "type": "colocation",
+    "color": "#B5838D",
+    "textColor": "#FFFFFF",
+    "website": "https://www.datum.co.uk",
+    "logoUrl": null
+  },
+  {
+    "id": "ark-data-centres",
+    "name": "Ark Data Centres",
+    "fullName": "Ark Data Centres",
+    "type": "colocation",
+    "color": "#4A4E69",
+    "textColor": "#FFFFFF",
+    "website": "https://www.arkdatacentres.co.uk",
+    "logoUrl": null
+  },
+  {
+    "id": "pulsant",
+    "name": "Pulsant",
+    "fullName": "Pulsant",
+    "type": "colocation",
+    "color": "#6A994E",
+    "textColor": "#FFFFFF",
+    "website": "https://www.pulsant.com",
+    "logoUrl": null
+  },
+  {
+    "id": "colt",
+    "name": "Colt",
+    "fullName": "Colt Data Centre Services",
+    "type": "colocation",
+    "color": "#003366",
+    "textColor": "#FFFFFF",
+    "website": "https://www.colt.net",
+    "logoUrl": null
+  },
+  {
+    "id": "iomart",
+    "name": "iomart",
+    "fullName": "iomart Group",
+    "type": "colocation",
+    "color": "#5C4033",
+    "textColor": "#FFFFFF",
+    "website": "https://www.iomart.com",
+    "logoUrl": null
+  },
+  {
+    "id": "nikhef",
+    "name": "Nikhef",
+    "fullName": "Nikhef - National Institute for Subatomic Physics",
+    "type": "colocation",
+    "color": "#0B3D91",
+    "textColor": "#FFFFFF",
+    "website": "https://www.nikhef.nl",
+    "logoUrl": null
+  },
+  {
+    "id": "bit-bv",
+    "name": "BIT BV",
+    "fullName": "BIT BV",
+    "type": "colocation",
+    "color": "#FE6847",
+    "textColor": "#FFFFFF",
+    "website": "https://www.bit.nl",
+    "logoUrl": null
+  },
+  {
+    "id": "northc-datacenters",
+    "name": "NorthC Datacenters",
+    "fullName": "NorthC Datacenters",
+    "type": "colocation",
+    "color": "#457B9D",
+    "textColor": "#FFFFFF",
+    "website": "https://www.northcdatacenters.com",
+    "logoUrl": null
+  },
+  {
+    "id": "iron-mountain-data-centers",
+    "name": "Iron Mountain Data Centers",
+    "fullName": "Iron Mountain Data Centers",
+    "type": "colocation",
+    "color": "#A8DADC",
+    "textColor": "#000000",
+    "website": "https://www.ironmountain.com/data-centers",
+    "logoUrl": null
+  },
+  {
+    "id": "eunetworks-group",
+    "name": "euNetworks Group",
+    "fullName": "euNetworks Group",
+    "type": "colocation",
+    "color": "#F77F00",
+    "textColor": "#FFFFFF",
+    "website": "https://eunetworks.com",
+    "logoUrl": null
+  },
+  {
+    "id": "eurofiber",
+    "name": "Eurofiber",
+    "fullName": "Eurofiber Cloud Infra",
+    "type": "colocation",
+    "color": "#7B2D8B",
+    "textColor": "#FFFFFF",
+    "website": "https://www.eurofibercloudinfra.com",
+    "logoUrl": null
+  },
+  {
+    "id": "interracks",
+    "name": "InterRacks",
+    "fullName": "InterRacks / InterDC",
+    "type": "colocation",
+    "color": "#4CAF50",
+    "textColor": "#FFFFFF",
+    "website": "https://www.interdc.nl",
+    "logoUrl": null
+  },
+  {
+    "id": "databarn",
+    "name": "Databarn",
+    "fullName": "Databarn",
+    "type": "colocation",
+    "color": "#FF5722",
+    "textColor": "#FFFFFF",
+    "website": "https://www.databarn.nl",
+    "logoUrl": null
+  },
+  {
+    "id": "nlighten-hq-bv",
+    "name": "nLighten HQ BV",
+    "fullName": "nLighten",
+    "type": "colocation",
+    "color": "#00B4D8",
+    "textColor": "#FFFFFF",
+    "website": "https://www.nlighten.com",
+    "logoUrl": null
+  },
+  {
+    "id": "global-e-datacenter-bv",
+    "name": "Global-e Datacenter BV",
+    "fullName": "Global-e Datacenter BV",
+    "type": "colocation",
+    "color": "#90E0EF",
+    "textColor": "#000000",
+    "website": "https://www.global-datacenter.nl",
+    "logoUrl": null
+  },
+  {
+    "id": "smartdc",
+    "name": "Smartdc",
+    "fullName": "Smartdc",
+    "type": "colocation",
+    "color": "#6A0572",
+    "textColor": "#FFFFFF",
+    "website": "https://www.smartdc.net",
+    "logoUrl": null
+  },
+  {
+    "id": "kolodc",
+    "name": "KoloDC",
+    "fullName": "KoloDC",
+    "type": "colocation",
+    "color": "#1D7A8A",
+    "textColor": "#FFFFFF",
+    "website": "https://kolodc.com",
+    "logoUrl": null
+  },
+  {
+    "id": "previder-b-v-",
+    "name": "Previder B.V.",
+    "fullName": "Previder B.V.",
+    "type": "colocation",
+    "color": "#8B2FC9",
+    "textColor": "#FFFFFF",
+    "website": "https://www.previder.nl",
+    "logoUrl": null
+  },
+  {
+    "id": "kpn-wholesale",
+    "name": "KPN Wholesale",
+    "fullName": "KPN Wholesale",
+    "type": "colocation",
+    "color": "#009B3A",
+    "textColor": "#FFFFFF",
+    "website": "https://www.kpn-wholesale.com",
+    "logoUrl": null
+  },
+  {
+    "id": "eindhoven-fiber-exchange-b-v-",
+    "name": "Eindhoven Fiber eXchange B.V.",
+    "fullName": "Eindhoven Fiber eXchange (EFX)",
+    "type": "colocation",
+    "color": "#E9A820",
+    "textColor": "#000000",
+    "website": "http://www.efx.nl",
+    "logoUrl": null
+  },
+  {
+    "id": "colocenter-b-v-",
+    "name": "ColoCenter b.v.",
+    "fullName": "ColoCenter b.v.",
+    "type": "colocation",
+    "color": "#3D5A80",
+    "textColor": "#FFFFFF",
+    "website": "https://www.colocenter.nl",
+    "logoUrl": null
+  },
+  {
+    "id": "data-facilities",
+    "name": "Data Facilities",
+    "fullName": "Data Facilities",
+    "type": "colocation",
+    "color": "#D62828",
+    "textColor": "#FFFFFF",
+    "website": "https://dfdc.io",
+    "logoUrl": null
+  },
+  {
+    "id": "interconnect-services-bv",
+    "name": "Interconnect Services BV",
+    "fullName": "Interconnect Services BV",
+    "type": "colocation",
+    "color": "#2B9348",
+    "textColor": "#FFFFFF",
+    "website": "https://interconnect.nl",
+    "logoUrl": null
+  },
+  {
+    "id": "bytesnet-b-v-",
+    "name": "Bytesnet B.V.",
+    "fullName": "Bytesnet B.V.",
+    "type": "colocation",
+    "color": "#E07A5F",
+    "textColor": "#FFFFFF",
+    "website": "https://www.bytesnet.nl",
+    "logoUrl": null
+  },
+  {
+    "id": "edgeconnex-inc-",
+    "name": "EdgeConneX Inc.",
+    "fullName": "EdgeConneX Inc.",
+    "type": "colocation",
+    "color": "#F2CC8F",
+    "textColor": "#000000",
+    "website": "https://www.edgeconnex.com",
+    "logoUrl": null
+  },
+  {
+    "id": "cogent-communications-inc-",
+    "name": "Cogent Communications, Inc.",
+    "fullName": "Cogent Communications",
+    "type": "colocation",
+    "color": "#81B29A",
+    "textColor": "#000000",
+    "website": "https://www.cogentco.com",
+    "logoUrl": null
+  },
+  {
+    "id": "maincubes-b-v-",
+    "name": "Maincubes B.V.",
+    "fullName": "Maincubes",
+    "type": "colocation",
+    "color": "#7B5E3A",
+    "textColor": "#FFFFFF",
+    "website": "https://www.maincubes.com",
+    "logoUrl": null
+  },
+  {
+    "id": "skylink-data-center-bv",
+    "name": "SkyLink Data Center BV",
+    "fullName": "SkyLink Data Center BV",
+    "type": "colocation",
+    "color": "#0077B6",
+    "textColor": "#FFFFFF",
+    "website": "http://www.skylink-data-center.nl",
+    "logoUrl": null
+  },
+  {
+    "id": "greenhouse-datacenters-b-v-",
+    "name": "Greenhouse Datacenters B.V.",
+    "fullName": "Greenhouse Datacenters B.V.",
+    "type": "colocation",
+    "color": "#52B788",
+    "textColor": "#FFFFFF",
+    "website": "https://www.greenhousedatacenters.nl",
+    "logoUrl": null
+  },
+  {
+    "id": "penta-c-v-",
+    "name": "Penta C.V.",
+    "fullName": "Penta Infra",
+    "type": "colocation",
+    "color": "#C77DFF",
+    "textColor": "#000000",
+    "website": "https://penta-infra.com",
+    "logoUrl": null
+  },
+  {
+    "id": "ntt-data-s-global-data-centers-division",
+    "name": "NTT DATA's Global Data Centers division",
+    "fullName": "NTT Global Data Centers",
+    "type": "colocation",
+    "color": "#0096B7",
+    "textColor": "#FFFFFF",
+    "website": "https://datacenter.hello.global.ntt",
+    "logoUrl": null
+  },
+  {
+    "id": "itb-kwadraat-b-v-",
+    "name": "ITB-Kwadraat B.V.",
+    "fullName": "ITB-Kwadraat B.V.",
+    "type": "colocation",
+    "color": "#F4845F",
+    "textColor": "#FFFFFF",
+    "website": "https://itb-kwadraat.nl",
+    "logoUrl": null
+  },
+  {
+    "id": "qupra-b-v-",
+    "name": "Qupra B.V.",
+    "fullName": "Qupra B.V.",
+    "type": "colocation",
+    "color": "#390099",
+    "textColor": "#FFFFFF",
+    "website": "https://www.quprawholesale.com",
+    "logoUrl": null
+  },
+  {
+    "id": "cellnex-netherlands-b-v-",
+    "name": "Cellnex Netherlands B.V.",
+    "fullName": "Cellnex Netherlands",
+    "type": "colocation",
+    "color": "#9B2226",
+    "textColor": "#FFFFFF",
+    "website": "https://www.cellnex.com",
+    "logoUrl": null
+  },
+  {
+    "id": "iptp-networks",
+    "name": "IPTP Networks",
+    "fullName": "IPTP Networks",
+    "type": "colocation",
+    "color": "#606C38",
+    "textColor": "#FFFFFF",
+    "website": "https://www.iptp.com",
+    "logoUrl": null
+  },
+  {
+    "id": "datacenter-com-netherlands-b-v-",
+    "name": "Datacenter.com Netherlands B.V.",
+    "fullName": "Datacenter.com",
+    "type": "colocation",
+    "color": "#3A86FF",
+    "textColor": "#FFFFFF",
+    "website": "https://datacenter.com",
+    "logoUrl": null
+  },
+  {
+    "id": "groupe-engie-sa",
+    "name": "Groupe ENGIE SA",
+    "fullName": "ENGIE Data Centers",
+    "type": "colocation",
+    "color": "#00A8E8",
+    "textColor": "#FFFFFF",
+    "website": "https://www.engie.com",
+    "logoUrl": null
+  },
+  {
+    "id": "tcnpp",
+    "name": "TCNPP",
+    "fullName": "TCNPP",
+    "type": "colocation",
+    "color": "#CC6B7A",
+    "textColor": "#FFFFFF",
+    "website": "http://www.tcnpp.com",
+    "logoUrl": null
+  },
+  {
+    "id": "ericsson-broadcast-services-netherlands",
+    "name": "Ericsson Broadcast Services Netherlands",
+    "fullName": "Ericsson Broadcast Services",
+    "type": "colocation",
+    "color": "#0D47A1",
+    "textColor": "#FFFFFF",
+    "website": "https://www.ericsson.com",
+    "logoUrl": null
+  },
+  {
+    "id": "1-net-singapore-pte-ltd",
+    "name": "1-Net Singapore Pte Ltd",
+    "fullName": "1-Net Singapore Pte Ltd",
+    "type": "colocation",
+    "color": "#06D6A0",
+    "textColor": "#000000",
+    "website": "http://www.1-net.com.sg",
+    "logoUrl": null
+  },
+  {
+    "id": "newmedia-express-pte-ltd",
+    "name": "NewMedia Express Pte Ltd",
+    "fullName": "NewMedia Express Pte Ltd",
+    "type": "colocation",
+    "color": "#118AB2",
+    "textColor": "#FFFFFF",
+    "website": "http://www.rackscentral.com",
+    "logoUrl": null
+  },
+  {
+    "id": "st-telemedia-global-data-centres-stt-gdc",
+    "name": "ST Telemedia Global Data Centres (STT GDC)",
+    "fullName": "ST Telemedia Global Data Centres (STT GDC)",
+    "type": "colocation",
+    "color": "#3A0CA3",
+    "textColor": "#FFFFFF",
+    "website": "http://www.sttelemediagdc.com",
+    "logoUrl": null
+  },
+  {
+    "id": "keppel-data-centres-holding-pte-ltd",
+    "name": "Keppel Data Centres Holding Pte Ltd",
+    "fullName": "Keppel Data Centres Holding Pte Ltd",
+    "type": "colocation",
+    "color": "#F72585",
+    "textColor": "#FFFFFF",
+    "website": "https://www.keppeldatacentres.com",
+    "logoUrl": null
+  },
+  {
+    "id": "telekomunikasi-indonesia-international-pte-ltd",
+    "name": "Telekomunikasi Indonesia International Pte Ltd",
+    "fullName": "Telekomunikasi Indonesia International Pte Ltd",
+    "type": "colocation",
+    "color": "#FFB703",
+    "textColor": "#000000",
+    "website": "http://www.telin.sg",
+    "logoUrl": null
+  },
+  {
+    "id": "epsilon",
+    "name": "Epsilon",
+    "fullName": "Epsilon Telecommunications",
+    "type": "colocation",
+    "color": "#8338EC",
+    "textColor": "#FFFFFF",
+    "website": "http://www.epsilontel.com",
+    "logoUrl": null
+  },
+  {
+    "id": "singapore-telecommunications-limited",
+    "name": "Singapore Telecommunications Limited",
+    "fullName": "Singtel",
+    "type": "colocation",
+    "color": "#7209B7",
+    "textColor": "#FFFFFF",
+    "website": "https://www.singtel.com",
+    "logoUrl": null
+  },
+  {
+    "id": "bdx-dc-services-limited",
+    "name": "BDx DC Services Limited",
+    "fullName": "BDx Data Centers",
+    "type": "colocation",
+    "color": "#4CC9F0",
+    "textColor": "#000000",
+    "website": "https://www.bdxworld.com",
+    "logoUrl": null
   }
 ]
