@@ -131,4 +131,91 @@ describe('filterDatacenters', () => {
     expect(result).toHaveLength(1);
     expect(result[0].id).toBe('1');
   });
+
+  describe('country filter', () => {
+    it('single country — only DCs from that country are returned', () => {
+      const dcs = [
+        makeDC({ id: '1', country: 'US' }),
+        makeDC({ id: '2', country: 'DE' }),
+        makeDC({ id: '3', country: 'DE' }),
+      ];
+      const result = filterDatacenters(dcs, {
+        ...defaultFilters,
+        countries: new Set(['DE']),
+      });
+      expect(result).toHaveLength(2);
+      expect(result.map((d) => d.id)).toEqual(['2', '3']);
+    });
+
+    it('multiple countries — union of matching DCs returned', () => {
+      const dcs = [
+        makeDC({ id: '1', country: 'US' }),
+        makeDC({ id: '2', country: 'DE' }),
+        makeDC({ id: '3', country: 'GB' }),
+        makeDC({ id: '4', country: 'JP' }),
+      ];
+      const result = filterDatacenters(dcs, {
+        ...defaultFilters,
+        countries: new Set(['US', 'GB']),
+      });
+      expect(result).toHaveLength(2);
+      expect(result.map((d) => d.id)).toEqual(['1', '3']);
+    });
+
+    it('country code not present in data — empty result', () => {
+      const dcs = [
+        makeDC({ id: '1', country: 'US' }),
+        makeDC({ id: '2', country: 'DE' }),
+      ];
+      const result = filterDatacenters(dcs, {
+        ...defaultFilters,
+        countries: new Set(['AU']),
+      });
+      expect(result).toHaveLength(0);
+    });
+
+    it('country filter combined with provider filter — both applied', () => {
+      const dcs = [
+        makeDC({ id: '1', provider: 'AWS', country: 'US' }),
+        makeDC({ id: '2', provider: 'Azure', country: 'US' }),
+        makeDC({ id: '3', provider: 'AWS', country: 'DE' }),
+        makeDC({ id: '4', provider: 'Azure', country: 'DE' }),
+      ];
+      const result = filterDatacenters(dcs, {
+        ...defaultFilters,
+        countries: new Set(['DE']),
+        providers: new Set(['AWS']),
+      });
+      expect(result).toHaveLength(1);
+      expect(result[0].id).toBe('3');
+    });
+
+    it('empty countries set — no country filter applied, all DCs pass through', () => {
+      const dcs = [
+        makeDC({ id: '1', country: 'US' }),
+        makeDC({ id: '2', country: 'DE' }),
+        makeDC({ id: '3', country: 'GB' }),
+      ];
+      const result = filterDatacenters(dcs, {
+        ...defaultFilters,
+        countries: new Set<string>(),
+      });
+      expect(result).toHaveLength(3);
+    });
+
+    it('DC without country field defaults to US for country matching', () => {
+      // The implementation uses `dc.country ?? 'US'`, so a DC with no country
+      // field is treated as country 'US'.
+      const dcs = [
+        makeDC({ id: '1' }), // country is undefined → treated as 'US'
+        makeDC({ id: '2', country: 'DE' }),
+      ];
+      const result = filterDatacenters(dcs, {
+        ...defaultFilters,
+        countries: new Set(['US']),
+      });
+      expect(result).toHaveLength(1);
+      expect(result[0].id).toBe('1');
+    });
+  });
 });
