@@ -1,22 +1,17 @@
 'use client';
 
 import React, { useState } from 'react';
-import { Calculator, Zap, Network, Search, X } from 'lucide-react';
+import { Calculator, Search, X } from 'lucide-react';
 import { DatabaseLocationIcon } from '@/components/icons/DatabaseLocationIcon';
 import { SearchBar } from '@/components/map/SearchBar';
 import { AboutModal } from '@/components/modals/AboutModal';
 import { KeyboardShortcutsModal } from '@/components/modals/KeyboardShortcutsModal';
 import { CostCalculator } from '@/components/pricing/CostCalculator';
-import { LatencyCalculator } from '@/components/latency/LatencyCalculator';
-import { NetworkBackbonePanel } from '@/components/network/NetworkBackbonePanel';
-
 export function Header() {
   const [mobileSearchOpen, setMobileSearchOpen] = useState(false);
   const [showAbout, setShowAbout] = useState(false);
   const [showShortcuts, setShowShortcuts] = useState(false);
   const [showCalculator, setShowCalculator] = useState(false);
-  const [showLatencyCalculator, setShowLatencyCalculator] = useState(false);
-  const [showNetworkPanel, setShowNetworkPanel] = useState(false);
 
   React.useEffect(() => {
     const handleKey = (e: KeyboardEvent) => {
@@ -65,24 +60,6 @@ export function Header() {
           </button>
 
           <button
-            onClick={() => setShowLatencyCalculator(true)}
-            className={iconBtn('text-[#0066FF] hover:text-white')}
-            aria-label="Latency calculator"
-            title="Latency calculator"
-          >
-            <Zap className="w-4 h-4" />
-          </button>
-
-          <button
-            onClick={() => setShowNetworkPanel(true)}
-            className={iconBtn('text-[#BF5AF2] hover:text-white')}
-            aria-label="Network backbone"
-            title="Network backbone"
-          >
-            <Network className="w-4 h-4" />
-          </button>
-
-          <button
             onClick={() => setShowCalculator(true)}
             className={iconBtn('text-[#00D084] hover:text-white')}
             aria-label="Cost calculator"
@@ -126,8 +103,6 @@ export function Header() {
       <AboutModal isOpen={showAbout} onClose={() => setShowAbout(false)} />
       <KeyboardShortcutsModal isOpen={showShortcuts} onClose={() => setShowShortcuts(false)} />
       <CostCalculator isOpen={showCalculator} onClose={() => setShowCalculator(false)} />
-      <LatencyCalculator isOpen={showLatencyCalculator} onClose={() => setShowLatencyCalculator(false)} />
-      <NetworkBackbonePanel isOpen={showNetworkPanel} onClose={() => setShowNetworkPanel(false)} />
     </>
   );
 }

@@ -1,14 +1,13 @@
 'use client';
 
 import { useMemo } from 'react';
-import { X, Zap, TrendingUp, MapPin } from 'lucide-react';
+import { X, Zap, MapPin } from 'lucide-react';
 import { useDatacenterStore } from '@/store/datacenterStore';
 import { useLatencyStore } from '@/store/latencyStore';
 import {
   calculateMultiRegionLatency,
   formatLatency,
   getLatencyColor,
-  createLatencyRoute,
 } from '@/lib/utils/latency';
 
 interface LatencyCalculatorProps {
@@ -18,7 +17,7 @@ interface LatencyCalculatorProps {
 
 export function LatencyCalculator({ isOpen, onClose }: LatencyCalculatorProps) {
   const datacenters = useDatacenterStore((state) => state.datacenters);
-  const { selectedForLatency, clearLatencySelection, setActiveRoutes } = useLatencyStore();
+  const { selectedForLatency, clearLatencySelection } = useLatencyStore();
 
   const selectedDatacenters = useMemo(
     () => datacenters.filter(dc => selectedForLatency.includes(dc.id)),
@@ -29,17 +28,6 @@ export function LatencyCalculator({ isOpen, onClose }: LatencyCalculatorProps) {
     if (selectedDatacenters.length < 2) return null;
     return calculateMultiRegionLatency(selectedDatacenters);
   }, [selectedDatacenters]);
-
-  const handleVisualize = () => {
-    if (!latencyData) return;
-    const routes = latencyData.pairwiseLatencies.map(estimate => {
-      const dc1 = selectedDatacenters.find(dc => dc.id === estimate.fromDatacenterId)!;
-      const dc2 = selectedDatacenters.find(dc => dc.id === estimate.toDatacenterId)!;
-      return createLatencyRoute(dc1, dc2, estimate);
-    });
-    setActiveRoutes(routes);
-    onClose();
-  };
 
   if (!isOpen) return null;
 
@@ -142,13 +130,7 @@ export function LatencyCalculator({ isOpen, onClose }: LatencyCalculatorProps) {
                 </div>
               </div>
 
-              <button
-                onClick={handleVisualize}
-                className="mt-6 w-full bg-[#0066FF] hover:bg-[#0052cc] text-white font-bold rounded-xl px-4 py-3 transition-all duration-200 active:scale-[0.98] flex items-center justify-center gap-2"
-              >
-                <TrendingUp className="h-4 w-4" />
-                Visualize on Map
-              </button>
+
             </>
           )}
         </div>
