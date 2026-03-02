@@ -1,6 +1,6 @@
 'use client';
 
-import React from 'react';
+import React, { useEffect, useRef } from 'react';
 import { X, BarChart3 } from 'lucide-react';
 import { Datacenter } from '@/types/datacenter';
 import { getProviderColor } from '@/lib/utils/providerColors';
@@ -17,6 +17,62 @@ export const ComparisonModal = React.memo(function ComparisonModal({
   onClose,
   onRemove,
 }: ComparisonModalProps) {
+  const modalRef = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    // Capture the element that was focused before the modal opened
+    const previouslyFocused = document.activeElement as HTMLElement | null;
+
+    // Move focus into the modal
+    const modal = modalRef.current;
+    if (modal) {
+      const focusableSelectors =
+        'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
+      const focusable = modal.querySelectorAll<HTMLElement>(focusableSelectors);
+      if (focusable.length > 0) {
+        focusable[0].focus();
+      } else {
+        modal.focus();
+      }
+    }
+
+    // Focus trap handler
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === 'Tab' && modal) {
+        const focusableSelectors =
+          'button, [href], input, select, textarea, [tabindex]:not([tabindex="-1"])';
+        const focusable = Array.from(
+          modal.querySelectorAll<HTMLElement>(focusableSelectors)
+        ).filter(el => !el.hasAttribute('disabled'));
+
+        if (focusable.length === 0) return;
+
+        const first = focusable[0];
+        const last = focusable[focusable.length - 1];
+
+        if (e.shiftKey) {
+          if (document.activeElement === first) {
+            e.preventDefault();
+            last.focus();
+          }
+        } else {
+          if (document.activeElement === last) {
+            e.preventDefault();
+            first.focus();
+          }
+        }
+      }
+    };
+
+    document.addEventListener('keydown', handleKeyDown);
+
+    return () => {
+      document.removeEventListener('keydown', handleKeyDown);
+      // Restore focus to the element that was focused before the modal opened
+      previouslyFocused?.focus();
+    };
+  }, []);
+
   if (datacenters.length === 0) return null;
 
   const fields = [
@@ -77,7 +133,14 @@ export const ComparisonModal = React.memo(function ComparisonModal({
 
   return (
     <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/80 backdrop-blur-sm p-0 sm:p-4">
-      <div className="relative w-full sm:max-w-3xl max-h-[92vh] sm:max-h-[90vh] overflow-hidden bg-[#0a0a0a] border border-white/[0.10] rounded-t-2xl sm:rounded-2xl shadow-2xl animate-in slide-up duration-300 flex flex-col">
+      <div
+        ref={modalRef}
+        role="dialog"
+        aria-modal="true"
+        aria-labelledby="comparison-modal-title"
+        tabIndex={-1}
+        className="relative w-full sm:max-w-3xl max-h-[92vh] sm:max-h-[90vh] overflow-hidden bg-[#0a0a0a] border border-white/[0.10] rounded-t-2xl sm:rounded-2xl shadow-2xl animate-in slide-up duration-300 flex flex-col"
+      >
 
         {/* Header */}
         <div className="flex items-center justify-between border-b border-white/[0.06] px-5 py-4 flex-shrink-0">
@@ -86,7 +149,7 @@ export const ComparisonModal = React.memo(function ComparisonModal({
               <BarChart3 className="h-4 w-4 text-[#BF5AF2]" />
             </div>
             <div>
-              <h2 className="text-base font-bold text-white">Compare Datacenters</h2>
+              <h2 id="comparison-modal-title" className="text-base font-bold text-white">Compare Datacenters</h2>
               <p className="text-xs text-white/35">Side-by-side comparison of selected datacenters</p>
             </div>
           </div>

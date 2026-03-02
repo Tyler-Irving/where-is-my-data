@@ -112,6 +112,12 @@ function HomeContent() {
 
   return (
     <main className="bg-black h-dvh flex flex-col overflow-hidden">
+      <a
+        href="#main-content"
+        className="sr-only focus:not-sr-only focus:fixed focus:top-2 focus:left-2 focus:z-[9999] focus:bg-white focus:text-black focus:px-4 focus:py-2 focus:rounded focus:text-sm focus:font-medium"
+      >
+        Skip to main content
+      </a>
       <Header />
 
       {/* View tab strip — desktop only */}
@@ -135,7 +141,7 @@ function HomeContent() {
       </div>
 
       {/* Desktop: tab-switched Map or List */}
-      <div className="hidden md:flex relative flex-1 min-h-0">
+      <div id="main-content" className="hidden md:flex relative flex-1 min-h-0">
         {activeView === 'map' ? <MapContainer /> : <DatacenterListView />}
       </div>
       <Footer />

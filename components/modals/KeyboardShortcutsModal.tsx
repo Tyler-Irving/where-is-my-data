@@ -19,6 +19,7 @@ export const KeyboardShortcutsModal = React.memo(function KeyboardShortcutsModal
     { key: 'Esc', action: 'Clear search / Close modals' },
     { key: '?', action: 'Show keyboard shortcuts' },
     { key: 'C', action: 'Open comparison (2+ selected)' },
+    { key: 'L', action: 'Open Latency Calculator (2+ selected)' },
     { key: '+', action: 'Zoom in' },
     { key: '−', action: 'Zoom out' },
   ];
