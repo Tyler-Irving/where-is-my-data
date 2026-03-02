@@ -44,3 +44,5 @@ next-env.d.ts
 # claude code context
 CLAUDE.md
 .claude/
+.claude-flow/
+.swarm/

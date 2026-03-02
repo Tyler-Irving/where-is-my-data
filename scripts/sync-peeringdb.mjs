@@ -39,7 +39,7 @@ const COUNTRY = countryArgIdx >= 0 ? (args[countryArgIdx + 1] ?? 'US').toUpperCa
  * Minimum net_count for a new facility to be added.
  * Lower threshold for non-US countries to capture more quality hubs.
  */
-const NET_COUNT_THRESHOLD = COUNTRY === 'US' ? 20 : 10;
+const NET_COUNT_THRESHOLD = COUNTRY === 'US' ? 50 : 20;
 
 /** Minimum name similarity score (0–1) to accept a match */
 const MATCH_THRESHOLD = 0.3;

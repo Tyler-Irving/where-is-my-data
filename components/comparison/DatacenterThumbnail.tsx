@@ -1,3 +1,4 @@
+// 'use client' is required: component renders an interactive <button> with an onClick handler.
 'use client';
 
 import { X } from 'lucide-react';

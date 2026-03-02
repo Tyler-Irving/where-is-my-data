@@ -62,13 +62,25 @@ export async function GET() {
       }
     }));
 
-    return NextResponse.json({
+    const response = NextResponse.json({
       count: datacenters.length,
       datacenters,
       source: 'Comprehensive Seed Data',
       providers: new Set(datacenters.map((dc) => dc.provider)).size,
       cached: true,
     });
+
+    // Static data — cache aggressively at CDN/browser layer.
+    // ETag is derived from the data file's last-modified time so it
+    // automatically invalidates whenever sync-peeringdb.mjs rewrites
+    // datacenters.json and a new deploy is triggered.
+    response.headers.set(
+      'Cache-Control',
+      'public, max-age=3600, stale-while-revalidate=86400'
+    );
+    response.headers.set('ETag', `"${DATA_LAST_UPDATED}"`);
+
+    return response;
 
   } catch (error) {
     console.error('Error loading datacenter data:', error);

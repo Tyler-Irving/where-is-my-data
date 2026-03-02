@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { Check, Zap } from 'lucide-react';
+import { toast } from 'sonner';
 import { Datacenter } from '@/types/datacenter';
 import { getProviderColor, PROVIDER_TYPE_LABELS } from '@/lib/utils/providerColors';
 import { getDisplayColor } from '@/lib/utils/colorBrightness';
@@ -199,7 +200,19 @@ export function DatacenterCard({ datacenter }: DatacenterCardProps) {
         {/* Actions */}
         <div className="flex gap-1.5 mt-auto pt-3">
           <button
-            onClick={() => inComparison ? removeFromComparison(datacenter.id) : addToComparison(datacenter.id)}
+            onClick={() => {
+              if (inComparison) {
+                removeFromComparison(datacenter.id);
+              } else {
+                const result = addToComparison(datacenter.id);
+                if (!result.success && result.reason === 'limit') {
+                  toast.warning('Maximum 3 datacenters can be compared.', {
+                    description: 'Deselect one to add another.',
+                    duration: 4000,
+                  });
+                }
+              }
+            }}
             className={inComparison ? btnComparePurple : btnInactive}
             title={inComparison ? 'Remove from comparison' : 'Add to comparison'}
           >

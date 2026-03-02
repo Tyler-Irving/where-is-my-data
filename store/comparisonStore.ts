@@ -1,9 +1,12 @@
 import { create } from 'zustand';
-import { toast } from 'sonner';
+
+export type AddToComparisonResult =
+  | { success: true }
+  | { success: false; reason: 'limit' | 'duplicate' };
 
 interface ComparisonState {
   selectedIds: string[];
-  addToComparison: (id: string) => void;
+  addToComparison: (id: string) => AddToComparisonResult;
   removeFromComparison: (id: string) => void;
   clearComparison: () => void;
   isSelected: (id: string) => boolean;
@@ -11,29 +14,25 @@ interface ComparisonState {
 
 export const useComparisonStore = create<ComparisonState>((set, get) => ({
   selectedIds: [],
-  
-  addToComparison: (id) =>
-    set((state) => {
-      if (state.selectedIds.length >= 3) {
-        // Max 3 datacenters - show toast notification
-        toast.warning('Maximum 3 datacenters can be compared.', {
-          description: 'Deselect one to add another.',
-          duration: 4000,
-        });
-        return state;
-      }
-      if (state.selectedIds.includes(id)) {
-        return state;
-      }
-      return { selectedIds: [...state.selectedIds, id] };
-    }),
-  
+
+  addToComparison: (id) => {
+    const state = get();
+    if (state.selectedIds.length >= 3) {
+      return { success: false, reason: 'limit' };
+    }
+    if (state.selectedIds.includes(id)) {
+      return { success: false, reason: 'duplicate' };
+    }
+    set({ selectedIds: [...state.selectedIds, id] });
+    return { success: true };
+  },
+
   removeFromComparison: (id) =>
     set((state) => ({
       selectedIds: state.selectedIds.filter((existingId) => existingId !== id),
     })),
-  
+
   clearComparison: () => set({ selectedIds: [] }),
-  
+
   isSelected: (id) => get().selectedIds.includes(id),
 }));

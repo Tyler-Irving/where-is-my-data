@@ -120,6 +120,8 @@ function getCategoryNotes(category: LatencyEstimate['category']): string {
       return 'May have noticeable lag for interactive applications';
     case 'high':
       return 'High latency - consider using closer regions';
+    default:
+      return '';
   }
 }
 

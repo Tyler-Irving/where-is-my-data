@@ -14,6 +14,7 @@ import { Datacenter } from '@/types/datacenter';
 import { getProviderColor } from '@/lib/utils/providerColors';
 import { getDisplayColor } from '@/lib/utils/colorBrightness';
 import { filterDatacenters } from '@/lib/utils/filterDatacenters';
+import { usePricingStore } from '@/store/pricingStore';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
 const MAPBOX_TOKEN = process.env.NEXT_PUBLIC_MAPBOX_TOKEN;
@@ -53,12 +54,21 @@ export const MapContainer = React.memo(function MapContainer() {
   const mapRef = useRef<MapRef>(null);
   const { datacenters, setDatacenters } = useDatacenterStore();
   const { providers, providerTypes, countries, capacityRange, pueRange, renewableOnly, setCountry } = useFilterStore();
+  const setPricingData = usePricingStore((s) => s.setPricingData);
   const [isLoading, setIsLoading] = React.useState(true);
   const [hoveredDatacenter, setHoveredDatacenter] = useState<Datacenter | null>(null);
 
   const filterCriteria = useMemo(() => ({
     providers, providerTypes, countries, capacityRange, pueRange, renewableOnly,
   }), [providers, providerTypes, countries, capacityRange, pueRange, renewableOnly]);
+
+  // H-7: Compute filteredDatacenters once here and pass it down to
+  // DatacenterMarkers so filterDatacenters() is not called independently in
+  // multiple components on the same render cycle.
+  const filteredDatacenters = useMemo(
+    () => filterDatacenters(datacenters, filterCriteria),
+    [datacenters, filterCriteria]
+  );
 
   useEffect(() => {
     async function fetchDatacenters() {
@@ -78,12 +88,28 @@ export const MapContainer = React.memo(function MapContainer() {
     fetchDatacenters();
   }, [setDatacenters]);
 
+  useEffect(() => {
+    async function fetchPricing() {
+      try {
+        const res = await fetch('/api/pricing');
+        if (!res.ok) return;
+        const data = await res.json();
+        setPricingData(data.datacenters);
+      } catch {
+        // silent fail — pricing badges render null until data is available
+      }
+    }
+    fetchPricing();
+  }, [setPricingData]);
+
+  // H-7: Uses the already-memoized filteredDatacenters instead of calling
+  // filterDatacenters() again. This is the second of the two callsites
+  // eliminated — DatacenterMarkers now receives filteredDatacenters as a prop.
   const connectionLines = useMemo(() => {
-    if (!hoveredDatacenter || datacenters.length === 0) {
+    if (!hoveredDatacenter || filteredDatacenters.length === 0) {
       return { type: 'FeatureCollection' as const, features: [] };
     }
-    const filtered = filterDatacenters(datacenters, filterCriteria);
-    const sameProviderDatacenters = filtered.filter(
+    const sameProviderDatacenters = filteredDatacenters.filter(
       dc => dc.provider === hoveredDatacenter.provider && dc.id !== hoveredDatacenter.id
     );
     const features = sameProviderDatacenters.map(dc => ({
@@ -92,7 +118,7 @@ export const MapContainer = React.memo(function MapContainer() {
       properties: { provider: hoveredDatacenter.provider }
     }));
     return { type: 'FeatureCollection' as const, features };
-  }, [hoveredDatacenter, datacenters, filterCriteria]);
+  }, [hoveredDatacenter, filteredDatacenters]);
 
   // Always-current ref so handleLoad (created once) reads fresh config values.
   const countryConfigRef = useRef(countryConfig);
@@ -157,15 +183,19 @@ export const MapContainer = React.memo(function MapContainer() {
     [setViewport]
   );
 
+  // H-10: Only the provider name is used to derive the layer color, so depend
+  // on hoveredDatacenter?.provider (a string) rather than the full object.
+  // This avoids recomputing the layer style when unrelated fields change.
+  const hoveredProvider = hoveredDatacenter?.provider ?? null;
   const connectionLineLayer = useMemo(() => {
-    const providerColor = hoveredDatacenter ? getProviderColor(hoveredDatacenter.provider) : '#6B7280';
+    const providerColor = hoveredProvider ? getProviderColor(hoveredProvider) : '#6B7280';
     const displayColor = getDisplayColor(providerColor);
     return {
       id: 'connection-lines',
       type: 'line' as const,
       paint: { 'line-color': displayColor, 'line-width': 1.5, 'line-opacity': 0.5, 'line-dasharray': [3, 3] }
     };
-  }, [hoveredDatacenter]);
+  }, [hoveredProvider]);
 
   return (
     <div className="relative w-full h-[calc(100vh-9.5rem)] md:h-full">
@@ -187,7 +217,7 @@ export const MapContainer = React.memo(function MapContainer() {
           </Source>
         )}
         <LatencyLines />
-        <DatacenterMarkers onHoverChange={setHoveredDatacenter} />
+        <DatacenterMarkers onHoverChange={setHoveredDatacenter} filteredDatacenters={filteredDatacenters} />
       </Map>
 
       <MapControls />

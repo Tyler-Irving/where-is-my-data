@@ -3,6 +3,7 @@
 import { X, Calculator, TrendingDown } from 'lucide-react';
 import { usePricingStore } from '@/store/pricingStore';
 import { useComparisonStore } from '@/store/comparisonStore';
+import { useFilterStore } from '@/store/filterStore';
 import {
   getAllPricedDatacenters,
   calculateScenarioEstimate,
@@ -43,25 +44,48 @@ function Slider({ label, value, display, min, max, step = 1, hint, onChange }: S
 }
 
 export function CostCalculator({ isOpen, onClose }: CostCalculatorProps) {
-  const { customScenario, setCustomScenario, resetScenario } = usePricingStore();
+  const { customScenario, setCustomScenario, resetScenario, pricingData } = usePricingStore();
   const selectedIds = useComparisonStore((state) => state.selectedIds);
+  const countries = useFilterStore((state) => state.countries);
 
   if (!isOpen) return null;
 
+  // Show loading state if pricing data hasn't been fetched yet
+  if (pricingData === null) {
+    return (
+      <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/80 backdrop-blur-sm p-0 sm:p-4">
+        <div className="relative w-full sm:max-w-4xl bg-[#0a0a0a] border border-white/[0.10] rounded-t-2xl sm:rounded-2xl shadow-2xl flex flex-col items-center justify-center py-16 gap-4">
+          <button onClick={onClose} className="absolute top-4 right-4 w-8 h-8 rounded-xl flex items-center justify-center text-white/35 hover:text-white hover:bg-white/[0.08] transition-all" aria-label="Close">
+            <X className="h-4 w-4" />
+          </button>
+          <Calculator className="h-8 w-8 text-[#00D084]/40" />
+          <p className="text-sm text-white/35">Loading pricing data…</p>
+        </div>
+      </div>
+    );
+  }
+
+  // Derive active country filter (only when exactly 1 country is selected)
+  const activeCountry = countries.size === 1 ? [...countries][0] : null;
+
+  let pool = getAllPricedDatacenters(pricingData);
+  if (activeCountry) {
+    pool = pool.filter(dc => dc.country === activeCountry);
+  }
   const datacentersToCompare = selectedIds.length > 0
-    ? getAllPricedDatacenters().filter(dc => selectedIds.includes(dc.datacenterId))
-    : getAllPricedDatacenters();
+    ? pool.filter(dc => selectedIds.includes(dc.datacenterId))
+    : pool;
 
   const estimates: ScenarioEstimate[] = datacentersToCompare
     .map(dc => calculateScenarioEstimate(dc, customScenario))
     .sort((a, b) => a.total - b.total);
 
   const minCost = estimates.length > 0 ? Math.min(...estimates.map(e => e.total)) : 0;
-  const cheapest = getCheapestDatacenter(customScenario);
+  const cheapest = getCheapestDatacenter(pricingData, customScenario);
 
   return (
     <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/80 backdrop-blur-sm p-0 sm:p-4">
-      <div className="relative w-full sm:max-w-4xl max-h-[92vh] sm:max-h-[90vh] overflow-hidden bg-[#0a0a0a] border border-white/[0.10] rounded-t-2xl sm:rounded-2xl shadow-2xl animate-in slide-up duration-300">
+      <div className="relative w-full sm:max-w-4xl max-h-[92vh] sm:max-h-[90vh] overflow-hidden bg-[#0a0a0a] border border-white/[0.10] rounded-t-2xl sm:rounded-2xl shadow-2xl animate-in slide-up duration-300 flex flex-col">
         {/* Header */}
         <div className="flex items-center justify-between border-b border-white/[0.06] px-5 py-4 flex-shrink-0">
           <div className="flex items-center gap-3">
@@ -70,7 +94,9 @@ export function CostCalculator({ isOpen, onClose }: CostCalculatorProps) {
             </div>
             <div>
               <h2 className="text-base font-bold text-white">Cost Calculator</h2>
-              <p className="text-xs text-white/35">Estimate costs across cloud regions</p>
+              <p className="text-xs text-white/35">
+                {activeCountry ? `Showing ${activeCountry} regions` : 'Estimate costs across cloud regions'}
+              </p>
             </div>
           </div>
           <button onClick={onClose} className="w-8 h-8 rounded-xl flex items-center justify-center text-white/35 hover:text-white hover:bg-white/[0.08] transition-all" aria-label="Close">
@@ -78,9 +104,9 @@ export function CostCalculator({ isOpen, onClose }: CostCalculatorProps) {
           </button>
         </div>
 
-        <div className="grid grid-cols-1 lg:grid-cols-2 overflow-hidden" style={{ maxHeight: 'calc(90vh - 72px)' }}>
+        <div className="flex flex-col md:flex-row flex-1 overflow-hidden">
           {/* Controls */}
-          <div className="border-b border-white/[0.06] p-5 lg:border-b-0 lg:border-r overflow-y-auto scrollbar-hide">
+          <div className="border-b border-white/[0.06] md:border-b-0 md:border-r p-5 overflow-y-auto scrollbar-hide md:w-[44%] md:flex-shrink-0">
             <p className="text-[10px] font-bold uppercase tracking-widest text-white/35 mb-4">Configure Workload</p>
             <div className="space-y-6">
               <Slider label="Compute Instances" value={customScenario.computeInstances}
@@ -107,7 +133,7 @@ export function CostCalculator({ isOpen, onClose }: CostCalculatorProps) {
           </div>
 
           {/* Results */}
-          <div className="p-5 overflow-y-auto scrollbar-hide">
+          <div className="p-5 overflow-y-auto scrollbar-hide md:flex-1">
             <div className="flex items-center justify-between mb-4">
               <p className="text-[10px] font-bold uppercase tracking-widest text-white/35">Estimated Monthly Cost</p>
               {cheapest && (
@@ -120,7 +146,9 @@ export function CostCalculator({ isOpen, onClose }: CostCalculatorProps) {
 
             {estimates.length === 0 ? (
               <div className="bg-white/[0.03] border border-white/[0.06] rounded-2xl p-8 text-center">
-                <p className="text-sm text-white/40">No priced regions available</p>
+                <p className="text-sm text-white/40">
+                  {activeCountry ? `No pricing data for ${activeCountry} regions yet` : 'No priced regions available'}
+                </p>
               </div>
             ) : (
               <div className="space-y-2">
