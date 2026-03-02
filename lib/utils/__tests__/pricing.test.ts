@@ -11,7 +11,10 @@ import {
   getCheapestDatacenter,
 } from '../pricing';
 
-// Minimal DatacenterPricing fixture for unit tests
+// ---------------------------------------------------------------------------
+// Shared test fixtures
+// ---------------------------------------------------------------------------
+
 const mockPricing: DatacenterPricing = {
   datacenterId: 'test-dc',
   provider: 'AWS',
@@ -26,12 +29,47 @@ const mockPricing: DatacenterPricing = {
   totalBaselineMonthly: 1097.07,
 };
 
+// Two fixtures with distinct IDs and prices used by multi-datacenter tests
+const usEast: DatacenterPricing = {
+  datacenterId: 'aws-us-east-1',
+  provider: 'AWS',
+  region: 'us-east-1',
+  displayName: 'US East (N. Virginia)',
+  pricing: {
+    compute: { pricePerHour: 0.34, pricePerMonth: 248.2 },
+    storage: { pricePerGbMonth: 0.1, baseline1TbMonth: 102.4 },
+    dataTransfer: { egressPricePerGb: 0.09, baseline10TbMonth: 921.6 },
+    database: { pricePerHour: 0.384, pricePerMonth: 280.32 },
+  },
+  totalBaselineMonthly: 1552.52,
+};
+
+const usWest: DatacenterPricing = {
+  datacenterId: 'aws-us-west-1',
+  provider: 'AWS',
+  region: 'us-west-1',
+  displayName: 'US West (N. California)',
+  pricing: {
+    compute: { pricePerHour: 0.408, pricePerMonth: 297.84 },
+    storage: { pricePerGbMonth: 0.12, baseline1TbMonth: 122.88 },
+    dataTransfer: { egressPricePerGb: 0.09, baseline10TbMonth: 921.6 },
+    database: { pricePerHour: 0.46, pricePerMonth: 335.48 },
+  },
+  totalBaselineMonthly: 1677.8,
+};
+
+const testData: DatacenterPricing[] = [usEast, usWest];
+
 const defaultScenario: CustomScenario = {
   computeInstances: 1,
   storageTb: 1,
   dataTransferTb: 10,
   databaseInstances: 1,
 };
+
+// ---------------------------------------------------------------------------
+// Pure-math functions (no data dependency)
+// ---------------------------------------------------------------------------
 
 describe('formatCurrency', () => {
   it('formats with two decimal places by default', () => {
@@ -91,26 +129,30 @@ describe('getPriceDifference', () => {
   });
 });
 
+// ---------------------------------------------------------------------------
+// Data-dependent functions (require DatacenterPricing[] as first arg)
+// ---------------------------------------------------------------------------
+
 describe('getAllPricedDatacenters', () => {
-  it('returns a non-empty array of datacenters', () => {
-    expect(getAllPricedDatacenters().length).toBeGreaterThan(0);
+  it('returns the same array that was passed in', () => {
+    expect(getAllPricedDatacenters(testData)).toHaveLength(2);
   });
 
   it('returns objects with a datacenterId field', () => {
-    const all = getAllPricedDatacenters();
+    const all = getAllPricedDatacenters(testData);
     expect(all.every(dc => typeof dc.datacenterId === 'string')).toBe(true);
   });
 });
 
 describe('getPricingForDatacenter', () => {
   it('returns pricing data for a known datacenter ID', () => {
-    const result = getPricingForDatacenter('aws-us-east-1');
+    const result = getPricingForDatacenter(testData, 'aws-us-east-1');
     expect(result).not.toBeNull();
     expect(result?.datacenterId).toBe('aws-us-east-1');
   });
 
   it('returns null for an unknown datacenter ID', () => {
-    expect(getPricingForDatacenter('nonexistent-dc')).toBeNull();
+    expect(getPricingForDatacenter(testData, 'nonexistent-dc')).toBeNull();
   });
 });
 
@@ -148,33 +190,32 @@ describe('calculateScenarioEstimate', () => {
 
 describe('comparePricing', () => {
   it('marks one result as "Cheapest"', () => {
-    const results = comparePricing(['aws-us-east-1', 'aws-us-west-1']);
+    const results = comparePricing(testData, ['aws-us-east-1', 'aws-us-west-1']);
     expect(results.some(r => r.relativeToMin === 'Cheapest')).toBe(true);
   });
 
   it('marks the more expensive one with a "+N%" string', () => {
-    const results = comparePricing(['aws-us-east-1', 'aws-us-west-1']);
+    const results = comparePricing(testData, ['aws-us-east-1', 'aws-us-west-1']);
     const expensive = results.find(r => r.relativeToMin !== 'Cheapest');
     expect(expensive?.relativeToMin).toMatch(/^\+\d+%$/);
   });
 
   it('skips unknown datacenter IDs silently', () => {
-    const results = comparePricing(['aws-us-east-1', 'nonexistent']);
+    const results = comparePricing(testData, ['aws-us-east-1', 'nonexistent']);
     expect(results).toHaveLength(1);
   });
 });
 
 describe('getCheapestDatacenter', () => {
   it('returns a DatacenterPricing object', () => {
-    const result = getCheapestDatacenter();
+    const result = getCheapestDatacenter(testData);
     expect(result).not.toBeNull();
     expect(result).toHaveProperty('datacenterId');
   });
 
   it('returns the datacenter with the lowest baseline cost', () => {
-    const cheapest = getCheapestDatacenter();
-    const all = getAllPricedDatacenters();
-    const minBaseline = Math.min(...all.map(dc => dc.totalBaselineMonthly));
+    const cheapest = getCheapestDatacenter(testData);
+    const minBaseline = Math.min(...testData.map(dc => dc.totalBaselineMonthly));
     expect(cheapest?.totalBaselineMonthly).toBe(minBaseline);
   });
 });

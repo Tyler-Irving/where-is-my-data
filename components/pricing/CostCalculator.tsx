@@ -44,16 +44,31 @@ function Slider({ label, value, display, min, max, step = 1, hint, onChange }: S
 }
 
 export function CostCalculator({ isOpen, onClose }: CostCalculatorProps) {
-  const { customScenario, setCustomScenario, resetScenario } = usePricingStore();
+  const { customScenario, setCustomScenario, resetScenario, pricingData } = usePricingStore();
   const selectedIds = useComparisonStore((state) => state.selectedIds);
   const countries = useFilterStore((state) => state.countries);
 
   if (!isOpen) return null;
 
+  // Show loading state if pricing data hasn't been fetched yet
+  if (pricingData === null) {
+    return (
+      <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/80 backdrop-blur-sm p-0 sm:p-4">
+        <div className="relative w-full sm:max-w-4xl bg-[#0a0a0a] border border-white/[0.10] rounded-t-2xl sm:rounded-2xl shadow-2xl flex flex-col items-center justify-center py-16 gap-4">
+          <button onClick={onClose} className="absolute top-4 right-4 w-8 h-8 rounded-xl flex items-center justify-center text-white/35 hover:text-white hover:bg-white/[0.08] transition-all" aria-label="Close">
+            <X className="h-4 w-4" />
+          </button>
+          <Calculator className="h-8 w-8 text-[#00D084]/40" />
+          <p className="text-sm text-white/35">Loading pricing data…</p>
+        </div>
+      </div>
+    );
+  }
+
   // Derive active country filter (only when exactly 1 country is selected)
   const activeCountry = countries.size === 1 ? [...countries][0] : null;
 
-  let pool = getAllPricedDatacenters();
+  let pool = getAllPricedDatacenters(pricingData);
   if (activeCountry) {
     pool = pool.filter(dc => dc.country === activeCountry);
   }
@@ -66,7 +81,7 @@ export function CostCalculator({ isOpen, onClose }: CostCalculatorProps) {
     .sort((a, b) => a.total - b.total);
 
   const minCost = estimates.length > 0 ? Math.min(...estimates.map(e => e.total)) : 0;
-  const cheapest = getCheapestDatacenter(customScenario);
+  const cheapest = getCheapestDatacenter(pricingData, customScenario);
 
   return (
     <div className="fixed inset-0 z-50 flex items-end sm:items-center justify-center bg-black/80 backdrop-blur-sm p-0 sm:p-4">

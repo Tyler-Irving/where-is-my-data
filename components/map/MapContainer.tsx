@@ -14,6 +14,7 @@ import { Datacenter } from '@/types/datacenter';
 import { getProviderColor } from '@/lib/utils/providerColors';
 import { getDisplayColor } from '@/lib/utils/colorBrightness';
 import { filterDatacenters } from '@/lib/utils/filterDatacenters';
+import { usePricingStore } from '@/store/pricingStore';
 import 'mapbox-gl/dist/mapbox-gl.css';
 
 const MAPBOX_TOKEN = process.env.NEXT_PUBLIC_MAPBOX_TOKEN;
@@ -53,6 +54,7 @@ export const MapContainer = React.memo(function MapContainer() {
   const mapRef = useRef<MapRef>(null);
   const { datacenters, setDatacenters } = useDatacenterStore();
   const { providers, providerTypes, countries, capacityRange, pueRange, renewableOnly, setCountry } = useFilterStore();
+  const setPricingData = usePricingStore((s) => s.setPricingData);
   const [isLoading, setIsLoading] = React.useState(true);
   const [hoveredDatacenter, setHoveredDatacenter] = useState<Datacenter | null>(null);
 
@@ -85,6 +87,20 @@ export const MapContainer = React.memo(function MapContainer() {
     }
     fetchDatacenters();
   }, [setDatacenters]);
+
+  useEffect(() => {
+    async function fetchPricing() {
+      try {
+        const res = await fetch('/api/pricing');
+        if (!res.ok) return;
+        const data = await res.json();
+        setPricingData(data.datacenters);
+      } catch {
+        // silent fail — pricing badges render null until data is available
+      }
+    }
+    fetchPricing();
+  }, [setPricingData]);
 
   // H-7: Uses the already-memoized filteredDatacenters instead of calling
   // filterDatacenters() again. This is the second of the two callsites
