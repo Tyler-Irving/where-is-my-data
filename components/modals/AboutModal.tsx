@@ -17,7 +17,6 @@ export const AboutModal = React.memo(function AboutModal({ isOpen, onClose }: Ab
     'Search by name, city, or state',
     'Latency calculator between regions',
     'Cost estimator across cloud providers',
-    'Network backbone visualization',
     'Side-by-side datacenter comparison',
     'Export filtered data as CSV or JSON',
     'Shareable URLs with filter state',
