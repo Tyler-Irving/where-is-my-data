@@ -1,6 +1,7 @@
 'use client';
 
 import { Zap } from 'lucide-react';
+import { Badge } from '@/components/ui/badge';
 import { useDatacenterStore } from '@/store/datacenterStore';
 import { useLatencyStore } from '@/store/latencyStore';
 import { calculateLatencyBetween, formatLatency, getLatencyColor } from '@/lib/utils/latency';
@@ -34,12 +35,12 @@ export function LatencyBadge({ datacenterId, className = '' }: LatencyBadgeProps
   const color = getLatencyColor(avgLatency);
   
   return (
-    <div className={`inline-flex items-center gap-1.5 rounded-md bg-zinc-800/50 px-2 py-1 text-xs ${className}`}>
+    <Badge variant="outline" className={`gap-1.5 rounded-md bg-zinc-800/50 border-zinc-700/50 px-2 py-1 text-xs font-normal ${className}`}>
       <Zap className="h-3 w-3" style={{ color }} />
       <span className="font-medium" style={{ color }}>
         {formatLatency(avgLatency)}
       </span>
       <span className="text-zinc-400">avg</span>
-    </div>
+    </Badge>
   );
 }
