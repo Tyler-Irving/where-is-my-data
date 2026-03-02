@@ -1,16 +1,19 @@
 'use client';
 
+import React, { useMemo } from 'react';
 import { Layer, Source } from 'react-map-gl/mapbox';
 import { useLatencyStore } from '@/store/latencyStore';
 import type { FeatureCollection, LineString } from 'geojson';
 
-export function LatencyLines() {
+// H-1: Wrapped in React.memo to prevent re-renders triggered by parent viewport
+// changes. GeoJSON is computed inside useMemo so it is only rebuilt when
+// activeRoutes actually changes, not on every parent render.
+export const LatencyLines = React.memo(function LatencyLines() {
   const activeRoutes = useLatencyStore((state) => state.activeRoutes);
-  
-  if (activeRoutes.length === 0) return null;
-  
-  // Create GeoJSON from active routes
-  const geojson: FeatureCollection<LineString> = {
+
+  // H-1: useMemo ensures the FeatureCollection object reference is stable
+  // across renders when activeRoutes has not changed.
+  const geojson = useMemo<FeatureCollection<LineString>>(() => ({
     type: 'FeatureCollection',
     features: activeRoutes.map((route, idx) => ({
       type: 'Feature',
@@ -29,8 +32,10 @@ export function LatencyLines() {
         toName: route.to.name,
       },
     })),
-  };
-  
+  }), [activeRoutes]);
+
+  if (activeRoutes.length === 0) return null;
+
   return (
     <>
       <Source id="latency-lines" type="geojson" data={geojson}>
@@ -45,7 +50,7 @@ export function LatencyLines() {
             'line-blur': 4,
           }}
         />
-        
+
         {/* Main line */}
         <Layer
           id="latency-lines-main"
@@ -56,7 +61,7 @@ export function LatencyLines() {
             'line-opacity': 0.8,
           }}
         />
-        
+
         {/* Dashed overlay for animation effect */}
         <Layer
           id="latency-lines-dashed"
@@ -71,4 +76,4 @@ export function LatencyLines() {
       </Source>
     </>
   );
-}
+});
