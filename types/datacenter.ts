@@ -13,6 +13,7 @@ export interface Datacenter {
   city?: string;
   state: string;
   country?: string;
+  tenants?: string[];       // network names present in the facility (from PeeringDB)
   powerStatus: IssueStatus;
   waterStatus: IssueStatus;
   verified: boolean;

@@ -1,6 +1,6 @@
 # Where Is My Data?
 
-Interactive map of cloud and colocation datacenters. Browse 234+ facilities across AWS, Google Cloud, Azure, Equinix, Meta, Apple, Cloudflare, and 20+ other providers — with latency estimation and cost comparison built in.
+Interactive map of cloud and colocation datacenters. Browse 299 facilities across 5 countries — AWS, Google Cloud, Azure, Equinix, Meta, Apple, Cloudflare, and 70+ other providers — with latency estimation and cost comparison built in.
 
 **Live:** [datacenter-globe.vercel.app](https://datacenter-globe.vercel.app)
 
@@ -9,9 +9,9 @@ Interactive map of cloud and colocation datacenters. Browse 234+ facilities acro
 ## What it does
 
 **Map & Search**
-- 234 datacenters across 27+ cloud, colocation, and edge providers
+- 299 datacenters across 70+ cloud, colocation, and edge providers — global coverage
 - Real-time search by name, provider, city, or state
-- Filter by provider type, capacity (MW), PUE, and renewable energy status
+- Filter by country, provider type, capacity (MW), PUE, and renewable energy status
 - Shareable URLs — any filtered view is bookmarkable and linkable
 
 **Compare & Analyze**
@@ -105,6 +105,21 @@ scripts/      sync-peeringdb.mjs
 
 ---
 
+## Countries covered
+
+| Country | Facilities |
+|---------|-----------|
+| 🇺🇸 United States | 164 |
+| 🇳🇱 Netherlands | 81 |
+| 🇬🇧 United Kingdom | 20 |
+| 🇩🇪 Germany | 17 |
+| 🇸🇬 Singapore | 17 |
+| **Total** | **299** |
+
+Map defaults to a global view. Use the country switcher (top-center of the map) to jump to a specific region, or the Country filter to show multiple countries simultaneously.
+
+---
+
 ## Data sources
 
 - **AWS, GCP, Azure**: Official region and availability zone documentation
@@ -119,7 +134,6 @@ Data is a mix of `source: official`, `community`, and `estimated` — each datac
 ## Roadmap
 
 **In progress**
-- International expansion — Germany (Frankfurt, Berlin, Munich) as first non-US region
 - 3D globe view to support multi-country navigation
 
 **Planned**
