@@ -2,6 +2,7 @@
 
 import React from 'react';
 import { Popup } from 'react-map-gl/mapbox';
+import { toast } from 'sonner';
 import { Datacenter } from '@/types/datacenter';
 import { getProviderColor, PROVIDER_TYPE_LABELS } from '@/lib/utils/providerColors';
 import { useComparisonStore } from '@/store/comparisonStore';
@@ -168,7 +169,19 @@ export const DatacenterTooltip = React.memo(function DatacenterTooltip({
           {/* Quick Actions */}
           <div className="grid grid-cols-2 gap-2 mb-2">
             <button
-              onClick={() => inComparison ? removeFromComparison(datacenter.id) : addToComparison(datacenter.id)}
+              onClick={() => {
+                if (inComparison) {
+                  removeFromComparison(datacenter.id);
+                } else {
+                  const result = addToComparison(datacenter.id);
+                  if (!result.success && result.reason === 'limit') {
+                    toast.warning('Maximum 3 datacenters can be compared.', {
+                      description: 'Deselect one to add another.',
+                      duration: 4000,
+                    });
+                  }
+                }
+              }}
               className={`h-8 rounded-lg text-xs font-semibold transition-all duration-200 ${
                 inComparison
                   ? 'bg-[#BF5AF2]/15 text-[#BF5AF2] border border-[#BF5AF2]/25'

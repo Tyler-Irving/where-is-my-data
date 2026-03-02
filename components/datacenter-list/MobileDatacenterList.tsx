@@ -1,6 +1,7 @@
 'use client';
 
 import React, { useState, useMemo } from 'react';
+import { toast } from 'sonner';
 import { useDatacenterStore } from '@/store/datacenterStore';
 import { useFilterStore } from '@/store/filterStore';
 import { useComparisonStore } from '@/store/comparisonStore';
@@ -11,7 +12,7 @@ import { getDisplayColor } from '@/lib/utils/colorBrightness';
 import { PricingBadge } from '@/components/pricing/PricingBadge';
 import { LatencyBadge } from '@/components/latency/LatencyBadge';
 import { Datacenter } from '@/types/datacenter';
-import { Search, X, ChevronDown, ChevronUp, Check, Zap, ExternalLink } from 'lucide-react';
+import { ChevronDown, ChevronUp, Check, Zap, ExternalLink } from 'lucide-react';
 import { COUNTRY_CONFIGS } from '@/store/mapStore';
 
 type SortKey = 'name' | 'capacity' | 'pue';
@@ -184,7 +185,19 @@ function MobileDatacenterCard({ datacenter, isExpanded, onToggle }: MobileDatace
           {/* Action buttons */}
           <div className="flex gap-2">
             <button
-              onClick={() => isCompared ? removeFromComparison(datacenter.id) : addToComparison(datacenter.id)}
+              onClick={() => {
+                if (isCompared) {
+                  removeFromComparison(datacenter.id);
+                } else {
+                  const result = addToComparison(datacenter.id);
+                  if (!result.success && result.reason === 'limit') {
+                    toast.warning('Maximum 3 datacenters can be compared.', {
+                      description: 'Deselect one to add another.',
+                      duration: 4000,
+                    });
+                  }
+                }
+              }}
               className={[
                 'flex-1 flex items-center justify-center gap-1.5 py-2.5 rounded-xl text-xs font-bold transition-colors',
                 isCompared
@@ -262,10 +275,8 @@ function MobileDatacenterCard({ datacenter, isExpanded, onToggle }: MobileDatace
 
 export function MobileDatacenterList() {
   const { datacenters } = useDatacenterStore();
-  const { providers, providerTypes, countries, capacityRange, pueRange, renewableOnly, setCountry, clearCountry } = useFilterStore();
+  const { providers, providerTypes, countries, capacityRange, pueRange, renewableOnly, setCountry } = useFilterStore();
 
-  const [search, setSearch] = useState('');
-  const [searchOpen, setSearchOpen] = useState(false);
   const [sortKey, setSortKey] = useState<SortKey>('name');
   const [expandedId, setExpandedId] = useState<string | null>(null);
 
@@ -284,26 +295,14 @@ export function MobileDatacenterList() {
     [datacenters, providers, providerTypes, countries, capacityRange, pueRange, renewableOnly]
   );
 
-  // Search across name, provider, city, state
-  const searched = useMemo(() => {
-    const q = search.trim().toLowerCase();
-    if (!q) return filtered;
-    return filtered.filter(dc =>
-      dc.name.toLowerCase().includes(q) ||
-      dc.provider.toLowerCase().includes(q) ||
-      dc.city?.toLowerCase().includes(q) ||
-      dc.state?.toLowerCase().includes(q)
-    );
-  }, [filtered, search]);
-
   // Sort within provider groups
   const sorted = useMemo(() => {
-    return [...searched].sort((a, b) => {
+    return [...filtered].sort((a, b) => {
       if (sortKey === 'capacity') return (b.metadata?.capacityMW ?? 0) - (a.metadata?.capacityMW ?? 0);
       if (sortKey === 'pue') return (a.metadata?.pue ?? 9) - (b.metadata?.pue ?? 9);
       return a.name.localeCompare(b.name);
     });
-  }, [searched, sortKey]);
+  }, [filtered, sortKey]);
 
   // Group by provider (alphabetical)
   const grouped = useMemo(() => {
@@ -321,67 +320,25 @@ export function MobileDatacenterList() {
 
   return (
     <div className="h-full flex flex-col bg-black">
-      {/* Sort bar + search toggle */}
-      <div className="flex-shrink-0 px-4 py-3 border-b border-white/[0.06] flex items-center gap-2">
-        <button
-          onClick={() => { setSearchOpen(o => !o); if (searchOpen) setSearch(''); }}
-          className={`w-9 h-9 rounded-xl flex items-center justify-center transition-all border ${
-            searchOpen
-              ? 'bg-[#0066FF]/15 border-[#0066FF]/30 text-[#0066FF]'
-              : 'bg-white/[0.06] border-white/[0.06] text-white/50 hover:text-white'
-          }`}
-          aria-label={searchOpen ? 'Close search' : 'Search'}
-        >
-          {searchOpen ? <X className="w-4 h-4" /> : <Search className="w-4 h-4" />}
-        </button>
-        <select
-          value={sortKey}
-          onChange={e => setSortKey(e.target.value as SortKey)}
-          className="flex-1 bg-white/[0.06] text-white/60 text-xs rounded-xl px-3 py-2.5 border-0 outline-none appearance-none cursor-pointer"
-        >
-          <option value="name">Name</option>
-          <option value="capacity">Capacity ↓</option>
-          <option value="pue">PUE ↑</option>
-        </select>
-      </div>
-
-      {/* Search input — shown only when toggled */}
-      {searchOpen && (
-        <div className="flex-shrink-0 px-4 py-2.5 border-b border-white/[0.06]">
-          <div className="flex items-center gap-2 bg-white/[0.06] rounded-xl px-3 py-2.5">
-            <Search className="w-4 h-4 text-white/30 flex-shrink-0" />
-            <input
-              type="text"
-              inputMode="search"
-              placeholder="Search datacenters..."
-              value={search}
-              onChange={e => setSearch(e.target.value)}
-              autoFocus
-              className="flex-1 bg-transparent text-sm text-white placeholder-white/30 outline-none"
-            />
-            {search && (
-              <button onClick={() => setSearch('')} className="text-white/30 hover:text-white/60 transition-colors">
-                <X className="w-4 h-4" />
-              </button>
-            )}
-          </div>
+      {/* Sort bar */}
+      <div className="flex-shrink-0 px-4 py-3 border-b border-white/[0.06]">
+        <div className="relative">
+          <select
+            value={sortKey}
+            onChange={e => setSortKey(e.target.value as SortKey)}
+            className="w-full bg-white/[0.06] text-white/70 text-xs rounded-xl pl-3 pr-8 py-2.5 border-0 outline-none appearance-none cursor-pointer"
+          >
+            <option value="name">Sort: Name</option>
+            <option value="capacity">Sort: Capacity ↓</option>
+            <option value="pue">Sort: PUE ↑</option>
+          </select>
+          <ChevronDown className="absolute right-2.5 top-1/2 -translate-y-1/2 w-3.5 h-3.5 text-white/40 pointer-events-none" />
         </div>
-      )}
+      </div>
 
       {/* Country pills — only when multiple countries are in the data */}
       {availableCountries.length > 1 && (
         <div className="flex-shrink-0 px-4 py-2.5 border-b border-white/[0.06] flex items-center gap-1.5">
-          <button
-            onClick={clearCountry}
-            className={[
-              'px-3 py-1.5 rounded-full text-xs font-bold uppercase tracking-wide transition-all duration-150',
-              !activeCountryFilter
-                ? 'bg-[#0066FF] text-white'
-                : 'bg-white/[0.06] text-white/45 hover:text-white/70',
-            ].join(' ')}
-          >
-            All
-          </button>
           {availableCountries.map(code => {
             const config = COUNTRY_CONFIGS[code];
             const isActive = activeCountryFilter === code;
@@ -415,12 +372,12 @@ export function MobileDatacenterList() {
 
       {/* Scrollable list */}
       <div className="flex-1 overflow-y-auto">
-        {grouped.length === 0 ? (
+        {sorted.length === 0 ? (
           <div className="flex flex-col items-center justify-center py-24 text-center px-4">
             <p className="text-sm text-white/35">No datacenters match</p>
-            <p className="text-xs text-white/20 mt-1">Try a different search term</p>
+            <p className="text-xs text-white/20 mt-1">Try adjusting your filters</p>
           </div>
-        ) : (
+        ) : sortKey === 'name' ? (
           grouped.map(([provider, dcs]) => (
             <div key={provider}>
               {/* Sticky provider header */}
@@ -428,8 +385,6 @@ export function MobileDatacenterList() {
                 <span className="text-xs font-bold text-white/55 uppercase tracking-widest">{provider}</span>
                 <span className="text-xs text-white/20 tabular-nums">{dcs.length}</span>
               </div>
-
-              {/* Cards */}
               {dcs.map(dc => (
                 <MobileDatacenterCard
                   key={dc.id}
@@ -439,6 +394,15 @@ export function MobileDatacenterList() {
                 />
               ))}
             </div>
+          ))
+        ) : (
+          sorted.map(dc => (
+            <MobileDatacenterCard
+              key={dc.id}
+              datacenter={dc}
+              isExpanded={expandedId === dc.id}
+              onToggle={() => handleToggle(dc.id)}
+            />
           ))
         )}
       </div>
