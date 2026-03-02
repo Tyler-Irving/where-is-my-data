@@ -1,6 +1,6 @@
 # Where Is My Data?
 
-Interactive map of cloud and colocation datacenters. Browse 234+ facilities across AWS, Google Cloud, Azure, Equinix, Meta, Apple, Cloudflare, and 20+ other providers — with network backbone visualization, latency estimation, and cost comparison built in.
+Interactive map of cloud and colocation datacenters. Browse 234+ facilities across AWS, Google Cloud, Azure, Equinix, Meta, Apple, Cloudflare, and 20+ other providers — with latency estimation and cost comparison built in.
 
 **Live:** [datacenter-globe.vercel.app](https://datacenter-globe.vercel.app)
 
@@ -19,11 +19,6 @@ Interactive map of cloud and colocation datacenters. Browse 234+ facilities acro
 - Latency calculator between any two selected facilities (Haversine + routing overhead model)
 - Cost estimator for 11 AWS, GCP, and Azure regions (compute, storage, transfer, database)
 - Export filtered results as CSV or JSON
-
-**Network Visualization**
-- 35+ backbone connections across providers (backbone, peering, transit, private interconnect)
-- Toggle by connection type and provider, with animated flow lines
-- PeeringDB-enriched colocation facilities with network/IX/carrier counts
 
 ---
 
@@ -95,17 +90,16 @@ app/
 components/
   map/        MapContainer, DatacenterMarkers, FilterBar, SearchBar, MapControls, MapLegend
   latency/    LatencyCalculator, LatencyBadge, LatencyLines
-  network/    NetworkBackbonePanel, NetworkBackboneLines
   pricing/    CostCalculator, PricingBadge
   comparison/ ComparisonFooter, DatacenterThumbnail
   modals/     ComparisonModal, AboutModal, KeyboardShortcutsModal
 lib/
-  data/       datacenters.json, providers.json, network-backbone.json, pricing.json
-  utils/      latency.ts, network.ts, pricing.ts, filterDatacenters.ts, providerColors.ts
+  data/       datacenters.json, providers.json, pricing.json
+  utils/      latency.ts, pricing.ts, filterDatacenters.ts, providerColors.ts
 store/        datacenterStore, filterStore, mapStore, comparisonStore,
-              latencyStore, networkStore, pricingStore
+              latencyStore, pricingStore
 hooks/        useUrlSync.ts
-types/        datacenter.ts, network.ts, latency.ts, pricing.ts
+types/        datacenter.ts, latency.ts, pricing.ts
 scripts/      sync-peeringdb.mjs
 ```
 
@@ -116,8 +110,7 @@ scripts/      sync-peeringdb.mjs
 - **AWS, GCP, Azure**: Official region and availability zone documentation
 - **Meta, Apple, xAI, Cloudflare**: Public announcements and infrastructure pages
 - **Equinix, Digital Realty, CyrusOne, and other colos**: Facility directories
-- **PeeringDB**: Network peering and colocation facility data
-- **Network backbone**: Publicly documented fiber routes and peering relationships
+- **PeeringDB**: Colocation facility data
 
 Data is a mix of `source: official`, `community`, and `estimated` — each datacenter entry is tagged accordingly.
 
@@ -148,6 +141,6 @@ Pull requests are welcome. For data corrections, open an issue with the datacent
 
 MIT — see [LICENSE](LICENSE).
 
-Built by [Tyler Irving](https://tyler-irving.github.io) · Map tiles by [Mapbox](https://www.mapbox.com/) · Network data from [PeeringDB](https://www.peeringdb.com/)
+Built by [Tyler Irving](https://tyler-irving.github.io) · Map tiles by [Mapbox](https://www.mapbox.com/)
 
 <!-- Topics: datacenter map, cloud infrastructure, aws regions, gcp regions, azure regions, equinix, network peering, peeringdb, mapbox, nextjs, colocation, latency calculator, datacenter comparison -->

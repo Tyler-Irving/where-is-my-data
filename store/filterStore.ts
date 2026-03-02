@@ -19,6 +19,7 @@ export interface FilterState {
   toggleProviderType: (type: ProviderType) => void;
   toggleCountry: (country: string) => void;
   setCountry: (code: string) => void;
+  clearCountry: () => void;
   setCapacityRange: (range: [number, number]) => void;
   setPueRange: (range: [number, number]) => void;
   setRenewableOnly: (value: boolean) => void;
@@ -73,6 +74,8 @@ export const useFilterStore = create<FilterState>((set, get) => ({
     }),
 
   setCountry: (code) => set({ countries: new Set([code]) }),
+
+  clearCountry: () => set({ countries: new Set() }),
 
   setCapacityRange: (range) => set({ capacityRange: range }),
   

@@ -7,11 +7,15 @@ import { Footer } from '@/components/layout/Footer';
 import { FilterBar } from '@/components/map/FilterBar';
 import { MapContainer } from '@/components/map/MapContainer';
 import { DatacenterListView } from '@/components/datacenter-list/DatacenterListView';
+import { MobileDatacenterList } from '@/components/datacenter-list/MobileDatacenterList';
 import { ComparisonModal } from '@/components/modals/ComparisonModal';
 import { ComparisonFooter } from '@/components/comparison/ComparisonFooter';
+import { LatencyFooter } from '@/components/latency/LatencyFooter';
+import { LatencyCalculator } from '@/components/latency/LatencyCalculator';
 import { useUrlSync } from '@/hooks/useUrlSync';
 import { useDatacenterStore } from '@/store/datacenterStore';
 import { useComparisonStore } from '@/store/comparisonStore';
+import { useLatencyStore } from '@/store/latencyStore';
 import { useMapStore } from '@/store/mapStore';
 import { Toaster, toast } from 'sonner';
 
@@ -20,10 +24,12 @@ const inactiveTab = 'flex items-center gap-1.5 px-3 py-1.5 rounded-xl text-xs fo
 
 function HomeContent() {
   const [modalOpen, setModalOpen] = useState(false);
+  const [latencyModalOpen, setLatencyModalOpen] = useState(false);
   const [activeView, setActiveView] = useState<'map' | 'list'>('map');
 
   const { datacenters } = useDatacenterStore();
   const { selectedIds, removeFromComparison, clearComparison } = useComparisonStore();
+  const { selectedForLatency, removeFromLatency, clearLatencySelection } = useLatencyStore();
   const { viewport, setViewport } = useMapStore();
 
   // Get selected datacenters for comparison
@@ -32,6 +38,10 @@ function HomeContent() {
 
   // Auto-close modal if selection drops below 2 (derived, no effect needed)
   const effectiveModalOpen = modalOpen && selectedIds.length >= 2;
+
+  // Get selected datacenters for latency
+  const latencyDatacenters = datacenters.filter(dc => selectedForLatency.includes(dc.id));
+  const effectiveLatencyModalOpen = latencyModalOpen && selectedForLatency.length >= 2;
 
   // Sync filters with URL params
   useUrlSync();
@@ -59,6 +69,19 @@ function HomeContent() {
         }
       }
 
+      // 'L' for latency
+      if (e.key === 'l' || e.key === 'L') {
+        e.preventDefault();
+        if (selectedForLatency.length >= 2) {
+          setLatencyModalOpen(prev => !prev);
+        } else {
+          toast.info('Select at least 2 datacenters for latency', {
+            description: 'Click "Latency" on datacenter tooltips to add them.',
+            duration: 3000,
+          });
+        }
+      }
+
       // '+' or '=' to zoom in
       if (e.key === '+' || e.key === '=') {
         e.preventDefault();
@@ -76,20 +99,23 @@ function HomeContent() {
         if (modalOpen) {
           e.preventDefault();
           setModalOpen(false);
+        } else if (latencyModalOpen) {
+          e.preventDefault();
+          setLatencyModalOpen(false);
         }
       }
     };
 
     window.addEventListener('keydown', handleKeyDown);
     return () => window.removeEventListener('keydown', handleKeyDown);
-  }, [canCompare, modalOpen, viewport.zoom, setViewport]);
+  }, [canCompare, modalOpen, latencyModalOpen, selectedForLatency.length, viewport.zoom, setViewport]);
 
   return (
-    <main className="bg-black min-h-screen md:h-screen md:flex md:flex-col md:overflow-hidden">
+    <main className="bg-black h-dvh flex flex-col overflow-hidden">
       <Header />
 
-      {/* View tab strip */}
-      <div className="bg-black border-b border-white/[0.06] px-4 md:px-6 flex items-center gap-1.5 py-2 flex-shrink-0">
+      {/* View tab strip — desktop only */}
+      <div className="hidden md:flex bg-black border-b border-white/[0.06] px-4 md:px-6 items-center gap-1.5 py-2 flex-shrink-0">
         <button onClick={() => setActiveView('map')} className={activeView === 'map' ? activeTab : inactiveTab}>
           <Map className="w-3 h-3" /> Map
         </button>
@@ -98,20 +124,37 @@ function HomeContent() {
         </button>
       </div>
 
-      <FilterBar />
+      {/* Filter bar — desktop only */}
+      <div className="hidden md:block flex-shrink-0">
+        <FilterBar />
+      </div>
 
-      <div className="relative md:flex-1 md:min-h-0">
+      {/* Mobile: always show list */}
+      <div className="md:hidden flex-1 min-h-0 overflow-hidden">
+        <MobileDatacenterList />
+      </div>
+
+      {/* Desktop: tab-switched Map or List */}
+      <div className="hidden md:flex relative flex-1 min-h-0">
         {activeView === 'map' ? <MapContainer /> : <DatacenterListView />}
       </div>
       <Footer />
 
-      {/* Comparison Footer (sticky bottom bar) */}
-      <ComparisonFooter
-        selectedDatacenters={comparisonDatacenters}
-        onViewComparison={() => setModalOpen(true)}
-        onClearAll={clearComparison}
-        onRemove={removeFromComparison}
-      />
+      {/* Sticky footer stack — latency sits above comparison */}
+      <div className="fixed bottom-0 left-0 right-0 z-40 flex flex-col">
+        <LatencyFooter
+          selectedDatacenters={latencyDatacenters}
+          onCalculate={() => setLatencyModalOpen(true)}
+          onClearAll={clearLatencySelection}
+          onRemove={removeFromLatency}
+        />
+        <ComparisonFooter
+          selectedDatacenters={comparisonDatacenters}
+          onViewComparison={() => setModalOpen(true)}
+          onClearAll={clearComparison}
+          onRemove={removeFromComparison}
+        />
+      </div>
 
       {/* Comparison Modal - only opens when manually triggered AND ≥2 selected */}
       {effectiveModalOpen && comparisonDatacenters.length >= 2 && (
@@ -121,6 +164,12 @@ function HomeContent() {
           onRemove={removeFromComparison}
         />
       )}
+
+      {/* Latency Calculator Modal */}
+      <LatencyCalculator
+        isOpen={effectiveLatencyModalOpen}
+        onClose={() => setLatencyModalOpen(false)}
+      />
 
       {/* Toast Notifications */}
       <Toaster
